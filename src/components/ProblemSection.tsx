@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ScrollReveal from "@/components/ScrollReveal";
+import { Link } from "react-router-dom";
 import problemTraffic from "@/assets/problem-traffic.jpg";
 import problemSky from "@/assets/problem-sky.jpg";
 
@@ -148,6 +149,15 @@ const ProblemSection = () => {
               </p>
             </ScrollReveal>
           ))}
+        </div>
+
+        <div className="flex justify-center mt-12">
+          <Link
+            to="/urban-mobility"
+            className="font-sub text-[13px] text-primary border border-primary/30 rounded-lg px-6 py-3 hover:bg-primary/10 transition-all duration-300"
+          >
+            Learn More About Urban Mobility →
+          </Link>
         </div>
       </div>
     </section>

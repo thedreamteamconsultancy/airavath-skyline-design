@@ -27,6 +27,7 @@ import GroundPort from "./pages/GroundPort";
 import VertiportPage from "./pages/Vertiport";
 import SkyPort from "./pages/SkyPort";
 import HubNetwork from "./pages/HubNetwork";
+import UrbanMobility from "./pages/UrbanMobility";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
               <Route path="/vertiport" element={<VertiportPage />} />
               <Route path="/sky-port" element={<SkyPort />} />
               <Route path="/hub-network" element={<HubNetwork />} />
+              <Route path="/urban-mobility" element={<UrbanMobility />} />
               <Route path="/newsroom" element={<Newsroom />} />
               <Route path="/newsroom/:id" element={<NewsArticle />} />
               <Route path="/careers" element={<Careers />} />
