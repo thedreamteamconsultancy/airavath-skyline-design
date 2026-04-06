@@ -77,8 +77,8 @@ const ProblemSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-background overflow-hidden"
-      style={{ paddingTop: "160px", paddingBottom: "160px" }}
+      className="relative bg-surface-0 overflow-hidden atmosphere-warm"
+      style={{ paddingTop: "200px", paddingBottom: "200px" }}
     >
       <div className="container-airavath">
         <ScrollReveal delay={0.12} className="flex flex-col items-center text-center mb-3x">

@@ -26,7 +26,7 @@ const AboutSection = () => {
   return (
     <section
       id="about"
-      className="relative section-padding bg-background overflow-hidden"
+      className="relative section-padding bg-surface-1 overflow-hidden"
     >
       <div className="absolute top-0 right-[30%] w-px h-full bg-primary/[0.08]" />
       <div className="absolute inset-0 grid-overlay opacity-[0.06] pointer-events-none" />

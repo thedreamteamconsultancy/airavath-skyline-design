@@ -49,11 +49,11 @@ const highlights = [
 const SolutionSection = () => {
   return (
     <section
-      className="relative overflow-hidden"
+      className="relative overflow-hidden atmosphere-blue"
       style={{
-        paddingTop: "160px",
-        paddingBottom: "160px",
-        background: "linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(0 0% 2%) 100%)",
+        paddingTop: "200px",
+        paddingBottom: "200px",
+        background: "linear-gradient(180deg, hsl(var(--surface-0)) 0%, hsl(var(--surface-1)) 50%, hsl(var(--surface-0)) 100%)",
       }}
     >
       {/* Background effects */}

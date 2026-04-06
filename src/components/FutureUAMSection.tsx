@@ -49,7 +49,7 @@ const validationBlocks = [
 
 const FutureUAMSection = () => {
   return (
-    <section className="relative bg-background overflow-hidden" style={{ paddingTop: "160px", paddingBottom: "160px" }}>
+    <section className="relative overflow-hidden atmosphere-blue" style={{ paddingTop: "200px", paddingBottom: "200px", background: "linear-gradient(180deg, hsl(var(--surface-1)) 0%, hsl(var(--surface-0)) 100%)" }}>
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 grid-overlay opacity-[0.08]" />

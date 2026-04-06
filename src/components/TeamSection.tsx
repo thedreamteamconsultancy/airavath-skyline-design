@@ -60,7 +60,7 @@ const TeamSection = () => {
       ref={ref}
       id="team"
       className="relative overflow-hidden section-padding"
-      style={{ background: "linear-gradient(180deg, #000000, #030303)" }}
+      style={{ background: "linear-gradient(180deg, hsl(var(--surface-1)), hsl(var(--surface-2)))" }}
     >
       <div className="absolute inset-0 grid-overlay opacity-[0.06] pointer-events-none" />
 
