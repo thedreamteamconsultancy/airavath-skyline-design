@@ -122,11 +122,11 @@ const NetworkOverlay = () => (
 const VertiportSection = () => {
   return (
     <section
-      className="relative overflow-hidden"
+      className="relative overflow-hidden atmosphere-blue"
       style={{
-        paddingTop: "100px",
-        paddingBottom: "100px",
-        background: "linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(0 0% 0.8%) 100%)",
+        paddingTop: "200px",
+        paddingBottom: "200px",
+        background: "linear-gradient(180deg, hsl(var(--surface-1)) 0%, hsl(var(--surface-0)) 100%)",
       }}
     >
       <div className="absolute inset-0 pointer-events-none">
