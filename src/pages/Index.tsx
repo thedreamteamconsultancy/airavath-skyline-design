@@ -88,6 +88,7 @@ const Index = () => {
       <SectionDivider variant="blue" />
       <ContactSection />
       <FooterSection />
+      <BackToTopButton />
     </div>
   );
 };

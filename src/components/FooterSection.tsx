@@ -256,7 +256,15 @@ const FooterSection = () => {
             <span>Back to top</span>
             <div className="w-7 h-7 rounded-md border border-white/[0.08] flex items-center justify-center
                             group-hover:border-primary/50 group-hover:bg-primary/10 group-hover:shadow-[0_0_12px_hsl(189_100%_50%/0.2)] transition-all duration-300">
-              <ChevronUp size={14} className="group-hover:text-primary transition-colors duration-300" />
+              <svg viewBox="0 0 64 64" fill="none" className="w-4 h-4 text-foreground/60 group-hover:text-primary transition-colors duration-300">
+                <g stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M32 8 C30.5 8, 29 12, 29 18 L29 44 C29 50, 30 54, 32 56 C34 54, 35 50, 35 44 L35 18 C35 12, 33.5 8, 32 8Z" fill="currentColor" fillOpacity="0.15" />
+                  <path d="M29 24 L12 30 C10 30.8, 10 32, 12 32.5 L29 34" fill="currentColor" fillOpacity="0.08" />
+                  <path d="M35 24 L52 30 C54 30.8, 54 32, 52 32.5 L35 34" fill="currentColor" fillOpacity="0.08" />
+                  <path d="M30 46 L20 50 C19 50.5, 19 51.5, 20 51.8 L30 49" fill="currentColor" fillOpacity="0.08" />
+                  <path d="M34 46 L44 50 C45 50.5, 45 51.5, 44 51.8 L34 49" fill="currentColor" fillOpacity="0.08" />
+                </g>
+              </svg>
             </div>
           </motion.button>
         </motion.div>
