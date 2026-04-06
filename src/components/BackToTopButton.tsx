@@ -50,10 +50,10 @@ const BackToTopButton = () => {
 
   const handleClick = () => {
     setLaunching(true);
-    setTimeout(() => {
-      scrollToSection("#home");
-      setTimeout(() => setLaunching(false), 800);
-    }, 300);
+    // Start scroll immediately with the animation
+    scrollToSection("#home");
+    // Reset launching state after scroll completes
+    setTimeout(() => setLaunching(false), 1600);
   };
 
   const circumference = 2 * Math.PI * 24;
@@ -63,9 +63,12 @@ const BackToTopButton = () => {
       {visible && (
         <motion.button
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          animate={launching 
+            ? { opacity: 0, scale: 0.9, y: -40 } 
+            : { opacity: 1, scale: 1, y: 0 }
+          }
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           onClick={handleClick}
           className="fixed bottom-8 right-8 z-40 group cursor-pointer focus:outline-none"
           aria-label="Back to top"
@@ -104,9 +107,9 @@ const BackToTopButton = () => {
             {/* Aircraft icon */}
             <motion.div
               className="w-7 h-7 text-primary"
-              animate={launching ? { y: -30, opacity: 0 } : { y: 0, opacity: 1, rotate: 0 }}
+              animate={launching ? { y: -20, opacity: 0 } : { y: 0, opacity: 1 }}
               whileHover={{ rotate: -10, y: -2 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
               <AircraftSilhouette className="w-full h-full" />
             </motion.div>
