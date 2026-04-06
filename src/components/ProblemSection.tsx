@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ScrollReveal from "@/components/ScrollReveal";
-import { scrollToSection } from "@/components/SmoothScroll";
 import problemTraffic from "@/assets/problem-traffic.jpg";
 import problemSky from "@/assets/problem-sky.jpg";
 
@@ -150,15 +149,6 @@ const ProblemSection = () => {
             </ScrollReveal>
           ))}
         </div>
-
-        <ScrollReveal delay={0.3} className="flex justify-center mt-12">
-          <button
-            onClick={() => scrollToSection("#solution")}
-            className="font-sub text-[13px] text-primary border border-primary/30 rounded-lg px-6 py-3 hover:bg-primary/10 transition-all duration-300"
-          >
-            Learn More About Our Solution →
-          </button>
-        </ScrollReveal>
       </div>
     </section>
   );
