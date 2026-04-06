@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Smartphone, MapPin, PlaneTakeoff, Flag } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const steps = [
   {
