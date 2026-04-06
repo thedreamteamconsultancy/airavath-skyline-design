@@ -132,6 +132,7 @@ const MobileCardShowcase = () => {
               style={{
                 width: "72vw",
                 maxWidth: 300,
+                height: 340,
                 transformStyle: "preserve-3d",
                 ...style,
               }}
@@ -149,10 +150,10 @@ const MobileCardShowcase = () => {
                 </div>
               </div>
               <div className="p-5 flex-1 flex flex-col">
-                <h3 className="font-sub text-[17px] font-medium text-foreground mb-1.5">
+                <h3 className="font-sub text-[17px] font-medium text-foreground mb-1.5 line-clamp-2">
                   {pillar.title}
                 </h3>
-                <p className="font-body text-[12px] text-titanium leading-[1.55]">
+                <p className="font-body text-[12px] text-titanium leading-[1.55] line-clamp-4">
                   {pillar.description}
                 </p>
               </div>
