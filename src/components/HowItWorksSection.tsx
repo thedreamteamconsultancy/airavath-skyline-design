@@ -105,7 +105,7 @@ const VerticalTimeline = () => {
                       </span>
 
                       {/* Title */}
-                      <h3 className="font-sub text-[22px] md:text-[26px] text-foreground font-medium mb-4 tracking-wide">
+                      <h3 className="font-heading text-[20px] md:text-[24px] text-foreground font-semibold uppercase tracking-[0.02em] mb-4 tracking-wide">
                         {step.title}
                       </h3>
 

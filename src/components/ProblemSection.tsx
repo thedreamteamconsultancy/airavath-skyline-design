@@ -139,7 +139,7 @@ const ProblemSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6x">
           {stats.map((stat, i) => (
             <ScrollReveal key={i} delay={0.12 * i} className="text-center">
-              <div className="font-heading text-[42px] leading-[1.1] text-primary tracking-futuristic mb-2x">
+              <div className="font-heading text-[42px] leading-[1.1] text-primary tracking-[-0.02em] mb-2x">
                 <CountUp target={stat.number} />
                 {stat.suffix}
               </div>

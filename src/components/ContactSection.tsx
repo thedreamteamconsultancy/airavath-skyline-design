@@ -87,7 +87,7 @@ const ContactSection = () => {
 
       <div className="container-airavath relative z-10">
         <ScrollReveal delay={0.12}>
-          <h2 className="font-heading text-[36px] md:text-[48px] font-semibold text-foreground tracking-futuristic text-center mb-[24px]">
+          <h2 className="font-heading text-[28px] md:text-[40px] font-semibold text-foreground uppercase tracking-[0.02em] leading-[1.15] text-center mb-[24px]">
             Join the Urban Air Mobility Network
           </h2>
         </ScrollReveal>
