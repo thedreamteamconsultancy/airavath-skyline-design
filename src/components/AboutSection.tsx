@@ -56,7 +56,7 @@ const AboutSection = () => {
           <div className="lg:col-span-6 flex flex-col gap-[24px]">
             {missionBlocks.map((block, i) => (
               <ScrollReveal key={block.title} direction="right" delay={0.15 * i + 0.2} duration={0.6}>
-                <div className="group flex items-start gap-5 rounded-[10px] border border-border bg-card p-5 md:p-[28px] min-h-[120px] hover:-translate-y-2 hover:shadow-[0_0_24px_hsl(189_100%_50%/0.15)] transition-all duration-500">
+                <div className="group flex items-start gap-5 rounded-[10px] border border-border bg-card p-5 md:p-[28px] min-h-[120px] hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_0_24px_hsl(189_100%_50%/0.18)] hover:border-primary/30 transition-all duration-300 ease-out">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                     <block.icon className="w-5 h-5 text-primary" />
                   </div>

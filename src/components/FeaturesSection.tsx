@@ -46,9 +46,9 @@ const FeaturesSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3x">
           {features.map((feature, i) => (
-            <ScrollReveal key={feature.title} delay={0.1 * i}>
-              <div className="group bg-card border border-border rounded-card p-4x hover:-translate-y-2 hover:shadow-[0_0_30px_hsl(189_100%_50%/0.15)] transition-all duration-500 h-full">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3x group-hover:bg-primary/20 transition-colors">
+            <ScrollReveal key={feature.title} delay={0.12 * i} direction="up">
+              <div className="group bg-card border border-border rounded-card p-4x hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_0_30px_hsl(189_100%_50%/0.18)] hover:border-primary/30 transition-all duration-300 ease-out h-full">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3x group-hover:bg-primary/20 group-hover:shadow-[0_0_16px_hsl(189_100%_50%/0.25)] transition-all duration-300">
                   <feature.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="font-sub text-feature text-foreground mb-2x">

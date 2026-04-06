@@ -1,5 +1,6 @@
 import { Plane, Building, Smartphone, Layers, Globe, Leaf } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import ParallaxImage from "@/components/ParallaxImage";
 import solutionNetwork from "@/assets/solution-network.jpg";
 import solutionVertiport from "@/assets/solution-vertiport.jpg";
 import solutionPlatform from "@/assets/solution-platform.jpg";
@@ -106,14 +107,10 @@ const SolutionSection = () => {
         {/* Solution Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {pillars.map((pillar, i) => (
-            <ScrollReveal key={pillar.title} delay={0.2 * i}>
-              <div className="group bg-card border border-border rounded-card overflow-hidden hover:-translate-y-2 hover:shadow-[0_0_30px_hsl(189_100%_50%/0.15)] transition-all duration-500 h-full flex flex-col">
+            <ScrollReveal key={pillar.title} delay={0.15 * i} direction="up">
+              <div className="group bg-card border border-border rounded-card overflow-hidden hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_0_30px_hsl(189_100%_50%/0.18)] hover:border-primary/30 transition-all duration-300 ease-out h-full flex flex-col">
                 <div className="relative h-[260px] overflow-hidden">
-                  <img
-                    src={pillar.image}
-                    alt={pillar.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                  <ParallaxImage src={pillar.image} alt={pillar.title} intensity={18} />
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
                   <div className="absolute top-4 left-4 w-11 h-11 rounded-xl bg-background/70 backdrop-blur-md border border-primary/20 flex items-center justify-center shadow-[0_0_15px_hsl(189_100%_50%/0.2)]">
                     <pillar.icon className="w-5 h-5 text-primary" />

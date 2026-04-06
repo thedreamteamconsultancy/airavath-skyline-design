@@ -132,7 +132,7 @@ const AircraftTechSection = () => {
           {features.map((feature, i) => (
             <ScrollReveal key={feature.title} delay={0.15 * i} className="text-center">
               <div className="group flex flex-col items-center">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3x transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(189_100%_50%/0.3)]">
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3x transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(189_100%_50%/0.3)] group-hover:scale-110">
                   <feature.icon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="font-sub text-feature text-foreground mb-2x">

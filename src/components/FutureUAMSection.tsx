@@ -1,6 +1,7 @@
 import { TrendingUp, Cpu, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
+import ParallaxImage from "@/components/ParallaxImage";
 import cardAirTaxi from "@/assets/card-air-taxi.jpg";
 import cardUam from "@/assets/card-uam.jpg";
 import cardNextgen from "@/assets/card-nextgen.jpg";
@@ -98,15 +99,11 @@ const FutureUAMSection = () => {
         {/* Service Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12x">
           {aircraftCards.map((card, i) => (
-            <ScrollReveal key={card.title} delay={0.2 * i}>
+            <ScrollReveal key={card.title} delay={0.15 * i} direction="up">
               <Link to={card.link} className="block h-full">
-                <div className="group bg-card border border-border rounded-card overflow-hidden hover:-translate-y-2 hover:shadow-[0_0_30px_hsl(189_100%_50%/0.15)] transition-all duration-500 h-full">
+                <div className="group bg-card border border-border rounded-card overflow-hidden hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_0_30px_hsl(189_100%_50%/0.18)] hover:border-primary/30 transition-all duration-300 ease-out h-full">
                   <div className="relative h-[200px] overflow-hidden">
-                    <img
-                      src={card.image}
-                      alt={card.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                    <ParallaxImage src={card.image} alt={card.title} intensity={15} />
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
                   </div>
                   <div className="p-4x">

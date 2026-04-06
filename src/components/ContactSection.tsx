@@ -102,7 +102,7 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[40px] mb-[120px]">
           {channels.map((ch, i) => (
             <ScrollReveal key={ch.title} delay={0.12 * i} duration={0.6}>
-              <div className="group flex flex-col rounded-[12px] border border-border bg-card p-[32px] min-h-[200px] hover:-translate-y-2 hover:shadow-[0_0_24px_hsl(189_100%_50%/0.15)] hover:border-primary/30 transition-all duration-300 h-full">
+              <div className="group flex flex-col rounded-[12px] border border-border bg-card p-[32px] min-h-[200px] hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_0_24px_hsl(189_100%_50%/0.18)] hover:border-primary/30 transition-all duration-300 ease-out h-full">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <ch.icon className="w-5 h-5 text-primary" />
                 </div>
