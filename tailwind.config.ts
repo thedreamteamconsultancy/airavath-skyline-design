@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["Space Grotesk", "sans-serif"],
-        sub: ["Space Grotesk", "sans-serif"],
+        heading: ["Inter", "sans-serif"],
+        sub: ["Inter", "sans-serif"],
         body: ["Poppins", "sans-serif"],
       },
       fontSize: {
