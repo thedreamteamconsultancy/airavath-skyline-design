@@ -140,7 +140,7 @@ const ContactSection = () => {
               <textarea placeholder="Your Message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${inputClass} h-[140px] py-4 resize-none`} maxLength={2000} />
               {errors.message && <p className="text-destructive text-xs mt-1">{errors.message}</p>}
             </div>
-            <button type="submit" disabled={submitting} className="w-full h-[56px] rounded-[8px] bg-primary text-primary-foreground font-sub text-[14px] font-medium hover:scale-[1.02] hover:shadow-[0_0_24px_hsl(189_100%_50%/0.4)] transition-all duration-300 disabled:opacity-50">
+            <button type="submit" disabled={submitting} className="w-full h-[56px] rounded-[8px] bg-primary text-primary-foreground font-heading text-[14px] font-medium uppercase tracking-[0.06em] hover:scale-[1.02] hover:shadow-[0_0_24px_hsl(189_100%_50%/0.4)] transition-all duration-300 disabled:opacity-50">
               {submitting ? "Submitting..." : "Submit Inquiry"}
             </button>
           </form>

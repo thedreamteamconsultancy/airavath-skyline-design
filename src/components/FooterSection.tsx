@@ -162,7 +162,7 @@ const FooterSection = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.2 + ci * 0.1 }}
               >
-                <h4 className="font-sub text-[13px] uppercase tracking-wide-futuristic text-primary mb-5">
+                <h4 className="font-heading text-[13px] uppercase tracking-[0.06em] uppercase tracking-wide-futuristic text-primary mb-5">
                   {col.title}
                 </h4>
                 <ul className="space-y-3">
@@ -194,7 +194,7 @@ const FooterSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.5 }}
             >
-              <h4 className="font-sub text-[13px] uppercase tracking-wide-futuristic text-primary mb-5">
+              <h4 className="font-heading text-[13px] uppercase tracking-[0.06em] uppercase tracking-wide-futuristic text-primary mb-5">
                 Stay Updated
               </h4>
               <p className="font-body text-body-sm text-muted-foreground mb-4">
@@ -203,7 +203,7 @@ const FooterSection = () => {
               <a
                 href="#contact"
                 onClick={(e) => handleClick(e, "#contact")}
-                className="group inline-flex items-center gap-2 font-sub text-[13px] text-foreground
+                className="group inline-flex items-center gap-2 font-heading text-[13px] uppercase tracking-[0.06em] text-foreground
                            border border-border rounded-lg px-4 py-2.5 w-fit
                            hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
               >
