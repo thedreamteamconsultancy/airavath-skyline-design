@@ -78,6 +78,9 @@ export default {
         },
         titanium: "hsl(var(--titanium))",
         glow: "hsl(var(--glow-color))",
+        "surface-0": "hsl(var(--surface-0))",
+        "surface-1": "hsl(var(--surface-1))",
+        "surface-2": "hsl(var(--surface-2))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
