@@ -54,7 +54,7 @@ const StatCard = ({ stat, delay }: { stat: typeof stats[0]; delay: number }) => 
   const { ref, display } = useCountUp(stat.number);
   return (
     <ScrollReveal delay={delay}>
-      <div className="bg-card border border-border rounded-card p-[28px] h-[160px] flex flex-col justify-center text-center hover:-translate-y-1 hover:shadow-[0_0_20px_hsl(189_100%_50%/0.1)] transition-all duration-500">
+      <div className="bg-card border border-border rounded-card p-[28px] h-[160px] flex flex-col justify-center text-center hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_0_24px_hsl(189_100%_50%/0.18)] hover:border-primary/30 transition-all duration-300 ease-out">
         <div className="font-heading text-[40px] leading-[1.1] text-primary tracking-futuristic mb-2x">
           <span ref={ref}>{display}</span>
           {stat.suffix && <span>{stat.suffix}</span>}

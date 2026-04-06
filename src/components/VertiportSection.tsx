@@ -172,8 +172,8 @@ const VertiportSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {cards.map((card, i) => (
-            <ScrollReveal key={card.title} delay={0.2 * i}>
-              <div className="group bg-card border border-border rounded-card p-4x text-center hover:-translate-y-2 hover:shadow-[0_0_30px_hsl(189_100%_50%/0.15)] transition-all duration-500 h-full flex flex-col items-center">
+            <ScrollReveal key={card.title} delay={0.14 * i} direction="up">
+              <div className="group bg-card border border-border rounded-card p-4x text-center hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_0_30px_hsl(189_100%_50%/0.18)] hover:border-primary/30 transition-all duration-300 ease-out h-full flex flex-col items-center">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3x transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(189_100%_50%/0.3)]">
                   <card.icon className="w-6 h-6 text-primary" />
                 </div>

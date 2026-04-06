@@ -1,5 +1,6 @@
 import { Building2, Plane, Landmark, Network, ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import ParallaxImage from "@/components/ParallaxImage";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import cardGroundport from "@/assets/card-groundport.jpg";
@@ -72,25 +73,19 @@ const EcosystemHubSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {hubs.map((hub, i) => (
-            <ScrollReveal key={hub.title} delay={0.15 * i}>
+            <ScrollReveal key={hub.title} delay={0.14 * i} direction="up">
               <motion.div
-                className="group bg-card border border-border rounded-[12px] overflow-hidden h-full hover:border-primary/30 hover:shadow-[0_0_30px_hsl(189_100%_50%/0.1)] transition-all duration-500"
-                whileHover={{ y: -4 }}
+                className="group bg-card border border-border rounded-[12px] overflow-hidden h-full hover:border-primary/30 hover:shadow-[0_0_30px_hsl(189_100%_50%/0.18)] transition-all duration-300 ease-out"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                {/* Card Image */}
                 <div className="relative h-[180px] overflow-hidden">
-                  <img
-                    src={hub.image}
-                    alt={hub.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                  <ParallaxImage src={hub.image} alt={hub.title} intensity={15} />
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
                   <div className="absolute top-4 left-4 w-10 h-10 rounded-lg bg-primary/20 backdrop-blur-sm flex items-center justify-center">
                     <hub.icon className="w-5 h-5 text-primary" />
                   </div>
                 </div>
-
-                {/* Card Content */}
                 <div className="p-8">
                   <h3 className="font-sub text-[24px] font-medium text-foreground mb-3">
                     {hub.title}
