@@ -23,7 +23,6 @@ import TeamSection from "@/components/TeamSection";
 import ContactSection from "@/components/ContactSection";
 import FooterSection from "@/components/FooterSection";
 import SectionDivider from "@/components/SectionDivider";
-import BackToTopButton from "@/components/BackToTopButton";
 
 const Index = () => {
   const location = useLocation();
@@ -88,7 +87,6 @@ const Index = () => {
       <SectionDivider variant="blue" />
       <ContactSection />
       <FooterSection />
-      <BackToTopButton />
     </div>
   );
 };
