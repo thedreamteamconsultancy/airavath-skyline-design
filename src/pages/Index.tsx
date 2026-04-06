@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { scrollToSection } from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -40,9 +41,8 @@ const Index = () => {
   useEffect(() => {
     if (location.hash) {
       setTimeout(() => {
-        const el = document.querySelector(location.hash);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 100);
+        scrollToSection(location.hash);
+      }, 200);
     }
   }, [location]);
 
