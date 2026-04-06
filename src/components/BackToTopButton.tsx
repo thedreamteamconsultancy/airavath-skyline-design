@@ -50,10 +50,10 @@ const BackToTopButton = () => {
 
   const handleClick = () => {
     setLaunching(true);
-    setTimeout(() => {
-      scrollToSection("#home");
-      setTimeout(() => setLaunching(false), 800);
-    }, 300);
+    // Start scroll immediately with the animation
+    scrollToSection("#home");
+    // Reset launching state after scroll completes
+    setTimeout(() => setLaunching(false), 1600);
   };
 
   const circumference = 2 * Math.PI * 24;
