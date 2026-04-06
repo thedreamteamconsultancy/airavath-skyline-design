@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, forwardRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -9,7 +9,7 @@ interface ParallaxImageProps {
   intensity?: number; // px of parallax travel, default 20
 }
 
-const ParallaxImage = ({ src, alt, className = "", intensity = 20 }: ParallaxImageProps) => {
+const ParallaxImage = forwardRef<HTMLDivElement, ParallaxImageProps>(({ src, alt, className = "", intensity = 20 }, _ref) => {
   const ref = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
@@ -35,6 +35,8 @@ const ParallaxImage = ({ src, alt, className = "", intensity = 20 }: ParallaxIma
       />
     </div>
   );
-};
+});
+
+ParallaxImage.displayName = "ParallaxImage";
 
 export default ParallaxImage;
