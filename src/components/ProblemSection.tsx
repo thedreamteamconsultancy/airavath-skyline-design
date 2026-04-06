@@ -82,7 +82,7 @@ const ProblemSection = () => {
     >
       <div className="container-airavath">
         <ScrollReveal delay={0.12} className="flex flex-col items-center text-center mb-3x">
-          <h2 className="font-heading font-semibold text-section text-foreground tracking-futuristic max-w-[720px]">
+          <h2 className="font-heading font-semibold text-[28px] md:text-[40px] text-foreground uppercase tracking-[0.02em] leading-[1.15] max-w-[720px]">
             Cities Are Running Out of Time
           </h2>
         </ScrollReveal>

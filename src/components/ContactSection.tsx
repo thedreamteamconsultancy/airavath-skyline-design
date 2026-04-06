@@ -106,7 +106,7 @@ const ContactSection = () => {
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <ch.icon className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="font-sub text-[22px] font-medium text-foreground mb-2">
+                <h3 className="font-heading text-[18px] font-semibold uppercase tracking-[0.02em] text-foreground mb-2">
                   {ch.title}
                 </h3>
                 <p className="font-body text-[14px] text-titanium leading-relaxed flex-1">

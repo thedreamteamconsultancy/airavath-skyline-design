@@ -108,7 +108,7 @@ const TeamSection = () => {
                 />
               </div>
 
-              <h3 className="font-sub text-[20px] font-medium text-foreground mb-1">
+              <h3 className="font-heading text-[18px] font-semibold uppercase tracking-[0.02em] text-foreground mb-1">
                 {member.name}
               </h3>
 

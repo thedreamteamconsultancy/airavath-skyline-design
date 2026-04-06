@@ -58,7 +58,7 @@ const EcosystemHubSection = () => {
 
       <div className="container-airavath relative z-10">
         <ScrollReveal className="flex flex-col items-center text-center mb-3x">
-          <h2 className="font-heading font-semibold text-section text-foreground tracking-futuristic max-w-[820px]">
+          <h2 className="font-heading font-semibold text-[28px] md:text-[40px] text-foreground uppercase tracking-[0.02em] leading-[1.15] max-w-[820px]">
             Urban Air Mobility Hub Infrastructure
           </h2>
         </ScrollReveal>
@@ -92,7 +92,7 @@ const EcosystemHubSection = () => {
 
                 {/* Card Content */}
                 <div className="p-8">
-                  <h3 className="font-sub text-[24px] font-medium text-foreground mb-3">
+                  <h3 className="font-heading text-[20px] font-semibold uppercase tracking-[0.02em] text-foreground mb-3">
                     {hub.title}
                   </h3>
                   <p className="font-body text-[15px] text-titanium leading-[1.7] mb-6">

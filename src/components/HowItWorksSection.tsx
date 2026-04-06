@@ -268,7 +268,7 @@ const HowItWorksSection = () => {
           >
             The Process
           </motion.span>
-          <h2 className="font-heading font-semibold text-section text-foreground tracking-futuristic">
+          <h2 className="font-heading font-semibold text-[28px] md:text-[40px] text-foreground uppercase tracking-[0.02em] leading-[1.15]">
             How AIRAVATH Works
           </h2>
         </ScrollReveal>
