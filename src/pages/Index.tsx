@@ -22,6 +22,7 @@ import VisionSection from "@/components/VisionSection";
 import TeamSection from "@/components/TeamSection";
 import ContactSection from "@/components/ContactSection";
 import FooterSection from "@/components/FooterSection";
+import BackToTopButton from "@/components/BackToTopButton";
 import SectionDivider from "@/components/SectionDivider";
 
 const Index = () => {
