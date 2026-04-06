@@ -37,8 +37,8 @@ const ComparisonBlock = ({
   return (
     <section
       ref={sectionRef}
-      className="relative bg-background overflow-hidden"
-      style={{ paddingTop: "160px", paddingBottom: "160px" }}
+      className="relative bg-surface-1 overflow-hidden"
+      style={{ paddingTop: "200px", paddingBottom: "200px" }}
     >
       <div className="container-airavath">
         {/* Heading */}

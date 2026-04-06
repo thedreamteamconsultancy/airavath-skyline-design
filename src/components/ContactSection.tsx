@@ -80,8 +80,8 @@ const ContactSection = () => {
     <section
       ref={ref}
       id="contact"
-      className="relative overflow-hidden section-padding"
-      style={{ background: "linear-gradient(180deg, #000000, #020202)" }}
+      className="relative overflow-hidden section-padding atmosphere-blue"
+      style={{ background: "linear-gradient(180deg, hsl(var(--surface-0)), hsl(var(--surface-1)))" }}
     >
       <div className="absolute inset-0 grid-overlay opacity-[0.06] pointer-events-none" />
 

@@ -209,10 +209,10 @@ const HowItWorksSection = () => {
       ref={sectionRef}
       className="relative overflow-hidden"
       style={{
-        paddingTop: "180px",
-        paddingBottom: "180px",
+        paddingTop: "220px",
+        paddingBottom: "220px",
         background:
-          "linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(210 20% 2%) 50%, hsl(0 0% 0%) 100%)",
+          "linear-gradient(180deg, hsl(var(--surface-0)) 0%, hsl(210 20% 2%) 50%, hsl(var(--surface-0)) 100%)",
       }}
     >
       {/* Background effects */}

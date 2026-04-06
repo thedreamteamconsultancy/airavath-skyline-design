@@ -53,9 +53,9 @@ const AircraftTechSection = () => {
       id="technology"
       className="relative overflow-hidden"
       style={{
-        paddingTop: "180px",
-        paddingBottom: "180px",
-        background: "linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(0 0% 1.6%) 100%)",
+        paddingTop: "220px",
+        paddingBottom: "220px",
+        background: "linear-gradient(180deg, hsl(var(--surface-0)) 0%, hsl(var(--surface-1)) 50%, hsl(var(--surface-0)) 100%)",
       }}
     >
       <div className="absolute inset-0 pointer-events-none">

@@ -42,6 +42,11 @@
     --deep-card: 0 0% 4.3%;
     --divider: 0 0% 11%;
 
+    /* Depth levels */
+    --surface-0: 0 0% 0%;
+    --surface-1: 0 0% 2%;
+    --surface-2: 0 0% 4.3%;
+
     --sidebar-background: 0 0% 3%;
     --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 189 100% 50%;
@@ -108,6 +113,42 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* Depth backgrounds */
+  .bg-surface-0 {
+    background-color: hsl(var(--surface-0));
+  }
+  .bg-surface-1 {
+    background-color: hsl(var(--surface-1));
+  }
+  .bg-surface-2 {
+    background-color: hsl(var(--surface-2));
+  }
+
+  /* Section atmosphere tints */
+  .atmosphere-warm::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, hsl(15 80% 50% / 0.04), transparent 70%);
+    pointer-events: none;
+  }
+
+  .atmosphere-blue::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 50%, hsl(189 100% 50% / 0.06), transparent 70%);
+    pointer-events: none;
+  }
+
+  .atmosphere-horizon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, hsl(189 100% 50% / 0.05), transparent 40%);
+    pointer-events: none;
   }
 
   .grid-overlay {

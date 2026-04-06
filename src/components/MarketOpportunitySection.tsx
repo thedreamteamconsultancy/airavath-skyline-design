@@ -99,9 +99,9 @@ const MarketOpportunitySection = () => {
       id="investors"
       className="relative overflow-hidden"
       style={{
-        paddingTop: "180px",
-        paddingBottom: "180px",
-        background: "linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(0 0% 1.2%) 100%)",
+        paddingTop: "220px",
+        paddingBottom: "220px",
+        background: "linear-gradient(180deg, hsl(var(--surface-1)) 0%, hsl(var(--surface-2)) 50%, hsl(var(--surface-1)) 100%)",
       }}
     >
       <div className="absolute inset-0 pointer-events-none">

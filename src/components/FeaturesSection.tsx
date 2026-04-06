@@ -26,7 +26,7 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section className="relative section-padding">
+    <section className="relative section-padding bg-surface-0">
       <div className="container-airavath">
         <ScrollReveal>
           <p className="font-sub text-body-sm text-primary tracking-wide-futuristic uppercase mb-3x">
