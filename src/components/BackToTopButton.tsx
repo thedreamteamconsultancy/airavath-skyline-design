@@ -1,9 +1,10 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getLenis } from "@/components/SmoothScroll";
 
-const AircraftSilhouette = ({ className = "" }: { className?: string }) => (
+const AircraftSilhouette = forwardRef<SVGSVGElement, { className?: string }>(({ className = "" }, ref) => (
   <svg
+    ref={ref}
     viewBox="0 0 64 64"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +23,8 @@ const AircraftSilhouette = ({ className = "" }: { className?: string }) => (
       <ellipse cx="32" cy="13" rx="2.2" ry="4" fill="currentColor" fillOpacity="0.18" />
     </g>
   </svg>
-);
+));
+AircraftSilhouette.displayName = "AircraftSilhouette";
 
 const RADIUS = 24;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
