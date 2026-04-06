@@ -10,7 +10,7 @@ const gradients: Record<string, string> = {
 };
 
 const SectionDivider = ({ variant = "neutral" }: SectionDividerProps) => (
-  <div className="relative h-[120px] md:h-[200px] pointer-events-none" aria-hidden="true">
+  <div className="relative h-[40px] md:h-[60px] pointer-events-none" aria-hidden="true">
     <div className="absolute inset-0" style={{ background: gradients[variant] }} />
     <div
       className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-px"

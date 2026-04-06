@@ -47,8 +47,8 @@ const EcosystemHubSection = () => {
     <section
       className="relative overflow-hidden"
       style={{
-        paddingTop: "200px",
-        paddingBottom: "200px",
+        paddingTop: "80px",
+        paddingBottom: "80px",
         background: "linear-gradient(180deg, hsl(var(--surface-1)) 0%, hsl(var(--surface-2)) 50%, hsl(var(--surface-1)) 100%)",
       }}
     >

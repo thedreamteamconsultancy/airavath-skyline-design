@@ -51,8 +51,8 @@ const SolutionSection = () => {
     <section
       className="relative overflow-hidden atmosphere-blue"
       style={{
-        paddingTop: "200px",
-        paddingBottom: "200px",
+        paddingTop: "80px",
+        paddingBottom: "80px",
         background: "linear-gradient(180deg, hsl(var(--surface-0)) 0%, hsl(var(--surface-1)) 50%, hsl(var(--surface-0)) 100%)",
       }}
     >
