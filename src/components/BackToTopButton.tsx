@@ -63,9 +63,12 @@ const BackToTopButton = () => {
       {visible && (
         <motion.button
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          animate={launching 
+            ? { opacity: 0, scale: 0.9, y: -40 } 
+            : { opacity: 1, scale: 1, y: 0 }
+          }
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           onClick={handleClick}
           className="fixed bottom-8 right-8 z-40 group cursor-pointer focus:outline-none"
           aria-label="Back to top"
