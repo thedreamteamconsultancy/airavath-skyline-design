@@ -131,10 +131,16 @@ const Navbar = () => {
                       key={link.label}
                       href={link.href}
                       onClick={(e) => handleNavClick(e, link.href)}
-                      className="group relative font-heading text-[13px] font-medium text-foreground/90 hover:text-foreground uppercase tracking-[0.08em] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm py-1"
+                      className={`group relative font-heading text-[13px] font-medium uppercase tracking-[0.08em] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm py-1 ${
+                        activeSection === link.href.replace("#", "")
+                          ? "text-foreground"
+                          : "text-foreground/60 hover:text-foreground"
+                      }`}
                     >
                       {link.label}
-                      <span className="absolute bottom-0 left-0 w-full h-[1px] bg-foreground origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+                      <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-foreground origin-left transition-transform duration-300 ease-out ${
+                        activeSection === link.href.replace("#", "") ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      }`} />
                     </a>
                   )
                 )}
@@ -144,7 +150,7 @@ const Navbar = () => {
             {/* CTA — right side */}
             <div className="hidden lg:block flex-shrink-0">
               <button
-                onClick={() => { document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
+                onClick={() => scrollToSection("#contact")}
                 className="font-heading text-[13px] font-medium uppercase tracking-[0.08em] text-foreground/90 hover:text-foreground border border-foreground/30 hover:border-foreground/60 px-6 py-2.5 rounded-[2px] transition-all duration-300 flex items-center gap-2"
               >
                 Join The Future
