@@ -2,10 +2,11 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import airavathLogo from "@/assets/airavath-logo.png";
+import { scrollToSection } from "@/components/SmoothScroll";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 const allNavLinks = [
   { label: "Home", href: "#home" },
@@ -24,6 +25,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showTeam, setShowTeam] = useState(true);
   const lastScrollY = useRef(0);
+  const activeSection = useActiveSection();
 
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "website_settings", "main"), (snap) => {
@@ -73,13 +75,9 @@ const Navbar = () => {
     setMobileOpen(false);
     
     if (location.pathname !== "/") {
-      // Navigate to homepage with hash
       navigate("/" + href);
     } else {
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
+      scrollToSection(href);
     }
   }, [location.pathname, navigate]);
 
