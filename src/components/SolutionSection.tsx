@@ -49,49 +49,71 @@ const highlights = [
   },
 ];
 
-/* ─── Mobile 3D Horizontal Scroll Card System ─── */
+/* ─── Mobile 3D Auto-Looping Carousel ─── */
 const MobileCardShowcase = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const count = pillars.length;
 
-  const handleScroll = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const cardWidth = el.offsetWidth * 0.78 + 16; // card width + gap
-    const scrollLeft = el.scrollLeft;
-    const idx = Math.round(scrollLeft / cardWidth);
-    setActiveIndex(Math.min(Math.max(idx, 0), pillars.length - 1));
+  // Auto-loop
+  useEffect(() => {
+    if (isPaused) return;
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % count);
+    }, 4000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [isPaused, count]);
+
+  // Touch handlers
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    setIsPaused(true);
+    setDragStartX(e.touches[0].clientX);
   }, []);
 
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.addEventListener("scroll", handleScroll, { passive: true });
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (dragStartX !== null) {
+      const diff = e.changedTouches[0].clientX - dragStartX;
+      if (Math.abs(diff) > 40) {
+        setActiveIndex((prev) => diff < 0 ? (prev + 1) % count : (prev - 1 + count) % count);
+      }
+    }
+    setDragStartX(null);
+    setTimeout(() => setIsPaused(false), 2000);
+  }, [dragStartX, count]);
 
-  const getCardStyle = (i: number) => {
-    const diff = i - activeIndex;
-    const isActive = diff === 0;
-    const rotateY = diff * 25;
-    const scale = isActive ? 1 : 0.9;
-    const opacity = isActive ? 1 : 0.6;
+  const getCardStyle = (index: number) => {
+    let diff = index - activeIndex;
+    // Wrap for infinite feel
+    if (diff > Math.floor(count / 2)) diff -= count;
+    if (diff < -Math.floor(count / 2)) diff += count;
+
+    const isCenter = diff === 0;
+    const rotateY = diff * 10;
+    const scale = isCenter ? 1 : 0.87;
+    const opacity = isCenter ? 1 : 0.55;
+    const translateX = diff * 72;
+    const zIndex = isCenter ? 10 : 5 - Math.abs(diff);
 
     return {
-      transform: `perspective(1200px) rotateY(${rotateY}deg) scale(${scale})`,
+      transform: `perspective(1000px) translateX(${translateX}%) rotateY(${rotateY}deg) scale(${scale})`,
       opacity,
-      transition: "transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
+      zIndex,
+      transition: "all 0.8s cubic-bezier(0.22, 1, 0.36, 1)",
       willChange: "transform, opacity" as const,
-      boxShadow: isActive
-        ? "0 0 30px hsl(189 100% 50% / 0.2), 0 8px 32px rgba(0,0,0,0.4)"
+      boxShadow: isCenter
+        ? "0 0 30px hsl(189 100% 50% / 0.25), 0 12px 40px rgba(0,0,0,0.5)"
         : "0 4px 16px rgba(0,0,0,0.3)",
-      borderColor: isActive ? "hsl(189 100% 50% / 0.4)" : "hsl(var(--border))",
+      borderColor: isCenter ? "hsl(189 100% 50% / 0.4)" : "hsl(var(--border))",
     };
   };
 
   return (
-    <div className="relative">
-      {/* Ambient glow behind cards */}
+    <div className="relative" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      {/* Ambient glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -99,54 +121,57 @@ const MobileCardShowcase = () => {
         }}
       />
 
-      {/* Horizontal scroll container */}
-      <div
-        ref={scrollRef}
-        className="flex gap-4 overflow-x-auto pb-6 px-[11%]"
-        style={{
-          scrollSnapType: "x mandatory",
-          WebkitOverflowScrolling: "touch",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        }}
-      >
-        <style>{`div::-webkit-scrollbar { display: none; }`}</style>
-        {pillars.map((pillar, i) => (
-          <div
-            key={pillar.title}
-            className="flex-shrink-0 rounded-[14px] overflow-hidden border bg-card flex flex-col"
-            style={{
-              width: "78vw",
-              scrollSnapAlign: "center",
-              transformStyle: "preserve-3d",
-              ...getCardStyle(i),
-            }}
-          >
-            <div className="relative h-[180px] overflow-hidden">
-              <ParallaxImage src={pillar.image} alt={pillar.title} intensity={10} />
-              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
-              <div className="absolute top-3 left-3 w-9 h-9 rounded-lg bg-background/70 backdrop-blur-md border border-primary/20 flex items-center justify-center">
-                <pillar.icon className="w-4 h-4 text-primary" />
+      {/* 3D Carousel container */}
+      <div className="relative flex items-center justify-center" style={{ height: 340, perspective: 1000 }}>
+        {pillars.map((pillar, i) => {
+          const style = getCardStyle(i);
+          return (
+            <div
+              key={pillar.title}
+              className="absolute rounded-[14px] overflow-hidden border bg-card flex flex-col"
+              style={{
+                width: "72vw",
+                maxWidth: 300,
+                transformStyle: "preserve-3d",
+                ...style,
+              }}
+              onClick={() => {
+                setActiveIndex(i);
+                setIsPaused(true);
+                setTimeout(() => setIsPaused(false), 3000);
+              }}
+            >
+              <div className="relative h-[160px] overflow-hidden">
+                <ParallaxImage src={pillar.image} alt={pillar.title} intensity={8} />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                <div className="absolute top-3 left-3 w-9 h-9 rounded-lg bg-background/70 backdrop-blur-md border border-primary/20 flex items-center justify-center">
+                  <pillar.icon className="w-4 h-4 text-primary" />
+                </div>
+              </div>
+              <div className="p-5 flex-1 flex flex-col">
+                <h3 className="font-sub text-[17px] font-medium text-foreground mb-1.5">
+                  {pillar.title}
+                </h3>
+                <p className="font-body text-[12px] text-titanium leading-[1.55]">
+                  {pillar.description}
+                </p>
               </div>
             </div>
-            <div className="p-5 flex-1 flex flex-col">
-              <h3 className="font-sub text-[18px] font-medium text-foreground mb-2">
-                {pillar.title}
-              </h3>
-              <p className="font-body text-[13px] text-titanium leading-[1.6]">
-                {pillar.description}
-              </p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Dot indicators */}
-      <div className="flex justify-center gap-2 mt-4">
+      <div className="flex justify-center gap-2 mt-2">
         {pillars.map((_, i) => (
-          <div
+          <button
             key={i}
             className="rounded-full transition-all duration-500"
+            onClick={() => {
+              setActiveIndex(i);
+              setIsPaused(true);
+              setTimeout(() => setIsPaused(false), 3000);
+            }}
             style={{
               width: i === activeIndex ? 24 : 6,
               height: 6,
