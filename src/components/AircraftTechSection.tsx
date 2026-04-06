@@ -53,8 +53,8 @@ const AircraftTechSection = () => {
       id="technology"
       className="relative overflow-hidden"
       style={{
-        paddingTop: "220px",
-        paddingBottom: "220px",
+        paddingTop: "clamp(64px, 12vw, 220px)",
+        paddingBottom: "clamp(64px, 12vw, 220px)",
         background: "linear-gradient(180deg, hsl(var(--surface-0)) 0%, hsl(var(--surface-1)) 50%, hsl(var(--surface-0)) 100%)",
       }}
     >
@@ -75,13 +75,13 @@ const AircraftTechSection = () => {
 
       <div className="container-airavath relative z-10">
         <ScrollReveal className="flex flex-col items-center text-center mb-3x">
-          <h2 className="font-heading font-semibold text-section text-foreground tracking-futuristic max-w-[720px]">
+          <h2 className="font-heading font-semibold text-[26px] md:text-section text-foreground tracking-futuristic max-w-[720px]">
             Aircraft Operations
           </h2>
         </ScrollReveal>
 
         <ScrollReveal delay={0.15} className="flex justify-center">
-          <p className="font-body text-body-lg text-titanium text-center max-w-[720px] leading-[1.6]">
+          <p className="font-body text-[14px] md:text-body-lg text-titanium text-center max-w-[720px] leading-[1.5] md:leading-[1.6]">
             AIRAVATH operates electric vertical take-off and landing aircraft that combine
             advanced propulsion, lightweight design, and intelligent navigation to deliver safe
             and efficient aerial mobility within modern cities.
@@ -89,7 +89,7 @@ const AircraftTechSection = () => {
         </ScrollReveal>
 
         {/* Cinematic Animated Image Carousel */}
-        <div className="mt-[100px]">
+        <div className="mt-10 md:mt-[100px]">
           <ScrollReveal delay={0.2} className="flex justify-center">
             <div className="relative max-w-[1200px] w-full">
               <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-primary/30 via-transparent to-primary/20 blur-sm" />
@@ -109,7 +109,7 @@ const AircraftTechSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5" />
               </div>
-              <div className="flex justify-center gap-2 mt-6">
+              <div className="flex justify-center gap-2 mt-4 md:mt-6">
                 {slides.map((_, i) => (
                   <button
                     key={i}
@@ -128,17 +128,17 @@ const AircraftTechSection = () => {
         </div>
 
         {/* Feature Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4x" style={{ marginTop: "120px" }}>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-4x" style={{ marginTop: "clamp(48px, 8vw, 120px)" }}>
           {features.map((feature, i) => (
             <ScrollReveal key={feature.title} delay={0.15 * i} className="text-center">
               <div className="group flex flex-col items-center">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3x transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(189_100%_50%/0.3)] group-hover:scale-110">
-                  <feature.icon className="w-6 h-6 text-primary" />
+                <div className="w-11 h-11 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-2 md:mb-3x transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(189_100%_50%/0.3)] group-hover:scale-110">
+                  <feature.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                 </div>
-                <h3 className="font-sub text-feature text-foreground mb-2x">
+                <h3 className="font-sub text-[13px] md:text-feature text-foreground mb-1 md:mb-2x">
                   {feature.title}
                 </h3>
-                <p className="font-body text-base text-titanium leading-[1.6] max-w-[260px]">
+                <p className="font-body text-[12px] md:text-base text-titanium leading-[1.5] max-w-[260px]">
                   {feature.description}
                 </p>
               </div>
