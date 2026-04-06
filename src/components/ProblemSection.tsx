@@ -79,26 +79,26 @@ const ProblemSection = () => {
     <section
       ref={sectionRef}
       className="relative bg-surface-0 overflow-hidden atmosphere-warm"
-      style={{ paddingTop: "80px", paddingBottom: "80px" }}
+      style={{ paddingTop: isMobile ? "48px" : "80px", paddingBottom: isMobile ? "48px" : "80px" }}
     >
       <div className="container-airavath">
         <ScrollReveal delay={0.12} className="flex flex-col items-center text-center mb-3x">
-          <h2 className="font-heading font-semibold text-section text-foreground tracking-futuristic max-w-[720px]">
+          <h2 className="font-heading font-semibold text-[26px] md:text-section text-foreground tracking-futuristic max-w-[720px]">
             Cities Are Running Out of Time
           </h2>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.2} className="flex justify-center mb-12x">
-          <p className="font-body text-body-lg text-titanium text-center max-w-[640px] leading-[1.6]">
+        <ScrollReveal delay={0.2} className="flex justify-center mb-6 md:mb-12x">
+          <p className="font-body text-[14px] md:text-body-lg text-titanium text-center max-w-[640px] leading-[1.5] md:leading-[1.6]">
             Urban congestion continues to grow across modern cities, slowing transportation
             and reducing efficiency. Current road-based systems are reaching their limits.
           </p>
         </ScrollReveal>
 
-        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-0 mb-12x">
+        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-0 mb-6 md:mb-12x">
           <ScrollReveal direction="left" duration={0.7} className="relative">
             <motion.div
-              className="relative h-[320px] md:h-[420px] overflow-hidden rounded-l-card md:rounded-l-card rounded-t-card md:rounded-tr-none"
+              className="relative h-[180px] md:h-[420px] overflow-hidden rounded-l-card md:rounded-l-card rounded-t-card md:rounded-tr-none"
               style={{ y: parallaxY }}
             >
               <img
@@ -107,8 +107,8 @@ const ProblemSection = () => {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-background/35" />
-              <div className="absolute bottom-4x left-4x">
-                <span className="font-sub text-body-sm text-foreground tracking-wide-futuristic uppercase">
+              <div className="absolute bottom-3 left-3 md:bottom-4x md:left-4x">
+                <span className="font-sub text-[11px] md:text-body-sm text-foreground tracking-wide-futuristic uppercase">
                   Hours Lost in Traffic
                 </span>
               </div>
@@ -117,7 +117,7 @@ const ProblemSection = () => {
 
           <ScrollReveal direction="right" duration={0.7} className="relative">
             <motion.div
-              className="relative h-[320px] md:h-[420px] overflow-hidden rounded-r-card md:rounded-r-card rounded-b-card md:rounded-bl-none"
+              className="relative h-[180px] md:h-[420px] overflow-hidden rounded-r-card md:rounded-r-card rounded-b-card md:rounded-bl-none"
               style={{ y: parallaxY }}
             >
               <img
@@ -126,8 +126,8 @@ const ProblemSection = () => {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-primary/10" />
-              <div className="absolute bottom-4x right-4x text-right">
-                <span className="font-sub text-body-sm text-foreground tracking-wide-futuristic uppercase">
+              <div className="absolute bottom-3 right-3 md:bottom-4x md:right-4x text-right">
+                <span className="font-sub text-[11px] md:text-body-sm text-foreground tracking-wide-futuristic uppercase">
                   Minutes in the Sky
                 </span>
               </div>
@@ -137,21 +137,21 @@ const ProblemSection = () => {
           <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-px h-[420px] bg-border z-10" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6x">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6x">
           {stats.map((stat, i) => (
             <ScrollReveal key={i} delay={0.12 * i} className="text-center">
-              <div className="font-heading text-[42px] leading-[1.1] text-primary tracking-futuristic mb-2x">
+              <div className="font-heading text-[32px] md:text-[42px] leading-[1.1] text-primary tracking-futuristic mb-1 md:mb-2x">
                 <CountUp target={stat.number} />
                 {stat.suffix}
               </div>
-              <p className="font-body text-base text-titanium max-w-[280px] mx-auto leading-[1.6]">
+              <p className="font-body text-[13px] md:text-base text-titanium max-w-[280px] mx-auto leading-[1.5]">
                 {stat.description}
               </p>
             </ScrollReveal>
           ))}
         </div>
 
-        <div className="flex justify-center mt-12">
+        <div className="flex justify-center mt-8 md:mt-12">
           <Link
             to="/urban-mobility"
             className="font-sub text-[13px] text-primary border border-primary/30 rounded-lg px-6 py-3 hover:bg-primary/10 transition-all duration-300"
