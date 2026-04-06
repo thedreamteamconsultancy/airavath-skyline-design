@@ -39,6 +39,7 @@ const App = () => (
         <Sonner />
         <SmoothScroll>
           <BrowserRouter>
+            <BackToTop />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/medical-mobility" element={<MedicalMobility />} />
