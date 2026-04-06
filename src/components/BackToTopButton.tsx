@@ -107,9 +107,9 @@ const BackToTopButton = () => {
             {/* Aircraft icon */}
             <motion.div
               className="w-7 h-7 text-primary"
-              animate={launching ? { y: -30, opacity: 0 } : { y: 0, opacity: 1, rotate: 0 }}
+              animate={launching ? { y: -20, opacity: 0 } : { y: 0, opacity: 1 }}
               whileHover={{ rotate: -10, y: -2 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             >
               <AircraftSilhouette className="w-full h-full" />
             </motion.div>
