@@ -131,18 +131,18 @@ const AircraftTechSection = () => {
           </ScrollReveal>
         </div>
 
-        {/* Feature Row - compact 2-col grid on mobile */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-4x" style={{ marginTop: isMobile ? "32px" : "120px" }}>
+        {/* Feature Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-4x" style={{ marginTop: isMobile ? "40px" : "120px" }}>
           {features.map((feature, i) => (
             <ScrollReveal key={feature.title} delay={isMobile ? 0.08 * i : 0.15 * i} className="text-center">
-              <div className="group flex flex-col items-center">
-                <div className="w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-xl bg-primary/10 flex items-center justify-center mb-2 md:mb-3x transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(189_100%_50%/0.3)] group-hover:scale-110">
+              <div className="group flex flex-col items-center px-2">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3 md:mb-3x transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(189_100%_50%/0.3)] group-hover:scale-110">
                   <feature.icon className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                 </div>
-                <h3 className="font-sub text-[12px] md:text-feature text-foreground mb-1 md:mb-2x">
+                <h3 className="font-sub text-[13px] md:text-feature text-foreground mb-2 md:mb-2x">
                   {feature.title}
                 </h3>
-                <p className="font-body text-[11px] md:text-base text-titanium leading-[1.4] md:leading-[1.6] max-w-[260px]">
+                <p className="font-body text-[12px] md:text-base text-titanium leading-[1.5] md:leading-[1.6] max-w-[280px]">
                   {feature.description}
                 </p>
               </div>
