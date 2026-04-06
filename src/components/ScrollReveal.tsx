@@ -58,6 +58,14 @@ const mobileVariants: Record<string, Variants> = {
   },
 };
 
+const motionComponents = {
+  div: motion.div,
+  p: motion.p,
+  h2: motion.h2,
+  span: motion.span,
+  section: motion.section,
+};
+
 const ScrollReveal = ({
   children,
   direction = "up",
@@ -70,7 +78,7 @@ const ScrollReveal = ({
   const isMobile = useIsMobile();
   const isInView = useInView(ref, { once: true, margin: "-20%" });
 
-  const Component = motion[as] as any;
+  const Component = motionComponents[as];
   const variants = isMobile ? mobileVariants : desktopVariants;
 
   return (
@@ -82,7 +90,7 @@ const ScrollReveal = ({
       transition={{
         duration: isMobile ? 0.5 : duration,
         delay,
-        ease: [0.22, 1, 0.36, 1], // custom ease-out expo
+        ease: [0.22, 1, 0.36, 1],
       }}
       className={className}
       style={{ willChange: "transform, opacity" }}
