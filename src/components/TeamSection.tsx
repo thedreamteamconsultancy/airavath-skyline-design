@@ -69,7 +69,7 @@ const TeamSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="font-heading text-[28px] md:text-[40px] font-semibold text-foreground uppercase tracking-[0.02em] leading-[1.15] text-center mb-[24px]"
+          className="font-heading text-[36px] md:text-[48px] font-semibold text-foreground tracking-futuristic text-center mb-[24px]"
         >
           Leadership & Founding Team
         </motion.h2>
@@ -108,7 +108,7 @@ const TeamSection = () => {
                 />
               </div>
 
-              <h3 className="font-heading text-[18px] font-semibold uppercase tracking-[0.02em] text-foreground mb-1">
+              <h3 className="font-sub text-[20px] font-medium text-foreground mb-1">
                 {member.name}
               </h3>
 

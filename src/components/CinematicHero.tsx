@@ -148,7 +148,7 @@ const CinematicHero = ({
           <span className="font-heading text-[12px] tracking-[6px] text-primary uppercase mb-4 block">
             {tagline}
           </span>
-          <h1 className="font-heading text-[42px] md:text-[56px] lg:text-[72px] font-bold text-foreground tracking-[-0.02em] mb-6 leading-[1.1]">
+          <h1 className="font-heading text-[42px] md:text-[56px] lg:text-[72px] font-bold text-foreground tracking-futuristic mb-6 leading-[1.1]">
             {title}
           </h1>
         </ScrollReveal>

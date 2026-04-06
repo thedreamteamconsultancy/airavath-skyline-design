@@ -34,7 +34,7 @@ const FeaturesSection = () => {
           </p>
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
-          <h2 className="font-heading text-[28px] md:text-[40px] font-semibold text-foreground uppercase tracking-[0.02em] leading-[1.15] mb-4x max-w-3xl">
+          <h2 className="font-heading text-section text-foreground mb-4x max-w-3xl tracking-futuristic">
             Mobility Network Operations
           </h2>
         </ScrollReveal>
@@ -51,7 +51,7 @@ const FeaturesSection = () => {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3x group-hover:bg-primary/20 transition-colors">
                   <feature.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="font-heading text-[18px] font-semibold text-foreground uppercase tracking-[0.02em] mb-2x">
+                <h3 className="font-sub text-feature text-foreground mb-2x">
                   {feature.title}
                 </h3>
                 <p className="font-body text-body-sm text-muted-foreground leading-relaxed">

@@ -82,7 +82,7 @@ const ProblemSection = () => {
     >
       <div className="container-airavath">
         <ScrollReveal delay={0.12} className="flex flex-col items-center text-center mb-3x">
-          <h2 className="font-heading font-semibold text-[28px] md:text-[40px] text-foreground uppercase tracking-[0.02em] leading-[1.15] max-w-[720px]">
+          <h2 className="font-heading font-semibold text-section text-foreground tracking-futuristic max-w-[720px]">
             Cities Are Running Out of Time
           </h2>
         </ScrollReveal>
@@ -139,7 +139,7 @@ const ProblemSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6x">
           {stats.map((stat, i) => (
             <ScrollReveal key={i} delay={0.12 * i} className="text-center">
-              <div className="font-heading text-[42px] leading-[1.1] text-primary tracking-[-0.02em] mb-2x">
+              <div className="font-heading text-[42px] leading-[1.1] text-primary tracking-futuristic mb-2x">
                 <CountUp target={stat.number} />
                 {stat.suffix}
               </div>

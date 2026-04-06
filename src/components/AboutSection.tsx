@@ -33,7 +33,7 @@ const AboutSection = () => {
 
       <div className="container-airavath relative z-10">
         <ScrollReveal delay={0.12} duration={0.7}>
-          <h2 className="font-heading text-[28px] md:text-[40px] font-semibold text-foreground uppercase tracking-[0.02em] leading-[1.15] mb-[72px]">
+          <h2 className="font-heading text-[36px] md:text-[48px] font-semibold text-foreground tracking-futuristic mb-[96px]">
             About AIRAVATH
           </h2>
         </ScrollReveal>
@@ -61,7 +61,7 @@ const AboutSection = () => {
                     <block.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-[18px] font-semibold text-foreground uppercase tracking-[0.02em] mb-1">
+                    <h3 className="font-sub text-[22px] font-medium text-foreground mb-1">
                       {block.title}
                     </h3>
                     <p className="font-body text-[16px] text-titanium leading-relaxed">

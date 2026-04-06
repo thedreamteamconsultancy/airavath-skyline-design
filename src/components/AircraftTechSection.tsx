@@ -75,7 +75,7 @@ const AircraftTechSection = () => {
 
       <div className="container-airavath relative z-10">
         <ScrollReveal className="flex flex-col items-center text-center mb-3x">
-          <h2 className="font-heading font-semibold text-[28px] md:text-[40px] text-foreground uppercase tracking-[0.02em] leading-[1.15] max-w-[720px]">
+          <h2 className="font-heading font-semibold text-section text-foreground tracking-futuristic max-w-[720px]">
             Aircraft Operations
           </h2>
         </ScrollReveal>
@@ -135,7 +135,7 @@ const AircraftTechSection = () => {
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-3x transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsl(189_100%_50%/0.3)]">
                   <feature.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="font-heading text-[18px] font-semibold uppercase tracking-[0.02em] text-foreground mb-2x">
+                <h3 className="font-sub text-feature text-foreground mb-2x">
                   {feature.title}
                 </h3>
                 <p className="font-body text-base text-titanium leading-[1.6] max-w-[260px]">
