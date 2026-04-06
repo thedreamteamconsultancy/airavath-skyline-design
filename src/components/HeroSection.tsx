@@ -78,7 +78,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4, ease: "easeOut" }}
-            className="font-heading font-bold text-foreground uppercase tracking-[-0.01em] leading-[1.05] mb-3x max-w-[680px] text-[38px] md:text-[52px] lg:text-[68px]"
+            className="font-heading font-bold text-foreground uppercase tracking-[-0.02em] leading-[1.1] mb-3x max-w-[680px] text-[40px] md:text-[52px] lg:text-[68px]"
           >
             Urban Air Mobility Network
           </motion.h1>

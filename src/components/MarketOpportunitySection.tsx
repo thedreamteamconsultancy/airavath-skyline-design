@@ -55,7 +55,7 @@ const StatCard = ({ stat, delay }: { stat: typeof stats[0]; delay: number }) => 
   return (
     <ScrollReveal delay={delay}>
       <div className="bg-card border border-border rounded-card p-[28px] h-[160px] flex flex-col justify-center text-center hover:-translate-y-1 hover:shadow-[0_0_20px_hsl(189_100%_50%/0.1)] transition-all duration-500">
-        <div className="font-heading text-[40px] leading-[1.1] text-primary tracking-futuristic mb-2x">
+        <div className="font-heading text-[40px] leading-[1.1] text-primary tracking-[-0.02em] mb-2x">
           <span ref={ref}>{display}</span>
           {stat.suffix && <span>{stat.suffix}</span>}
         </div>
@@ -131,7 +131,7 @@ const MarketOpportunitySection = () => {
 
       <div className="container-airavath relative z-10">
         <ScrollReveal className="flex flex-col items-center text-center mb-3x">
-          <h2 className="font-heading font-semibold text-section text-foreground tracking-futuristic">
+          <h2 className="font-heading font-semibold text-[28px] md:text-[40px] text-foreground uppercase tracking-[0.02em] leading-[1.15]">
             A Massive Market Opportunity
           </h2>
         </ScrollReveal>
@@ -153,7 +153,7 @@ const MarketOpportunitySection = () => {
         <div ref={chartRef} className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <ScrollReveal delay={0.1}>
             <div className="bg-card border border-border rounded-card p-4x h-[320px]">
-              <h3 className="font-sub text-feature text-foreground mb-4x">
+              <h3 className="font-heading text-[18px] font-semibold uppercase tracking-[0.02em] text-foreground mb-4x">
                 Urban Air Mobility Market Growth
               </h3>
               <ResponsiveContainer width="100%" height="85%">
@@ -182,7 +182,7 @@ const MarketOpportunitySection = () => {
 
           <ScrollReveal delay={0.25}>
             <div className="bg-card border border-border rounded-card p-4x h-[320px]">
-              <h3 className="font-sub text-feature text-foreground mb-4x">
+              <h3 className="font-heading text-[18px] font-semibold uppercase tracking-[0.02em] text-foreground mb-4x">
                 Demand for Faster Urban Transportation
               </h3>
               <ResponsiveContainer width="100%" height="85%">

@@ -77,7 +77,7 @@ const VisionSection = () => {
         <div className="flex flex-col items-center text-center max-w-[760px] mx-auto">
           <ScrollReveal delay={0} duration={0.7}>
             <p
-              className="font-heading text-[28px] font-medium text-primary mb-[24px]"
+              className="font-heading text-[24px] font-semibold text-primary uppercase tracking-[0.02em] mb-[24px]"
               style={{ letterSpacing: "-0.01em" }}
             >
               Our Vision
@@ -85,7 +85,7 @@ const VisionSection = () => {
           </ScrollReveal>
 
           <ScrollReveal direction="scale" delay={0.15} duration={1}>
-            <h2 className="font-heading text-[28px] md:text-[48px] lg:text-[64px] font-bold text-foreground leading-[1.15] mb-[32px] tracking-futuristic">
+            <h2 className="font-heading text-[28px] md:text-[48px] lg:text-[64px] font-bold text-foreground uppercase tracking-[-0.02em] leading-[1.1] mb-[32px]">
               A World Where Cities Move Through the Sky
             </h2>
           </ScrollReveal>

@@ -82,7 +82,7 @@ const FutureUAMSection = () => {
 
       <div className="container-airavath relative z-10">
         <ScrollReveal className="flex flex-col items-center text-center mb-3x">
-          <h2 className="font-heading font-semibold text-section text-foreground tracking-futuristic max-w-[720px]">
+          <h2 className="font-heading font-semibold text-[28px] md:text-[40px] text-foreground uppercase tracking-[0.02em] leading-[1.15] max-w-[720px]">
             Urban Air Mobility Network
           </h2>
         </ScrollReveal>
@@ -110,7 +110,7 @@ const FutureUAMSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
                   </div>
                   <div className="p-4x">
-                    <h3 className="font-sub text-feature text-foreground mb-2x">
+                    <h3 className="font-heading text-[18px] font-semibold uppercase tracking-[0.02em] text-foreground mb-2x">
                       {card.title}
                     </h3>
                     <p className="font-body text-base text-titanium leading-[1.6]">
@@ -132,7 +132,7 @@ const FutureUAMSection = () => {
                   <block.icon className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-sub text-feature text-foreground mb-1x">
+                  <h4 className="font-heading text-[18px] font-semibold uppercase tracking-[0.02em] text-foreground mb-1x">
                     {block.title}
                   </h4>
                   <p className="font-body text-base text-titanium leading-[1.6]">

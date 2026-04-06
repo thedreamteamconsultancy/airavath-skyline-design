@@ -105,7 +105,7 @@ const VerticalTimeline = () => {
                       </span>
 
                       {/* Title */}
-                      <h3 className="font-sub text-[22px] md:text-[26px] text-foreground font-medium mb-4 tracking-wide">
+                      <h3 className="font-heading text-[20px] md:text-[24px] text-foreground font-semibold uppercase tracking-[0.02em] mb-4 tracking-wide">
                         {step.title}
                       </h3>
 
@@ -268,7 +268,7 @@ const HowItWorksSection = () => {
           >
             The Process
           </motion.span>
-          <h2 className="font-heading font-semibold text-section text-foreground tracking-futuristic">
+          <h2 className="font-heading font-semibold text-[28px] md:text-[40px] text-foreground uppercase tracking-[0.02em] leading-[1.15]">
             How AIRAVATH Works
           </h2>
         </ScrollReveal>

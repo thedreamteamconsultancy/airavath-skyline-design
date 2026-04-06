@@ -87,7 +87,7 @@ const ContactSection = () => {
 
       <div className="container-airavath relative z-10">
         <ScrollReveal delay={0.12}>
-          <h2 className="font-heading text-[36px] md:text-[48px] font-semibold text-foreground tracking-futuristic text-center mb-[24px]">
+          <h2 className="font-heading text-[28px] md:text-[40px] font-semibold text-foreground uppercase tracking-[0.02em] leading-[1.15] text-center mb-[24px]">
             Join the Urban Air Mobility Network
           </h2>
         </ScrollReveal>
@@ -106,7 +106,7 @@ const ContactSection = () => {
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                   <ch.icon className="w-5 h-5 text-primary" />
                 </div>
-                <h3 className="font-sub text-[22px] font-medium text-foreground mb-2">
+                <h3 className="font-heading text-[18px] font-semibold uppercase tracking-[0.02em] text-foreground mb-2">
                   {ch.title}
                 </h3>
                 <p className="font-body text-[14px] text-titanium leading-relaxed flex-1">
@@ -140,7 +140,7 @@ const ContactSection = () => {
               <textarea placeholder="Your Message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${inputClass} h-[140px] py-4 resize-none`} maxLength={2000} />
               {errors.message && <p className="text-destructive text-xs mt-1">{errors.message}</p>}
             </div>
-            <button type="submit" disabled={submitting} className="w-full h-[56px] rounded-[8px] bg-primary text-primary-foreground font-sub text-[14px] font-medium hover:scale-[1.02] hover:shadow-[0_0_24px_hsl(189_100%_50%/0.4)] transition-all duration-300 disabled:opacity-50">
+            <button type="submit" disabled={submitting} className="w-full h-[56px] rounded-[8px] bg-primary text-primary-foreground font-heading text-[14px] font-medium uppercase tracking-[0.06em] hover:scale-[1.02] hover:shadow-[0_0_24px_hsl(189_100%_50%/0.4)] transition-all duration-300 disabled:opacity-50">
               {submitting ? "Submitting..." : "Submit Inquiry"}
             </button>
           </form>

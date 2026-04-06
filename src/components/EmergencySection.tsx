@@ -18,7 +18,7 @@ const EmergencySection = () => (
     <div className="flex justify-center -mt-16 mb-16 relative z-10">
       <Link
         to="/medical-mobility"
-        className="font-sub text-[13px] text-primary border border-primary/30 rounded-lg px-6 py-3 hover:bg-primary/10 transition-all duration-300"
+        className="font-heading text-[13px] uppercase tracking-[0.06em] text-primary border border-primary/30 rounded-lg px-6 py-3 hover:bg-primary/10 transition-all duration-300"
       >
         Learn More About Medical Mobility →
       </Link>
