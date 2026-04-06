@@ -21,6 +21,7 @@ import VisionSection from "@/components/VisionSection";
 import TeamSection from "@/components/TeamSection";
 import ContactSection from "@/components/ContactSection";
 import FooterSection from "@/components/FooterSection";
+import SectionDivider from "@/components/SectionDivider";
 
 const Index = () => {
   const location = useLocation();
@@ -46,24 +47,44 @@ const Index = () => {
   }, [location]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-surface-0 text-foreground overflow-x-hidden">
       <Navbar />
       <HeroSection />
+      <SectionDivider variant="neutral" />
       <AboutSection />
+      <SectionDivider variant="warm" />
       <ProblemSection />
+      <SectionDivider variant="warm" />
       <EmergencySection />
+      <SectionDivider variant="blue" />
       <CargoSection />
+      <SectionDivider variant="blue" />
       <TourismSection />
+      <SectionDivider variant="horizon" />
       <FutureUAMSection />
+      <SectionDivider variant="blue" />
       <SolutionSection />
+      <SectionDivider variant="blue" />
       <EcosystemHubSection />
+      <SectionDivider variant="neutral" />
       <AircraftTechSection />
+      <SectionDivider variant="blue" />
       <VertiportSection />
+      <SectionDivider variant="horizon" />
       <HowItWorksSection />
+      <SectionDivider variant="blue" />
       <MarketOpportunitySection />
+      <SectionDivider variant="neutral" />
       <FeaturesSection />
+      <SectionDivider variant="horizon" />
       <VisionSection />
-      {showTeam && <TeamSection />}
+      {showTeam && (
+        <>
+          <SectionDivider variant="neutral" />
+          <TeamSection />
+        </>
+      )}
+      <SectionDivider variant="blue" />
       <ContactSection />
       <FooterSection />
     </div>
