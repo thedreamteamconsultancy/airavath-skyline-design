@@ -245,7 +245,7 @@ const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.3 }}
                   >
-                    <button className="w-full font-heading text-[14px] font-medium uppercase tracking-[0.08em] text-foreground border border-foreground/30 hover:border-foreground/60 px-6 py-3 rounded-[2px] transition-all duration-300 flex items-center justify-center gap-2" onClick={() => { setMobileOpen(false); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}>
+                    <button className="w-full font-heading text-[14px] font-medium uppercase tracking-[0.08em] text-foreground border border-foreground/30 hover:border-foreground/60 px-6 py-3 rounded-[2px] transition-all duration-300 flex items-center justify-center gap-2" onClick={() => { setMobileOpen(false); scrollToSection("#contact"); }}>
                       Join The Future
                       <span className="text-[15px]">→</span>
                     </button>
