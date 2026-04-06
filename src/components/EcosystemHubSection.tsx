@@ -59,13 +59,13 @@ const EcosystemHubSection = () => {
 
       <div className="container-airavath relative z-10">
         <ScrollReveal className="flex flex-col items-center text-center mb-3x">
-          <h2 className="font-heading font-semibold text-section text-foreground tracking-futuristic max-w-[820px]">
+          <h2 className="font-heading font-semibold text-[28px] md:text-section text-foreground tracking-futuristic max-w-[820px]">
             Urban Air Mobility Hub Infrastructure
           </h2>
         </ScrollReveal>
 
-        <ScrollReveal delay={0.15} className="flex justify-center mb-[100px]">
-          <p className="font-body text-body-lg text-titanium text-center max-w-[720px] leading-[1.6]">
+        <ScrollReveal delay={0.15} className="flex justify-center mb-12 md:mb-[100px]">
+          <p className="font-body text-[14px] md:text-body-lg text-titanium text-center max-w-[720px] leading-[1.6]">
             AIRAVATH operates a multi-tier hub infrastructure that forms the backbone of the
             urban air mobility network. Each hub type serves a specific role in the ecosystem.
           </p>
