@@ -231,10 +231,6 @@ const FooterSection = () => {
                   </a>
                 ))}
               </div>
-              <p className="font-body text-[11px] text-[#BFC4C9] mt-3 leading-relaxed">
-                <span className="text-primary font-medium">Social Media Management :</span><br />
-                Instagram , linkedin , youtube & X
-              </p>
             </div>
 
             {/* Glowing divider */}
@@ -311,10 +307,6 @@ const FooterSection = () => {
                     </motion.a>
                   ))}
                 </div>
-                <p className="font-body text-body-sm text-[#BFC4C9] mt-5 leading-relaxed">
-                  <span className="text-primary font-medium">Social Media Management :</span><br />
-                  Instagram , linkedin , youtube & X
-                </p>
               </motion.div>
 
               {/* Nav columns */}
