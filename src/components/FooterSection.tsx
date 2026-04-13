@@ -231,6 +231,10 @@ const FooterSection = () => {
                   </a>
                 ))}
               </div>
+              <p className="font-body text-[11px] text-[#BFC4C9] mt-3 leading-relaxed">
+                <span className="text-primary font-medium">Social Media Management :</span><br />
+                Instagram , linkedin , youtube & X
+              </p>
             </div>
 
             {/* Glowing divider */}
