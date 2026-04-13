@@ -23,9 +23,9 @@ const steps = [
 ];
 
 const features = [
-  { icon: Crown, title: "Premium Experience", description: "Sky Ports are designed for executive and VIP travelers. Luxury lounges, concierge services, and private boarding." },
+  { icon: Crown, title: "Premium Experience", description: "Sky Ports are designed for executive and VIP travelers. Premium lounges, concierge services, and private boarding." },
   { icon: Eye, title: "Panoramic City Views", description: "Located atop the tallest buildings, Sky Ports offer breathtaking 360° views during boarding." },
-  { icon: Landmark, title: "Prime Locations", description: "Positioned on landmark skyscrapers in business districts, financial centers, and luxury hotel towers." },
+  { icon: Landmark, title: "Prime Locations", description: "Positioned on landmark skyscrapers in business districts, financial centers, and premium hotel towers." },
   { icon: Wind, title: "Wind Management", description: "Advanced wind deflection barriers and real-time atmospheric monitoring ensure safe operations." },
   { icon: Sun, title: "Solar Integration", description: "Rooftop solar arrays supplement charging infrastructure, reducing the carbon footprint of operations." },
   { icon: Radar, title: "360° Radar Coverage", description: "Full-perimeter radar and LiDAR systems provide comprehensive airspace awareness." },
