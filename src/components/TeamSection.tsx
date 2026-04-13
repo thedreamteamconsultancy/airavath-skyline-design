@@ -28,8 +28,8 @@ const fallbackTeam = [
   {
     id: "f3",
     name: "Head of Infrastructure",
-    role: "Mobility Hub Network",
-    description: "Designing and managing scalable mobility hub infrastructure across cities.",
+    role: "Mobility Network",
+    description: "Designing and managing scalable mobility infrastructure across cities.",
   },
   {
     id: "f4",

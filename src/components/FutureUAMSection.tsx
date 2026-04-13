@@ -10,7 +10,7 @@ import cardNextgen from "@/assets/card-nextgen.jpg";
 
 const aircraftCards = [
   {
-    title: "Medical Mobility",
+    title: "Emergency Mobility",
     description:
       "Rapid aerial medical transport services connecting hospital, emergency sites, and healthcare facilities across cities.",
     image: cardAirTaxi,
