@@ -11,12 +11,12 @@ const steps = [
   {
     number: "01",
     title: "Emergency Request",
-    description: "Medical teams or hospitals initiate an aerial medical transport request through the AIRAVATH platform.",
+    description: "Medical team or hospital initiate an aerial medical transport request through the AIRAVATH platform.",
   },
   {
     number: "02",
     title: "Aircraft Dispatch",
-    description: "The nearest available medical-configured aircraft is dispatched from the closest mobility hub.",
+    description: "The nearest available medical-configured aircraft is dispatched from the closest mobility point.",
   },
   {
     number: "03",
@@ -26,7 +26,7 @@ const steps = [
   {
     number: "04",
     title: "Hospital Delivery",
-    description: "The patient is transported directly to the destination hospital's rooftop mobility hub, bypassing all ground traffic.",
+    description: "The patient is transported directly to the destination hospital's rooftop mobility point, bypassing all ground traffic.",
   },
 ];
 
@@ -39,7 +39,7 @@ const features = [
   {
     icon: Clock,
     title: "24/7 Operations",
-    description: "Round-the-clock aerial medical transport services available across the city mobility hub network.",
+    description: "Round-the-clock aerial medical transport services available across the city mobility network.",
   },
   {
     icon: Plane,
@@ -67,12 +67,12 @@ const MedicalMobility = () => {
           </Link>
           <ScrollReveal>
             <h1 className="font-heading text-[40px] md:text-[64px] font-semibold text-foreground tracking-futuristic mb-6">
-              Medical Mobility
+              Emergency Mobility
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
             <p className="font-body text-body-lg text-titanium max-w-[640px] leading-[1.6]">
-              AIRAVATH operates rapid aerial medical transport services, connecting hospitals, emergency sites, and healthcare facilities across cities in minutes instead of hours.
+              AIRAVATH operates rapid aerial medical transport services, connecting hospital, emergency sites, and healthcare facilities across cities in minutes instead of hours.
             </p>
           </ScrollReveal>
         </div>
@@ -90,10 +90,10 @@ const MedicalMobility = () => {
                 Why Aerial Medical Transport?
               </h2>
               <p className="font-body text-[18px] text-titanium leading-[1.7] mb-6">
-                In critical medical emergencies, every minute matters. Ground ambulances are often delayed by traffic congestion, especially in dense urban areas. AIRAVATH's aerial medical mobility service bypasses all ground traffic, delivering patients to hospitals in a fraction of the time.
+                In critical medical emergencies, every minute matters. Ground ambulances are often delayed by traffic congestion, especially in dense urban areas. AIRAVATH's aerial emergency mobility service bypasses all ground traffic, delivering patients to hospital in a fraction of the time.
               </p>
               <p className="font-body text-[18px] text-titanium leading-[1.7]">
-                Our medical-configured aircraft and trained paramedic crews ensure patients receive care during transport, while our mobility hub network provides direct rooftop access to partner hospitals.
+                Our medical-configured aircraft and trained paramedic crew ensure patients receive care during transport, while our mobility network provides direct rooftop access to partner hospital.
               </p>
             </ScrollReveal>
           </div>
@@ -108,7 +108,7 @@ const MedicalMobility = () => {
               Operational Flow
             </h2>
             <p className="font-body text-body-lg text-titanium max-w-[640px] mx-auto leading-[1.6]">
-              How AIRAVATH medical mobility operates from request to delivery.
+              How AIRAVATH emergency mobility operates from request to delivery.
             </p>
           </ScrollReveal>
 

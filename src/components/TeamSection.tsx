@@ -81,8 +81,8 @@ const TeamSection = () => {
           className="font-body text-[18px] leading-[1.6] text-titanium text-center max-w-[720px] mx-auto mb-[120px]"
         >
           AIRAVATH is assembling a multidisciplinary team of operations experts,
-          infrastructure specialists, and mobility innovators dedicated to operating
-          the future of urban air transportation.
+            infrastructure specialists, and mobility innovators dedicated to operating
+            the future of urban air transportation.
         </motion.p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[32px]">
