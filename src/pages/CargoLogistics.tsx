@@ -16,17 +16,17 @@ const steps = [
   {
     number: "02",
     title: "Cargo Loading",
-    description: "Packages are loaded at the nearest cargo-enabled mobility hub with automated handling systems.",
+    description: "Packages are loaded at the nearest cargo-enabled mobility point with automated handling systems.",
   },
   {
     number: "03",
     title: "Aerial Transport",
-    description: "Cargo aircraft fly directly to the destination hub, bypassing all ground congestion.",
+    description: "Cargo aircraft fly directly to the destination point, bypassing all ground congestion.",
   },
   {
     number: "04",
     title: "Delivery",
-    description: "Cargo is unloaded at the destination mobility hub and dispatched for last-mile delivery.",
+    description: "Cargo is unloaded at the destination mobility point and dispatched for last-mile delivery.",
   },
 ];
 
@@ -44,7 +44,7 @@ const features = [
   {
     icon: Plane,
     title: "Scalable Network",
-    description: "Expanding cargo mobility hub network enabling efficient aerial logistics across multiple cities.",
+    description: "Expanding cargo mobility network enabling efficient aerial logistics across multiple cities.",
   },
 ];
 
@@ -71,7 +71,7 @@ const CargoLogistics = () => {
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
             <p className="font-body text-body-lg text-titanium max-w-[640px] leading-[1.6]">
-              AIRAVATH operates aerial cargo delivery services, moving packages and supplies efficiently across urban mobility hub networks.
+              AIRAVATH operates aerial cargo delivery services, moving packages and supplies efficiently across urban mobility networks.
             </p>
           </ScrollReveal>
         </div>
@@ -91,7 +91,7 @@ const CargoLogistics = () => {
                 Urban logistics is reaching its limits. Growing demand for rapid delivery is increasing congestion, making ground-based logistics slower and more expensive. AIRAVATH's aerial cargo service offers a faster, more efficient alternative.
               </p>
               <p className="font-body text-[18px] text-titanium leading-[1.7]">
-                Our cargo-configured aircraft and mobility hub network enable businesses to move goods across cities in minutes, not hours — reducing delivery costs and improving customer satisfaction.
+                Our cargo-configured aircraft and mobility network enable businesses to move goods across cities in minutes, not hours — reducing delivery costs and improving customer satisfaction.
               </p>
             </ScrollReveal>
           </div>

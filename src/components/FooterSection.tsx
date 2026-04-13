@@ -22,10 +22,10 @@ const navColumns = [
     title: "Operations",
     links: [
       { label: "Aircraft Operations", href: "#technology" },
-      { label: "Mobility Hubs", href: "#vertiport" },
+      { label: "Mobility Points", href: "#vertiport" },
       { label: "How It Works", href: "#how-it-works" },
       { label: "Cargo Logistics", href: "/cargo-logistics" },
-      { label: "Medical Mobility", href: "/medical-mobility" },
+      { label: "Emergency Mobility", href: "/medical-mobility" },
       { label: "Tourism Mobility", href: "/tourism-mobility" },
     ],
   },
@@ -43,7 +43,7 @@ const navColumns = [
       { label: "SkyPort", href: "/skyport" },
       { label: "GroundPort", href: "/groundport" },
       { label: "Vertiport", href: "/vertiport" },
-      { label: "Hub Network", href: "/hub-network" },
+      { label: "Mobility Network", href: "/hub-network" },
     ],
   },
 ];
@@ -208,6 +208,10 @@ const FooterSection = () => {
                   <Mail size={13} className="text-primary" />
                   pradyaviation@gmail.com
                 </a>
+                <a href="mailto:airavath@gmail.com" className="flex items-center gap-2 font-body text-[12px] text-[#BFC4C9]">
+                  <Mail size={13} className="text-primary" />
+                  airavath@gmail.com
+                </a>
                 <a href="tel:+13213899564" className="flex items-center gap-2 font-body text-[12px] text-[#BFC4C9]">
                   <Phone size={13} className="text-primary" />
                   +1 (321) 389-9564
@@ -227,6 +231,10 @@ const FooterSection = () => {
                   </a>
                 ))}
               </div>
+              <p className="font-body text-[11px] text-[#BFC4C9] mt-3 leading-relaxed">
+                <span className="text-primary font-medium">Social Media Management :</span><br />
+                Instagram , linkedin , youtube & X
+              </p>
             </div>
 
             {/* Glowing divider */}
@@ -267,12 +275,16 @@ const FooterSection = () => {
               >
                 <img src={settings.logo_url || airavathLogo} alt="AIRAVATH" className="h-10 w-auto mb-5 self-start" />
                 <p className="font-sub text-body-sm text-[#BFC4C9] leading-relaxed max-w-[280px] mb-5">
-                  Operating the future of urban air mobility with electric aircraft services and intelligent mobility hub networks.
+                  Operating the future of urban air mobility with electric aircraft services and intelligent mobility networks.
                 </p>
                 <div className="flex flex-col gap-2 mb-6">
                   <a href="mailto:pradyaviation@gmail.com" className="flex items-center gap-2 font-body text-body-sm text-[#BFC4C9] hover:text-foreground transition-colors duration-300">
                     <Mail size={14} className="text-primary" />
                     <span>pradyaviation@gmail.com</span>
+                  </a>
+                  <a href="mailto:airavath@gmail.com" className="flex items-center gap-2 font-body text-body-sm text-[#BFC4C9] hover:text-foreground transition-colors duration-300">
+                    <Mail size={14} className="text-primary" />
+                    <span>airavath@gmail.com</span>
                   </a>
                   <a href="tel:+13213899564" className="flex items-center gap-2 font-body text-body-sm text-[#BFC4C9] hover:text-foreground transition-colors duration-300">
                     <Phone size={14} className="text-primary" />
@@ -299,6 +311,10 @@ const FooterSection = () => {
                     </motion.a>
                   ))}
                 </div>
+                <p className="font-body text-body-sm text-[#BFC4C9] mt-5 leading-relaxed">
+                  <span className="text-primary font-medium">Social Media Management :</span><br />
+                  Instagram , linkedin , youtube & X
+                </p>
               </motion.div>
 
               {/* Nav columns */}

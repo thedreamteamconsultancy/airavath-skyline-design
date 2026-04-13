@@ -25,10 +25,10 @@ const steps = [
 const features = [
   { icon: Building2, title: "Street-Level Access", description: "Located at ground level for maximum accessibility — no elevators or rooftop access needed." },
   { icon: Users, title: "Premium Passenger Lounges", description: "Climate-controlled waiting areas with comfortable seating, refreshments, Wi-Fi, and real-time flight tracking." },
-  { icon: TrainFront, title: "Multi-Modal Integration", description: "Seamlessly connected to metro stations, bus stops, ride-hailing drop-offs, and bicycle docking stations." },
+  { icon: TrainFront, title: "Multi-modal Integration", description: "Seamlessly connected to metro stations, bus stops, ride-hailing drop-offs, and bicycle docking stations." },
   { icon: ShieldCheck, title: "Automated Security", description: "AI-powered biometric screening and baggage checks that reduce wait times to under 90 seconds." },
   { icon: Zap, title: "Rapid Charging Bays", description: "High-speed 350kW charging infrastructure for eVTOL aircraft, enabling fast turnaround between flights." },
-  { icon: Clock, title: "24/7 Operations Center", description: "On-site command center monitoring all Ground Port operations, coordinating with the city-wide hub network." },
+  { icon: Clock, title: "24/7 Operations Center", description: "On-site command center monitoring all Ground Port operations, coordinating with the city-wide network." },
 ];
 
 const benefits = [
@@ -65,7 +65,7 @@ const GroundPort = () => {
       <Navbar />
 
       <CinematicHero
-        tagline="Ground-Level Mobility Hub"
+        tagline="Ground-Level Mobility Point"
         title="Ground Port"
         description="Street-level mobility terminals that serve as the primary gateway to AIRAVATH's urban air mobility network — designed for maximum accessibility and seamless multi-modal integration."
         images={[heroImg, heroGroundport2, heroGroundport3]}
@@ -90,7 +90,7 @@ const GroundPort = () => {
                 Ground Ports are the entry-level infrastructure of the AIRAVATH ecosystem. Positioned at street level in key urban locations, they eliminate the need for rooftop or elevated access — making aerial mobility as easy as catching a bus.
               </p>
               <p className="font-body text-[17px] text-titanium leading-[1.7]">
-                Each Ground Port integrates with existing public transit, ride-hailing services, and pedestrian networks, creating a true multi-modal transportation hub that bridges ground and air.
+                Each Ground Port integrates with existing public transit, ride-hailing services, and pedestrian networks, creating a true multi-modal transportation point that bridges ground and air.
               </p>
             </ScrollReveal>
           </div>
@@ -277,12 +277,12 @@ const GroundPort = () => {
       <section className="section-padding" style={{ background: "linear-gradient(180deg, hsl(0 0% 2%) 0%, hsl(0 0% 0%) 100%)" }}>
         <div className="container-airavath text-center">
           <ScrollReveal>
-            <h2 className="font-heading text-[28px] md:text-[36px] font-semibold text-foreground tracking-futuristic mb-6">Explore the Full Hub Network</h2>
-            <p className="font-body text-body-lg text-titanium max-w-[540px] mx-auto mb-8 leading-[1.6]">Ground Ports work in concert with Vertiports, Sky Ports, and the Hub Network.</p>
+            <h2 className="font-heading text-[28px] md:text-[36px] font-semibold text-foreground tracking-futuristic mb-6">Explore the Full Mobility Network</h2>
+            <p className="font-body text-body-lg text-titanium max-w-[540px] mx-auto mb-8 leading-[1.6]">Ground Ports work in concert with Vertiports, Sky Ports, and the Mobility Network.</p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/vertiport" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-card border border-border text-foreground font-body hover:border-primary/30 transition-all">Vertiport <ChevronRight size={16} /></Link>
               <Link to="/sky-port" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-card border border-border text-foreground font-body hover:border-primary/30 transition-all">Sky Port <ChevronRight size={16} /></Link>
-              <Link to="/hub-network" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-card border border-border text-foreground font-body hover:border-primary/30 transition-all">Hub Network <ChevronRight size={16} /></Link>
+              <Link to="/hub-network" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-card border border-border text-foreground font-body hover:border-primary/30 transition-all">Mobility Network <ChevronRight size={16} /></Link>
             </div>
           </ScrollReveal>
         </div>

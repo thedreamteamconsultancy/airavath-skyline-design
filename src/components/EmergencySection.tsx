@@ -20,7 +20,7 @@ const EmergencySection = () => (
         to="/medical-mobility"
         className="w-full max-w-[340px] font-sub text-[13px] text-primary border border-primary/30 rounded-lg px-6 py-3 text-center hover:bg-primary/10 transition-all duration-300"
       >
-        Learn More About Medical Mobility →
+        Learn More About Emergency Mobility →
       </Link>
     </div>
   </div>

@@ -23,7 +23,7 @@ const features = [
     icon: PlaneTakeoff,
     title: "Vertical Takeoff & Landing",
     description:
-      "Aircraft take off and land vertically, eliminating the need for runways and enabling operations from urban mobility hubs.",
+      "Aircraft take off and land vertically, eliminating the need for runways and enabling operations from urban mobility points.",
   },
   {
     icon: Volume2,

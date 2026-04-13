@@ -15,18 +15,18 @@ const steps = [
   },
   {
     number: "02",
-    title: "Hub-to-Hub Transit",
-    description: "Passengers travel between strategically placed urban mobility hubs, reducing door-to-door commute times dramatically.",
+    title: "Point-to-Point Transit",
+    description: "Passengers travel between strategically placed urban mobility points, reducing commute times dramatically.",
   },
   {
     number: "03",
-    title: "Seamless Multimodal",
-    description: "Integrated ground transport connects passengers from mobility hubs to their final destinations within minutes.",
+    title: "Seamless Multi-modal",
+    description: "Integrated ground transport connects passengers from mobility points to their final destinations within minutes.",
   },
   {
     number: "04",
     title: "Scalable Network",
-    description: "As demand grows, new hubs and routes are added to the network, creating an ever-expanding aerial transit system.",
+    description: "As demand grows, new points and routes are added to the network, creating an ever-expanding aerial transit system.",
   },
 ];
 
@@ -93,7 +93,7 @@ const UrbanMobility = () => {
                 Cities worldwide lose over 120 hours per person annually to traffic congestion. With 4.2 billion urban commuters expected by 2030 and 70% of the global population projected to live in cities by 2050, current road-based systems are reaching their limits.
               </p>
               <p className="font-body text-[18px] text-titanium leading-[1.7]">
-                AIRAVATH's urban aerial mobility network provides a scalable, sustainable solution — connecting mobility hubs across cities with electric-powered aircraft that fly above congestion, transforming how people move through urban landscapes.
+                AIRAVATH's urban aerial mobility network provides a scalable, sustainable solution — connecting mobility points across cities with electric-powered aircraft that fly above congestion, transforming how people move through urban landscapes.
               </p>
             </ScrollReveal>
           </div>

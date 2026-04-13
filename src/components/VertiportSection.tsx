@@ -146,13 +146,13 @@ const VertiportSection = () => {
       <div className="container-airavath relative z-10">
         <ScrollReveal className="flex flex-col items-center text-center mb-3x">
           <h2 className="font-heading font-semibold text-[28px] sm:text-[36px] md:text-section text-foreground tracking-futuristic max-w-[760px] px-2">
-            Mobility Hub Infrastructure
+            Airavath Mobility Network
           </h2>
         </ScrollReveal>
 
         <ScrollReveal delay={0.15} className="flex justify-center mb-16 md:mb-[120px]">
           <p className="font-body text-[15px] md:text-body-lg text-titanium text-center max-w-[720px] leading-[1.6] px-4">
-            AIRAVATH operates strategically located vertiports and mobility hubs across cities,
+            AIRAVATH operates strategically located vertiports and mobility points across cities,
             enabling seamless take-off and landing operations while creating a scalable aerial
             mobility network connecting key urban destinations.
           </p>

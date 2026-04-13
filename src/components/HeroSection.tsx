@@ -47,16 +47,6 @@ const HeroSection = () => {
 
       <ParticleGrid />
 
-      {/* Aircraft flyover effect */}
-      <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden">
-        <img
-          src={aircraftSilhouette}
-          alt=""
-          aria-hidden="true"
-          className="absolute top-[20%] w-16 h-auto opacity-0 animate-aircraft-fly"
-          style={{ filter: "blur(1px) brightness(2)" }}
-        />
-      </div>
 
       {/* Hero Content — left aligned */}
       <div className="relative z-10 container-airavath w-full">
