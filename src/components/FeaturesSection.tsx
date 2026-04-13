@@ -5,7 +5,7 @@ const features = [
   {
     icon: Zap,
     title: "Electric Fleet",
-    description: "Operating a fleet of electric aircraft delivering silent, efficient vertical flight across cities.",
+    description: "Aircrafts | delivering silent, efficient flights",
   },
   {
     icon: Shield,
@@ -19,7 +19,7 @@ const features = [
   },
   {
     icon: Gauge,
-    title: "320 km/h Cruise",
+    title: "High Speed Mobility",
     description: "High-speed urban transit cutting commute times by 80% across city mobility networks.",
   },
 ];

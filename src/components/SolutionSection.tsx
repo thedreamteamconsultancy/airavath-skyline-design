@@ -12,19 +12,19 @@ const pillars = [
     icon: Plane,
     title: "Air Mobility Network",
     description:
-      "AIRAVATH operates a network of electric vertical take-off aircraft enabling fast, safe, and premium urban air mobility between key city destinations.",
+      "AIRAVATH operates a network of vertiports enabling fast, safe, and premium urban air mobility between key city destinations.",
     image: solutionNetwork,
   },
   {
     icon: Building,
-    title: "Mobility Hub Infrastructure",
+    title: "Mobility Infrastructure",
     description:
-      "Strategically located vertiports and mobility hubs across cities enable seamless take-off and landing operations from rooftops, airports, and business districts.",
+      "Strategically located vertiports and mobility points across cities enable seamless take-off and landing operations from rooftops, airports, and business districts.",
     image: solutionVertiport,
   },
   {
     icon: Smartphone,
-    title: "On-Demand Air Platform",
+    title: "Off-Demand Air Platform",
     description:
       "A digital platform that allows passengers to request air mobility services instantly and access premium aerial transportation within minutes.",
     image: solutionPlatform,
@@ -35,12 +35,12 @@ const highlights = [
   {
     icon: Layers,
     title: "Operating Ecosystem",
-    text: "Aircraft operations, hub infrastructure, and digital platforms combined into a unified mobility network.",
+    text: "Aircraft operations, infrastructure, and digital platform combined into a unified mobility network.",
   },
   {
     icon: Globe,
     title: "Scalable Across Cities",
-    text: "Mobility hub networks enable expansion across major cities.",
+    text: "Mobility networks enable expansion across major cities.",
   },
   {
     icon: Leaf,
@@ -54,27 +54,30 @@ const MobileCardShowcase = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const count = pillars.length;
 
   // Auto-loop
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || expandedIndex !== null) return;
     intervalRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % count);
     }, 4000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [isPaused, count]);
+  }, [isPaused, count, expandedIndex]);
 
   // Touch handlers
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (expandedIndex !== null) return;
     setIsPaused(true);
     setDragStartX(e.touches[0].clientX);
-  }, []);
+  }, [expandedIndex]);
 
   const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (expandedIndex !== null) return;
     if (dragStartX !== null) {
       const diff = e.changedTouches[0].clientX - dragStartX;
       if (Math.abs(diff) > 40) {
@@ -83,20 +86,20 @@ const MobileCardShowcase = () => {
     }
     setDragStartX(null);
     setTimeout(() => setIsPaused(false), 2000);
-  }, [dragStartX, count]);
+  }, [dragStartX, count, expandedIndex]);
 
   const getCardStyle = (index: number) => {
     let diff = index - activeIndex;
-    // Wrap for infinite feel
     if (diff > Math.floor(count / 2)) diff -= count;
     if (diff < -Math.floor(count / 2)) diff += count;
 
     const isCenter = diff === 0;
-    const rotateY = diff * 10;
-    const scale = isCenter ? 1 : 0.87;
-    const opacity = isCenter ? 1 : 0.55;
-    const translateX = diff * 72;
-    const zIndex = isCenter ? 10 : 5 - Math.abs(diff);
+    const isExpanded = expandedIndex === index;
+    const rotateY = isExpanded ? 0 : diff * 10;
+    const scale = isExpanded ? 1.05 : isCenter ? 1 : 0.87;
+    const opacity = isExpanded ? 1 : isCenter ? 1 : 0.55;
+    const translateX = isExpanded ? 0 : diff * 72;
+    const zIndex = isExpanded ? 20 : isCenter ? 10 : 5 - Math.abs(diff);
 
     return {
       transform: `perspective(1000px) translateX(${translateX}%) rotateY(${rotateY}deg) scale(${scale})`,
@@ -104,16 +107,17 @@ const MobileCardShowcase = () => {
       zIndex,
       transition: "all 0.8s cubic-bezier(0.22, 1, 0.36, 1)",
       willChange: "transform, opacity" as const,
-      boxShadow: isCenter
+      boxShadow: isExpanded
+        ? "0 0 40px hsl(189 100% 50% / 0.35), 0 16px 50px rgba(0,0,0,0.6)"
+        : isCenter
         ? "0 0 30px hsl(189 100% 50% / 0.25), 0 12px 40px rgba(0,0,0,0.5)"
         : "0 4px 16px rgba(0,0,0,0.3)",
-      borderColor: isCenter ? "hsl(189 100% 50% / 0.4)" : "hsl(var(--border))",
+      borderColor: isExpanded || isCenter ? "hsl(189 100% 50% / 0.4)" : "hsl(var(--border))",
     };
   };
 
   return (
     <div className="relative" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-      {/* Ambient glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -121,10 +125,10 @@ const MobileCardShowcase = () => {
         }}
       />
 
-      {/* 3D Carousel container */}
-      <div className="relative flex items-center justify-center" style={{ height: 340, perspective: 1000 }}>
+      <div className="relative flex items-center justify-center" style={{ height: expandedIndex !== null ? 420 : 340, perspective: 1000, transition: "height 0.5s ease" }}>
         {pillars.map((pillar, i) => {
           const style = getCardStyle(i);
+          const isExpanded = expandedIndex === i;
           return (
             <div
               key={pillar.title}
@@ -132,17 +136,22 @@ const MobileCardShowcase = () => {
               style={{
                 width: "72vw",
                 maxWidth: 300,
-                height: 340,
+                height: isExpanded ? "auto" : 340,
+                minHeight: 340,
                 transformStyle: "preserve-3d",
                 ...style,
               }}
               onClick={() => {
-                setActiveIndex(i);
-                setIsPaused(true);
-                setTimeout(() => setIsPaused(false), 3000);
+                if (i === activeIndex) {
+                  setExpandedIndex(isExpanded ? null : i);
+                } else {
+                  setActiveIndex(i);
+                  setIsPaused(true);
+                  setTimeout(() => setIsPaused(false), 3000);
+                }
               }}
             >
-              <div className="relative h-[160px] overflow-hidden">
+              <div className="relative h-[160px] overflow-hidden flex-shrink-0">
                 <ParallaxImage src={pillar.image} alt={pillar.title} intensity={8} />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
                 <div className="absolute top-3 left-3 w-9 h-9 rounded-lg bg-background/70 backdrop-blur-md border border-primary/20 flex items-center justify-center">
@@ -153,16 +162,18 @@ const MobileCardShowcase = () => {
                 <h3 className="font-sub text-[17px] font-medium text-foreground mb-1.5 line-clamp-2">
                   {pillar.title}
                 </h3>
-                <p className="font-body text-[12px] text-titanium leading-[1.55] line-clamp-4">
+                <p className={`font-body text-[12px] text-titanium leading-[1.55] ${isExpanded ? "" : "line-clamp-4"}`}>
                   {pillar.description}
                 </p>
+                {!isExpanded && i === activeIndex && (
+                  <span className="mt-2 font-body text-[11px] text-primary/70">Tap to expand</span>
+                )}
               </div>
             </div>
           );
         })}
       </div>
 
-      {/* Dot indicators */}
       <div className="flex justify-center gap-2 mt-2">
         {pillars.map((_, i) => (
           <button
@@ -170,6 +181,7 @@ const MobileCardShowcase = () => {
             className="rounded-full transition-all duration-500"
             onClick={() => {
               setActiveIndex(i);
+              setExpandedIndex(null);
               setIsPaused(true);
               setTimeout(() => setIsPaused(false), 3000);
             }}
@@ -242,7 +254,7 @@ const SolutionSection = () => {
         <ScrollReveal delay={0.15} className={`flex justify-center ${isMobile ? "mb-8" : "mb-12x"}`}>
           <p className={`font-body text-titanium text-center max-w-[720px] leading-[1.6] ${isMobile ? "text-[14px]" : "text-body-lg"}`}>
             AIRAVATH operates a complete urban air mobility ecosystem by coordinating electric
-            aircraft operations, mobility hub infrastructure, and an intelligent platform that enables
+            aircraft operations, mobility infrastructure, and an intelligent platform that enables
             on-demand aerial transportation across cities.
           </p>
         </ScrollReveal>

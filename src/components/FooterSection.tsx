@@ -1,6 +1,6 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Linkedin, Twitter, Youtube, ArrowUpRight, ChevronDown, Mail, Phone } from "lucide-react";
+import { Linkedin, Twitter, Youtube, Instagram, ArrowUpRight, ChevronDown, Mail, Phone } from "lucide-react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { scrollToSection } from "@/components/SmoothScroll";
@@ -13,7 +13,7 @@ const navColumns = [
     links: [
       { label: "About AIRAVATH", href: "#about" },
       { label: "Vision", href: "#vision" },
-      { label: "Leadership Team", href: "#team" },
+      { label: "Leadership team", href: "#team" },
       { label: "Newsroom", href: "/newsroom" },
       { label: "Careers", href: "/careers" },
     ],
@@ -22,10 +22,10 @@ const navColumns = [
     title: "Operations",
     links: [
       { label: "Aircraft Operations", href: "#technology" },
-      { label: "Mobility Hubs", href: "#vertiport" },
+      { label: "Mobility Network", href: "#vertiport" },
       { label: "How It Works", href: "#how-it-works" },
       { label: "Cargo Logistics", href: "/cargo-logistics" },
-      { label: "Medical Mobility", href: "/medical-mobility" },
+      { label: "Emergency Mobility", href: "/medical-mobility" },
       { label: "Tourism Mobility", href: "/tourism-mobility" },
     ],
   },
@@ -43,7 +43,7 @@ const navColumns = [
       { label: "SkyPort", href: "/skyport" },
       { label: "GroundPort", href: "/groundport" },
       { label: "Vertiport", href: "/vertiport" },
-      { label: "Hub Network", href: "/hub-network" },
+      { label: "Network", href: "/hub-network" },
     ],
   },
 ];
@@ -142,7 +142,6 @@ const FooterSection = () => {
       e.preventDefault();
       scrollToSection(href);
     }
-    // Let normal links (/newsroom etc.) navigate naturally
   };
 
   const scrollToTop = () => scrollToSection("#home");
@@ -197,7 +196,6 @@ const FooterSection = () => {
         {/* ═══════ MOBILE FOOTER ═══════ */}
         {isMobile ? (
           <div className="pt-10 pb-6">
-            {/* Brand / Contact / Socials – always visible */}
             <div className="flex flex-col items-start mb-6">
               <img src={settings.logo_url || airavathLogo} alt="AIRAVATH" className="h-8 w-auto mb-3" />
               <p className="font-sub text-[12px] text-[#BFC4C9] leading-relaxed mb-4">
@@ -208,12 +206,16 @@ const FooterSection = () => {
                   <Mail size={13} className="text-primary" />
                   pradyaviation@gmail.com
                 </a>
+                <a href="mailto:airavath@gmail.com" className="flex items-center gap-2 font-body text-[12px] text-[#BFC4C9]">
+                  <Mail size={13} className="text-primary" />
+                  airavath@gmail.com
+                </a>
                 <a href="tel:+13213899564" className="flex items-center gap-2 font-body text-[12px] text-[#BFC4C9]">
                   <Phone size={13} className="text-primary" />
                   +1 (321) 389-9564
                 </a>
               </div>
-              <div className="flex gap-2.5">
+              <div className="flex gap-2.5 mb-4">
                 {socials.map((s) => (
                   <a
                     key={s.label}
@@ -227,12 +229,13 @@ const FooterSection = () => {
                   </a>
                 ))}
               </div>
+              <p className="font-body text-[11px] text-[#BFC4C9]/70 leading-relaxed">
+                Social Media Management : Instagram , linkedin , youtube & X
+              </p>
             </div>
 
-            {/* Glowing divider */}
             <div className="h-px w-full mb-2" style={{ background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent)" }} />
 
-            {/* Accordion nav */}
             {navColumns.map((col) => (
               <AccordionSection
                 key={col.title}
@@ -244,7 +247,6 @@ const FooterSection = () => {
               />
             ))}
 
-            {/* Bottom bar */}
             <div className="mt-6 flex items-center justify-between">
               <p className="font-body text-[11px] text-[#BFC4C9]/50">
                 © 2026 AIRAVATH
@@ -255,7 +257,7 @@ const FooterSection = () => {
             </div>
           </div>
         ) : (
-          /* ═══════ DESKTOP FOOTER (unchanged) ═══════ */
+          /* ═══════ DESKTOP FOOTER ═══════ */
           <div className="pt-[80px] pb-[60px]">
             <div className="grid grid-cols-12 gap-[48px]">
               {/* Brand column */}
@@ -267,19 +269,23 @@ const FooterSection = () => {
               >
                 <img src={settings.logo_url || airavathLogo} alt="AIRAVATH" className="h-10 w-auto mb-5 self-start" />
                 <p className="font-sub text-body-sm text-[#BFC4C9] leading-relaxed max-w-[280px] mb-5">
-                  Operating the future of urban air mobility with electric aircraft services and intelligent mobility hub networks.
+                  Operating the future of urban air mobility with electric aircraft services and intelligent mobility networks.
                 </p>
                 <div className="flex flex-col gap-2 mb-6">
                   <a href="mailto:pradyaviation@gmail.com" className="flex items-center gap-2 font-body text-body-sm text-[#BFC4C9] hover:text-foreground transition-colors duration-300">
                     <Mail size={14} className="text-primary" />
                     <span>pradyaviation@gmail.com</span>
                   </a>
+                  <a href="mailto:airavath@gmail.com" className="flex items-center gap-2 font-body text-body-sm text-[#BFC4C9] hover:text-foreground transition-colors duration-300">
+                    <Mail size={14} className="text-primary" />
+                    <span>airavath@gmail.com</span>
+                  </a>
                   <a href="tel:+13213899564" className="flex items-center gap-2 font-body text-body-sm text-[#BFC4C9] hover:text-foreground transition-colors duration-300">
                     <Phone size={14} className="text-primary" />
                     <span>+1 (321) 389-9564</span>
                   </a>
                 </div>
-                <div className="flex gap-3">
+                <div className="flex gap-3 mb-4">
                   {socials.map((s, i) => (
                     <motion.a
                       key={s.label}
@@ -299,6 +305,9 @@ const FooterSection = () => {
                     </motion.a>
                   ))}
                 </div>
+                <p className="font-body text-[12px] text-[#BFC4C9]/60 leading-relaxed">
+                  Social Media Management : Instagram , linkedin , youtube & X
+                </p>
               </motion.div>
 
               {/* Nav columns */}
