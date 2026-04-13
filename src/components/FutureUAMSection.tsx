@@ -12,14 +12,14 @@ const aircraftCards = [
   {
     title: "Medical Mobility",
     description:
-      "Rapid aerial medical transport services connecting hospitals, emergency sites, and healthcare facilities across cities.",
+      "Rapid aerial medical transport services connecting hospital, emergency sites, and healthcare facilities across cities.",
     image: cardAirTaxi,
     link: "/medical-mobility",
   },
   {
     title: "Urban Air Mobility",
     description:
-      "On-demand passenger mobility services operating across city hubs, reducing travel time from hours to minutes.",
+      "On-demand passenger mobility services operating across city HUB, reducing travel time from hours to minutes.",
     image: cardUam,
     link: "/cargo-logistics",
   },
@@ -45,8 +45,8 @@ const validationBlocks = [
   },
   {
     icon: Building2,
-    title: "Hub Infrastructure Development",
-    text: "Cities are beginning to develop vertiports and mobility hubs to support aerial transportation networks.",
+    title: "Infrastructure Development",
+    text: "Cities are beginning to develop vertiports and mobility networks to support aerial transportation networks.",
   },
 ];
 
@@ -237,7 +237,7 @@ const FutureUAMSection = () => {
         <ScrollReveal delay={0.15} className={`flex justify-center ${isMobile ? "mb-8" : "mb-12x"}`}>
           <p className={`font-body text-titanium text-center max-w-[700px] leading-[1.6] ${isMobile ? "text-[14px]" : "text-body-lg"}`}>
             AIRAVATH operates aerial mobility services across cities using electric vertical take-off
-            and landing aircraft. Our network connects mobility hubs to deliver fast, safe, and
+            and landing aircraft. Our network connects mobility points to deliver fast, safe, and
             sustainable transportation above city traffic.
           </p>
         </ScrollReveal>

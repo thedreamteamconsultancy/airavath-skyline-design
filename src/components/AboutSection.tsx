@@ -6,13 +6,13 @@ const missionBlocks = [
     icon: PlaneTakeoff,
     title: "Our Mission",
     description:
-      "To operate fast, efficient, and sustainable aerial mobility services that connect cities through a network of mobility hubs.",
+      "To operate fast, efficient, and sustainable aerial mobility services that connect cities through a mobility network.",
   },
   {
     icon: Network,
     title: "Operational Excellence",
     description:
-      "Managing end-to-end urban air mobility operations including aircraft fleet management, vertiport hub networks, and on-demand booking platforms.",
+      "Managing end-to-end urban air mobility operations including aircraft fleet management, vertiport networks, and by using on-demand booking platform.",
   },
   {
     icon: Leaf,
@@ -42,7 +42,7 @@ const AboutSection = () => {
           <div className="lg:col-span-6">
             {[
               "AIRAVATH is an urban air mobility network operator focused on delivering aerial transportation services across modern cities.",
-              "By operating electric aircraft fleets, vertiport hub networks, and intelligent mobility platforms, AIRAVATH enables fast, safe, and sustainable transportation for passengers and cargo.",
+              "By operating electric aircraft fleets, vertiport networks, and by using intelligent mobility platform, AIRAVATH enables fast, safe, and sustainable transportation for passengers and cargo.",
               "Our vision is to unlock the skies as the next transportation layer and redefine how people move through urban environments.",
             ].map((p, i) => (
               <ScrollReveal key={i} delay={0.15 * i + 0.2} duration={0.6}>

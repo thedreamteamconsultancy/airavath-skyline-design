@@ -23,7 +23,7 @@ const channels = [
   {
     icon: Handshake,
     title: "Strategic Partnerships",
-    description: "Collaborate with AIRAVATH to operate mobility hub infrastructure and aerial mobility networks.",
+    description: "Collaborate with AIRAVATH to operate mobility infrastructure and aerial mobility networks.",
     button: "Partner With Us",
   },
   {

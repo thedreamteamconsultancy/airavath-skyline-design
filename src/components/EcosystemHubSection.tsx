@@ -17,7 +17,7 @@ const hubs = [
     link: "/ground-port",
     image: cardGroundport,
     description:
-      "Ground-level mobility hubs used for passenger access and service operations. These hubs serve as the primary entry point for urban air mobility.",
+      "Ground-level mobility points used for passenger access and service operations. These serve as the primary entry point for urban air mobility.",
   },
   {
     icon: Plane,
@@ -25,7 +25,7 @@ const hubs = [
     link: "/vertiport",
     image: cardVertiport,
     description:
-      "Landing and takeoff areas located on elevated building platforms — typically on first floor or mid-building levels for rapid turnaround operations.",
+      "Landing and takeoff areas located on elevated building platform — typically on first floor or mid-building levels for rapid turnaround operations.",
   },
   {
     icon: Landmark,
@@ -37,11 +37,11 @@ const hubs = [
   },
   {
     icon: Network,
-    title: "Hub Network",
+    title: "Mobility Network",
     link: "/hub-network",
     image: cardHubnetwork,
     description:
-      "Multiple hubs connected to form a city-wide mobility network, enabling seamless aerial transportation across entire metropolitan areas.",
+      "Multiple points connected to form a city-wide mobility network, enabling seamless aerial transportation across entire metropolitan areas.",
   },
 ];
 
@@ -201,14 +201,14 @@ const EcosystemHubSection = () => {
       <div className="container-airavath relative z-10">
         <ScrollReveal className="flex flex-col items-center text-center mb-3x">
           <h2 className={`font-heading font-semibold text-foreground tracking-futuristic max-w-[820px] ${isMobile ? "text-[26px]" : "text-section"}`}>
-            Urban Air Mobility Hub Infrastructure
+            Airavath Mobility Network
           </h2>
         </ScrollReveal>
 
         <ScrollReveal delay={0.15} className={`flex justify-center ${isMobile ? "mb-8" : "mb-[100px]"}`}>
           <p className={`font-body text-titanium text-center max-w-[720px] leading-[1.6] ${isMobile ? "text-[14px]" : "text-body-lg"}`}>
-            AIRAVATH operates a multi-tier hub infrastructure that forms the backbone of the
-            urban air mobility network. Each hub type serves a specific role in the ecosystem.
+            AIRAVATH operates a multi-tier infrastructure that forms the backbone of the
+            urban air mobility network. Each type serves a specific role in the ecosystem.
           </p>
         </ScrollReveal>
 

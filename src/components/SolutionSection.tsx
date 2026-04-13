@@ -12,14 +12,14 @@ const pillars = [
     icon: Plane,
     title: "Air Mobility Network",
     description:
-      "AIRAVATH operates a network of electric vertical take-off aircraft enabling fast, safe, and premium urban air mobility between key city destinations.",
+      "AIRAVATH operates a network of vertiports enabling fast, safe, and urban air mobility between key city destinations.",
     image: solutionNetwork,
   },
   {
     icon: Building,
     title: "Mobility Hub Infrastructure",
     description:
-      "Strategically located vertiports and mobility hubs across cities enable seamless take-off and landing operations from rooftops, airports, and business districts.",
+      "Strategically located vertiports and mobility points across cities enable seamless take-off and landing operations from rooftops, airports, and business districts.",
     image: solutionVertiport,
   },
   {
@@ -35,12 +35,12 @@ const highlights = [
   {
     icon: Layers,
     title: "Operating Ecosystem",
-    text: "Aircraft operations, hub infrastructure, and digital platforms combined into a unified mobility network.",
+    text: "Aircraft operations, infrastructure, and digital platform combined into a unified mobility network.",
   },
   {
     icon: Globe,
     title: "Scalable Across Cities",
-    text: "Mobility hub networks enable expansion across major cities.",
+    text: "Mobility networks enable expansion across major cities.",
   },
   {
     icon: Leaf,
@@ -242,7 +242,7 @@ const SolutionSection = () => {
         <ScrollReveal delay={0.15} className={`flex justify-center ${isMobile ? "mb-8" : "mb-12x"}`}>
           <p className={`font-body text-titanium text-center max-w-[720px] leading-[1.6] ${isMobile ? "text-[14px]" : "text-body-lg"}`}>
             AIRAVATH operates a complete urban air mobility ecosystem by coordinating electric
-            aircraft operations, mobility hub infrastructure, and an intelligent platform that enables
+            aircraft operations, mobility infrastructure, and by using an intelligent platform that enables
             on-demand aerial transportation across cities.
           </p>
         </ScrollReveal>

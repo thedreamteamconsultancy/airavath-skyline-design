@@ -17,9 +17,9 @@ const steps = [
   {
     icon: MapPin,
     number: "02",
-    title: "Arrive at Mobility Hub",
+    title: "Arrive at Mobility Point",
     description:
-      "Head to the nearest AIRAVATH mobility hub. Strategically located across the city, every hub is designed for seamless passenger boarding with premium lounges.",
+      "Head to the nearest AIRAVATH mobility point. Strategically located across the city, every point is designed for seamless passenger boarding with premium lounges.",
     stat: "< 10 min",
     statLabel: "Avg. Distance",
   },
@@ -28,7 +28,7 @@ const steps = [
     number: "03",
     title: "Take Off",
     description:
-      "Board the electric aircraft and experience vertical liftoff. AI-assisted flight operations ensure a smooth, ultra-quiet departure from the mobility hub.",
+      "Board the electric aircraft and experience vertical liftoff. AI-assisted flight operations ensure a smooth, ultra-quiet departure from the mobility point.",
     stat: "65 dB",
     statLabel: "Noise Level",
   },
@@ -37,7 +37,7 @@ const steps = [
     number: "04",
     title: "Reach Your Destination",
     description:
-      "Land at a mobility hub near your destination within minutes. What once took hours in traffic now takes a fraction of the time through aerial mobility.",
+      "Land at a mobility point near your destination within minutes. What once took hours in traffic now takes a fraction of the time through aerial mobility.",
     stat: "5x Faster",
     statLabel: "vs. Road Travel",
   },
@@ -264,7 +264,7 @@ const HowItWorksSection = () => {
         <ScrollReveal delay={0.15} className={`flex justify-center ${isMobile ? "mb-10" : "mb-[120px]"}`}>
           <p className={`font-body text-titanium text-center max-w-[680px] leading-[1.6] ${isMobile ? "text-[14px]" : "text-body-lg"}`}>
             AIRAVATH simplifies urban air mobility through a seamless process that
-            connects passengers to mobility hubs and electric aircraft within
+            connects passengers to mobility points and electric aircraft within
             minutes.
           </p>
         </ScrollReveal>
