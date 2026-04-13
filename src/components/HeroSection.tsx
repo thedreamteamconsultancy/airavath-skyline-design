@@ -6,6 +6,7 @@ import ParticleGrid from "@/components/ParticleGrid";
 import heroSkyline from "@/assets/hero-skyline.jpg";
 import heroLiftoff from "@/assets/hero-liftoff.jpg";
 import heroFlight from "@/assets/hero-flight.jpg";
+import aircraftSilhouette from "@/assets/aircraft-silhouette.png";
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -46,6 +47,17 @@ const HeroSection = () => {
 
       <ParticleGrid />
 
+      {/* Aircraft flyover effect */}
+      <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden">
+        <img
+          src={aircraftSilhouette}
+          alt=""
+          aria-hidden="true"
+          className="absolute top-[20%] w-16 h-auto opacity-0 animate-aircraft-fly"
+          style={{ filter: "blur(1px) brightness(2)" }}
+        />
+      </div>
+
       {/* Hero Content — left aligned */}
       <div className="relative z-10 container-airavath w-full">
         <div className="max-w-[720px]">
@@ -78,7 +90,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.7 }}
             className="font-body text-body-lg text-titanium max-w-[520px] mb-4x leading-[1.6]"
           >
-            AIRAVATH operates on-demand aerial mobility services and vertiport
+            AIRAVATH operates on-demand aerial mobility services and vertiport hub
             networks, connecting cities through fast, efficient, and sustainable
             urban air transportation.
           </motion.p>

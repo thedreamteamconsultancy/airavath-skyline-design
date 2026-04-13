@@ -15,18 +15,18 @@ const steps = [
   },
   {
     number: "02",
-    title: "Arrive at Point",
-    description: "Visit the nearest AIRAVATH mobility point and enjoy the premium passenger lounge before departure.",
+    title: "Arrive at Hub",
+    description: "Visit the nearest AIRAVATH mobility hub and enjoy the premium passenger lounge before departure.",
   },
   {
     number: "03",
     title: "Aerial Tour",
-    description: "Experience breathtaking aerial views of city landmarks, religious temples, coastlines, and skylines from the aircraft.",
+    description: "Experience breathtaking aerial views of city landmarks, coastlines, and skylines from a luxury aircraft.",
   },
   {
     number: "04",
     title: "Return",
-    description: "Land back at your departure point or choose a different drop-off location within the city network.",
+    description: "Land back at your departure hub or choose a different drop-off location within the city network.",
   },
 ];
 
@@ -34,17 +34,17 @@ const features = [
   {
     icon: Camera,
     title: "Scenic Routes",
-    description: "Curated aerial tour routes showcasing the most iconic landmarks, religious temples, and views across the city.",
+    description: "Curated aerial tour routes showcasing the most iconic landmarks and views across the city.",
   },
   {
     icon: MapPin,
-    title: "Multiple Points",
-    description: "Flexible departure and arrival points across the city's mobility network.",
+    title: "Multiple Hubs",
+    description: "Flexible departure and arrival points across the city's mobility hub network.",
   },
   {
     icon: Plane,
     title: "Premium Experience",
-    description: "Aircraft with panoramic windows, in-flight commentary, and premium hospitality.",
+    description: "Luxury aircraft with panoramic windows, in-flight commentary, and premium hospitality.",
   },
 ];
 
@@ -91,7 +91,7 @@ const TourismMobility = () => {
                 Exploring cities often involves long travel times through crowded streets and limited perspectives. AIRAVATH's aerial tourism service offers a completely new way to experience cities — from above.
               </p>
               <p className="font-body text-[18px] text-titanium leading-[1.7]">
-                Our aircraft and curated routes provide passengers with panoramic city views, scenic coastal flights, religious temples, and landmark tours — all operated through our mobility network.
+                Our luxury aircraft and curated routes provide passengers with panoramic city views, scenic coastal flights, and landmark tours — all operated through our mobility hub network.
               </p>
             </ScrollReveal>
           </div>

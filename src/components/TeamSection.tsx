@@ -28,8 +28,8 @@ const fallbackTeam = [
   {
     id: "f3",
     name: "Head of Infrastructure",
-    role: "Mobility Network",
-    description: "Designing and managing scalable mobility infrastructure across cities.",
+    role: "Mobility Hub Network",
+    description: "Designing and managing scalable mobility hub infrastructure across cities.",
   },
   {
     id: "f4",
@@ -71,7 +71,7 @@ const TeamSection = () => {
           transition={{ duration: 0.8 }}
           className="font-heading text-[36px] md:text-[48px] font-semibold text-foreground tracking-futuristic text-center mb-[24px]"
         >
-          Leadership & Founding team
+          Leadership & Founding Team
         </motion.h2>
 
         <motion.p

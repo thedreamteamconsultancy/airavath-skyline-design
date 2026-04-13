@@ -7,7 +7,7 @@ const EmergencySection = () => (
   <div className="relative">
     <ComparisonBlock
       heading="Emergency Response Delays Cost Lives"
-      description="In critical medical emergencies, every minute matters. Traffic congestion and long ground travel times often delay access to hospital and emergency care."
+      description="In critical medical emergencies, every minute matters. Traffic congestion and long ground travel times often delay access to hospitals and emergency care."
       problemImage={problemAmbulance}
       problemAlt="Ambulance stuck in heavy city traffic with flashing emergency lights"
       problemCaption="Minutes Lost in Traffic"
@@ -20,7 +20,7 @@ const EmergencySection = () => (
         to="/medical-mobility"
         className="w-full max-w-[340px] font-sub text-[13px] text-primary border border-primary/30 rounded-lg px-6 py-3 text-center hover:bg-primary/10 transition-all duration-300"
       >
-        Learn More About Emergency Mobility →
+        Learn More About Medical Mobility →
       </Link>
     </div>
   </div>
