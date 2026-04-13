@@ -23,7 +23,7 @@ const features = [
     icon: PlaneTakeoff,
     title: "Vertical Takeoff & Landing",
     description:
-      "Aircraft take off and land vertically, eliminating the need for runways and enabling operations from urban mobility hubs.",
+      "Aircraft take off and land vertically, eliminating the need for runways and enabling operations from urban mobility points.",
   },
   {
     icon: Volume2,
@@ -86,9 +86,7 @@ const AircraftTechSection = () => {
 
         <ScrollReveal delay={0.15} className="flex justify-center">
           <p className="font-body text-[14px] md:text-body-lg text-titanium text-center max-w-[720px] leading-[1.5] md:leading-[1.6]">
-            AIRAVATH operates electric vertical take-off and landing aircraft that combine
-            advanced propulsion, lightweight design, and intelligent navigation to deliver safe
-            and efficient aerial mobility within modern cities.
+            Aircrafts | delivering silent, efficient flights
           </p>
         </ScrollReveal>
 
