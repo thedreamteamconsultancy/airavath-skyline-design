@@ -184,7 +184,7 @@ const VerticalTimeline = () => {
 
       {/* Aircraft following scroll */}
       <motion.div
-        className="absolute left-8 md:left-1/2 -translate-x-1/2 z-30"
+        className="absolute left-[32px] md:left-1/2 -translate-x-1/2 z-30"
         style={{ top: aircraftTop }}
       >
         <div className="relative">
@@ -193,7 +193,8 @@ const VerticalTimeline = () => {
             height="20"
             viewBox="0 0 24 24"
             fill="none"
-            className="text-primary rotate-180 drop-shadow-[0_0_12px_hsl(189_100%_50%/0.7)]"
+            className="text-primary drop-shadow-[0_0_12px_hsl(189_100%_50%/0.7)] transition-transform duration-500"
+            style={{ transform: scrollingDown ? "rotate(180deg)" : "rotate(0deg)" }}
           >
             <path
               d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"
