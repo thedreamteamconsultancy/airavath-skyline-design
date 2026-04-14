@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Heart, Clock, Plane, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import solutionMedical from "@/assets/solution-medical.jpg";
 import problemAmbulance from "@/assets/problem-ambulance.jpg";
 

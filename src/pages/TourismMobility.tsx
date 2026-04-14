@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Camera, MapPin, Plane, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import solutionTourism from "@/assets/solution-tourism.jpg";
 import problemTourism from "@/assets/problem-tourism.jpg";
 

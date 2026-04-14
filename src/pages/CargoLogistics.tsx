@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Package, Clock, Plane, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import solutionCargo from "@/assets/solution-cargo.jpg";
 import problemCargo from "@/assets/problem-cargo.jpg";
 
