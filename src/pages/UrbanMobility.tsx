@@ -49,6 +49,7 @@ const features = [
 ];
 
 const UrbanMobility = () => {
+  const navigate = useNavigate();
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -62,9 +63,9 @@ const UrbanMobility = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
         </div>
         <div className="relative z-10 container-airavath pt-32">
-          <Link to="/" className="inline-flex items-center gap-2 font-body text-body-sm text-primary mb-8 hover:text-foreground transition-colors">
-            <ArrowLeft size={16} /> Back to Home
-          </Link>
+          <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 font-body text-body-sm text-primary mb-8 hover:text-foreground transition-colors">
+            <ArrowLeft size={16} /> Back
+          </button>
           <ScrollReveal>
             <h1 className="font-heading text-[40px] md:text-[64px] font-semibold text-foreground tracking-futuristic mb-6">
               Urban Mobility
