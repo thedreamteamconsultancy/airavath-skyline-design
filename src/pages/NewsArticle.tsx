@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { motion } from "framer-motion";
@@ -15,6 +15,7 @@ interface Article {
 
 const NewsArticle = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -35,7 +36,7 @@ const NewsArticle = () => {
     <div className="min-h-screen bg-background flex items-center justify-center">
       <div className="text-center">
         <h1 className="font-heading text-2xl text-foreground mb-4">Article not found</h1>
-        <Link to="/newsroom" className="text-primary hover:underline">← Back to Newsroom</Link>
+        <button onClick={() => navigate(-1)} className="text-primary hover:underline">← Back</button>
       </div>
     </div>
   );
@@ -51,9 +52,9 @@ const NewsArticle = () => {
       )}
 
       <div className="container-airavath py-12 max-w-[800px]">
-        <Link to="/newsroom" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-sub text-sm mb-8">
-          <ArrowLeft size={16} /> Back to Newsroom
-        </Link>
+        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-sub text-sm mb-8">
+          <ArrowLeft size={16} /> Back
+        </button>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <h1 className="font-heading text-[32px] md:text-[44px] font-semibold text-foreground tracking-futuristic mb-4 leading-[1.15]">

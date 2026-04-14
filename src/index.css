@@ -243,3 +243,22 @@ html.lenis, html.lenis body {
     letter-spacing: 0.02em;
   }
 }
+
+/* Premium textarea scrollbar */
+textarea::-webkit-scrollbar {
+  width: 4px;
+}
+textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: hsl(189 100% 50% / 0.3);
+  border-radius: 4px;
+}
+textarea::-webkit-scrollbar-thumb:hover {
+  background: hsl(189 100% 50% / 0.5);
+}
+textarea {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(189 100% 50% / 0.3) transparent;
+}

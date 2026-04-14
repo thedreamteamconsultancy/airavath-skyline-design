@@ -93,7 +93,7 @@ const HeroSection = () => {
           >
             <button
               className="font-heading text-[14px] font-medium uppercase tracking-[0.1em] text-foreground border border-foreground/40 hover:border-foreground/80 px-8 py-3.5 rounded-[2px] transition-all duration-300 flex items-center gap-3 md:w-auto w-full justify-center hover:bg-foreground/5"
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
             >
               Explore
               <span className="text-[18px]">→</span>
