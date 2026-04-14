@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { motion } from "framer-motion";
@@ -18,6 +18,7 @@ interface Job {
 }
 
 const Careers = () => {
+  const navigate = useNavigate();
   const [jobs, setJobs] = useState<Job[]>([]);
 
   useEffect(() => {
@@ -61,9 +62,9 @@ const Careers = () => {
 
       {/* Back to home */}
       <div className="container-airavath pt-8">
-        <a href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-sub text-sm">
-          <ArrowLeft size={16} /> Back to Home
-        </a>
+        <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-sub text-sm">
+          <ArrowLeft size={16} /> Back
+        </button>
       </div>
 
       {/* Job Listings */}
