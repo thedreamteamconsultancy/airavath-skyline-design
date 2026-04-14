@@ -122,6 +122,7 @@ const NetworkOverlay = () => (
 const VertiportSection = () => {
   return (
     <section
+      id="vertiport"
       className="relative overflow-hidden atmosphere-blue"
       style={{
         paddingTop: "80px",

@@ -211,6 +211,7 @@ const HowItWorksSection = () => {
   return (
     <section
       ref={sectionRef}
+      id="how-it-works"
       className="relative overflow-hidden"
       style={{
         paddingTop: isMobile ? "56px" : "220px",
