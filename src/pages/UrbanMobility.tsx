@@ -40,7 +40,7 @@ const advantages = [
 
 const UrbanMobility = () => {
   const navigate = useNavigate();
-  useEffect(() => { import('"@/components/SmoothScroll"').then(m => { const l = m.getLenis(); if (l) l.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0); }); }, []);
+  useEffect(() => { const l = (window as any).__lenis; if (l) l.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0); }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
