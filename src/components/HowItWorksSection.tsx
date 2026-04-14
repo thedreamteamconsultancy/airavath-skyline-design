@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { Smartphone, MapPin, PlaneTakeoff, Flag } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -48,6 +48,7 @@ const VerticalTimeline = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [started, setStarted] = useState(false);
+  const [scrollingDown, setScrollingDown] = useState(true);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -57,6 +58,13 @@ const VerticalTimeline = () => {
   const aircraftTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
+  // Track scroll direction
+  const prevProgress = useRef(0);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setScrollingDown(latest >= prevProgress.current);
+    prevProgress.current = latest;
+  });
+
   useEffect(() => {
     if (isInView) setStarted(true);
   }, [isInView]);
@@ -64,11 +72,11 @@ const VerticalTimeline = () => {
   return (
     <div ref={ref} className="relative">
       {/* Background vertical line */}
-      <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-primary/10 md:-translate-x-px" />
+      <div className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-px bg-primary/10 md:-translate-x-px" />
 
       {/* Animated fill line — scroll-driven */}
       <motion.div
-        className="absolute left-8 md:left-1/2 top-0 w-px bg-gradient-to-b from-primary via-primary to-primary/30 origin-top md:-translate-x-px"
+        className="absolute left-[32px] md:left-1/2 top-0 w-px bg-gradient-to-b from-primary via-primary to-primary/30 origin-top md:-translate-x-px"
         style={{ height: "100%", scaleY: lineScaleY }}
       />
 
@@ -136,7 +144,7 @@ const VerticalTimeline = () => {
                 </div>
 
                 {/* Center node */}
-                <div className="absolute left-8 md:left-1/2 top-8 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20">
+                <div className="absolute left-[32px] md:left-1/2 top-8 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={started ? { scale: 1 } : {}}
