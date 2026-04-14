@@ -32,6 +32,7 @@ const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
 
     lenisInstance = lenis;
     lenisRef.current = lenis;
+    (window as any).__lenis = lenis;
 
     const raf = (time: number) => {
       lenis.raf(time);
