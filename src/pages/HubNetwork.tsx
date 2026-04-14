@@ -142,7 +142,7 @@ const stats = [
 ];
 
 const HubNetwork = () => {
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => { import('"@/components/SmoothScroll"').then(m => { const l = m.getLenis(); if (l) l.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0); }); }, []);
   const [hoveredGallery, setHoveredGallery] = useState<number | null>(null);
 
   return (
