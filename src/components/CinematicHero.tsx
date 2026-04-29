@@ -40,7 +40,7 @@ const CinematicHero = ({
           footerReturn,
           returnScrollY: footerReturn?.scrollY,
         },
-        replace: false,
+        replace: true,
       });
     } else {
       navigate(backLink);
