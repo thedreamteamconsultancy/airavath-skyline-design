@@ -96,7 +96,7 @@ const ScrollManager = () => {
 
         if (maxScroll >= saved - 4 || attempts >= maxAttempts) {
           if (lenis) {
-            lenis.scrollTo(saved, { immediate: true, force: true });
+            lenis.scrollTo(saved, { immediate: !shouldRestoreFooter, force: true });
           } else {
             window.scrollTo({ top: saved, behavior: shouldRestoreFooter ? "smooth" : "auto" });
           }
