@@ -3,12 +3,15 @@ import { Building2, Plane, Landmark, Network, ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import ParallaxImage from "@/components/ParallaxImage";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { prepareBookmarkNavigation } from "@/lib/bookmarkNavigation";
 import cardGroundport from "@/assets/card-groundport.jpg";
 import cardVertiport from "@/assets/card-vertiport.jpg";
 import cardSkyport from "@/assets/card-skyport.jpg";
 import cardHubnetwork from "@/assets/card-hubnetwork.jpg";
+
+const ECOSYSTEM_RETURN_TO = "/#ecosystem";
 
 const hubs = [
   {
@@ -51,6 +54,7 @@ const MobileHubCarousel = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [dragStartX, setDragStartX] = useState<number | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const navigate = useNavigate();
   const count = hubs.length;
 
   useEffect(() => {
@@ -129,7 +133,8 @@ const MobileHubCarousel = () => {
               }}
               onClick={() => {
                 if (i === activeIndex) {
-                  window.location.href = hub.link;
+                  prepareBookmarkNavigation(ECOSYSTEM_RETURN_TO);
+                  navigate(hub.link, { state: { returnTo: ECOSYSTEM_RETURN_TO } });
                   return;
                 }
                 setActiveIndex(i);
@@ -153,7 +158,11 @@ const MobileHubCarousel = () => {
                 </p>
                 <Link
                   to={hub.link}
-                  onClick={(e) => e.stopPropagation()}
+                  state={{ returnTo: ECOSYSTEM_RETURN_TO }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prepareBookmarkNavigation(ECOSYSTEM_RETURN_TO, e);
+                  }}
                   className="mt-auto inline-flex items-center gap-1.5 font-body text-[12px] text-primary"
                 >
                   Learn More <ArrowRight size={12} />
@@ -192,6 +201,7 @@ const EcosystemHubSection = () => {
 
   return (
     <section
+      id="ecosystem"
       className="relative overflow-hidden"
       style={{
         paddingTop: isMobile ? "56px" : "80px",
@@ -223,7 +233,12 @@ const EcosystemHubSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {hubs.map((hub, i) => (
               <ScrollReveal key={hub.title} delay={0.14 * i} direction="up">
-                <Link to={hub.link} className="block h-full">
+                <Link
+                  to={hub.link}
+                  state={{ returnTo: ECOSYSTEM_RETURN_TO }}
+                  onClick={(e) => prepareBookmarkNavigation(ECOSYSTEM_RETURN_TO, e)}
+                  className="block h-full"
+                >
                   <motion.div
                     className="group bg-card border border-border rounded-[12px] overflow-hidden h-full hover:border-primary/30 hover:shadow-[0_0_30px_hsl(189_100%_50%/0.18)] transition-all duration-300 ease-out cursor-pointer"
                     whileHover={{ y: -8, scale: 1.02 }}
