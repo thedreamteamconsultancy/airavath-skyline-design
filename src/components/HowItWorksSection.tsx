@@ -72,11 +72,11 @@ const VerticalTimeline = () => {
   return (
     <div ref={ref} className="relative">
       {/* Background vertical line */}
-      <div className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-px bg-primary/10 md:-translate-x-px" />
+      <div className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-px bg-primary/10 -translate-x-px md:-translate-x-px" />
 
       {/* Animated fill line — scroll-driven */}
       <motion.div
-        className="absolute left-[32px] md:left-1/2 top-0 w-px bg-gradient-to-b from-primary via-primary to-primary/30 origin-top md:-translate-x-px"
+        className="absolute left-[32px] md:left-1/2 top-0 w-px bg-gradient-to-b from-primary via-primary to-primary/30 origin-top -translate-x-px md:-translate-x-px"
         style={{ height: "100%", scaleY: lineScaleY }}
       />
 
@@ -144,12 +144,12 @@ const VerticalTimeline = () => {
                 </div>
 
                 {/* Center node */}
-                <div className="absolute left-[32px] md:left-1/2 top-8 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20">
+                <div className="absolute left-[32px] md:left-1/2 top-8 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={started ? { scale: 1 } : {}}
                     transition={{ delay: i * 0.8, duration: 0.5, ease: "backOut" }}
-                    className="relative"
+                    className="relative w-12 h-12 flex items-center justify-center"
                   >
                     {/* Outer pulse */}
                     <motion.div
