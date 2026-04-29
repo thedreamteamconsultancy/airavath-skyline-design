@@ -37,9 +37,6 @@ const Careers = () => {
     document.title = "Careers at AIRAVATH | Join Our Team";
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute("content", "Join AIRAVATH and help build the future of urban air mobility.");
-    const l = (window as any).__lenis;
-    if (l) l.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0);
-
     const q = query(collection(db, "job_openings"), orderBy("title"));
     const unsub = onSnapshot(q, (snap) => {
       setJobs(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Job)));

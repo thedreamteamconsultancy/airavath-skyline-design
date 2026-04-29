@@ -142,7 +142,6 @@ const stats = [
 ];
 
 const HubNetwork = () => {
-  useEffect(() => { const l = (window as any).__lenis; if (l) l.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0); }, []);
   const [hoveredGallery, setHoveredGallery] = useState<number | null>(null);
 
   return (

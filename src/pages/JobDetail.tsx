@@ -38,8 +38,6 @@ const JobDetail = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    const l = (window as any).__lenis;
-    if (l) l.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0);
   }, [id]);
 
   useEffect(() => {

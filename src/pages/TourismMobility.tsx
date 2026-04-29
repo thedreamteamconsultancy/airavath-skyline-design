@@ -42,7 +42,6 @@ const tourRoutes = [
 
 const TourismMobility = () => {
   const navigate = useNavigate();
-  useEffect(() => { const l = (window as any).__lenis; if (l) l.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0); }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
