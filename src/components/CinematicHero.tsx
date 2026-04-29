@@ -30,7 +30,9 @@ const CinematicHero = ({
   });
 
   const handleBack = () => {
-    if (location.state?.fromFooter) {
+    const historyIndex = window.history.state?.idx;
+
+    if (location.state?.fromFooter || (typeof historyIndex === "number" && historyIndex > 0)) {
       navigate(-1);
     } else {
       navigate(backLink);
