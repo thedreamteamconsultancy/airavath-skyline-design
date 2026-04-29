@@ -7,13 +7,13 @@ import { scrollToSection } from "@/components/SmoothScroll";
 import { useIsMobile } from "@/hooks/use-mobile";
 import airavathLogo from "@/assets/airavath-logo.png";
 
-const navColumns = [
+const getNavColumns = (showTeam: boolean) => [
   {
     title: "Company",
     links: [
       { label: "About AIRAVATH", href: "#about" },
       { label: "Vision", href: "#vision" },
-      { label: "Leadership Team", href: "#team" },
+      ...(showTeam ? [{ label: "Leadership Team", href: "#team" }] : []),
       { label: "Newsroom", href: "/newsroom" },
       { label: "Careers", href: "/careers" },
     ],
