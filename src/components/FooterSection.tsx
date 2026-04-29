@@ -7,13 +7,13 @@ import { scrollToSection } from "@/components/SmoothScroll";
 import { useIsMobile } from "@/hooks/use-mobile";
 import airavathLogo from "@/assets/airavath-logo.png";
 
-const navColumns = [
+const getNavColumns = (showTeam: boolean) => [
   {
     title: "Company",
     links: [
       { label: "About AIRAVATH", href: "#about" },
       { label: "Vision", href: "#vision" },
-      { label: "Leadership Team", href: "#team" },
+      ...(showTeam ? [{ label: "Leadership Team", href: "#team" }] : []),
       { label: "Newsroom", href: "/newsroom" },
       { label: "Careers", href: "/careers" },
     ],
@@ -122,14 +122,21 @@ const FooterSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [settings, setSettings] = useState<SiteSettings>({});
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const [showTeam, setShowTeam] = useState(true);
   const isMobile = useIsMobile();
 
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "website_settings", "main"), (snap) => {
-      if (snap.exists()) setSettings(snap.data() as SiteSettings);
+      if (snap.exists()) {
+        const data = snap.data() as SiteSettings & { show_team_section?: boolean };
+        setSettings(data);
+        setShowTeam(data.show_team_section !== false);
+      }
     });
     return unsub;
   }, []);
+
+  const navColumns = getNavColumns(showTeam);
 
   const socials = [
     { icon: Linkedin, label: "LinkedIn", href: settings.linkedin_url || "#" },
