@@ -1,86 +1,58 @@
 ## Goal
 
-Lock in a consistent bookmark + back-navigation system across navbar, footer, ecosystem cards, "Learn More" CTAs, and sub-pages. Most plumbing already exists (`bookmarkNavigation.ts`, `footerNavigation.ts`, `ScrollManager.tsx`, `CinematicHero.handleBack`); the remaining issues are: wrong scroll-spy IDs, no URL hash sync, navbar offset is magic-number, POP restoration races Lenis on long pages, and a few CTAs bypass the shared handler.
+Fix the mobile timeline in `src/components/HowItWorksSection.tsx` so the vertical line and every circle icon share a single fixed left axis at **32px from the viewport edge**. Desktop (md+) behavior stays unchanged.
 
-## What's already correct (keep)
+## Root cause
 
-- `ScrollManager` saves `window.scrollY` per location key and restores on POP.
-- Footer link click → `saveFooterReturnState` (sessionStorage) + state on `navigate`.
-- `CinematicHero` back button → `navigateToReturnTarget` (footer-aware).
-- `EcosystemHubSection`, `ProblemSection`, `EmergencySection`, `CargoSection`, `TourismSection` all `prepareBookmarkNavigation(returnTo)` and pass `state.returnTo`.
-- Sub-page anchors exist: `#urban-mobility`, `#emergency-mobility`, `#cargo-logistics`, `#tourism-mobility`, `#ecosystem`, `#footer`.
+The current mobile implementation uses `left-1/2` inside a `w-16` rail. That centers elements at 32px only when the rail is exactly 16 wide and unpadded — any parent padding, scrollbar, or rail width drift causes a sub-pixel offset between the line and circles. The correct approach is what you described: one fixed `axisX = 32px` value used by every element with `translateX(-50%)`.
 
-## Changes
+## Changes (mobile only — all under non-`md:` classes)
 
-### 1. Fix scroll-spy in `src/hooks/useActiveSection.ts`
-- Replace the stale `SECTION_IDS` (currently `["home","about","technology","vision","investors","team","contact"]` — `technology` and `investors` don't exist) with the real IDs rendered in `Index.tsx`: `home, about, urban-mobility, emergency-mobility, cargo-logistics, tourism-mobility, ecosystem, vertiport, how-it-works, vision, team, contact, footer`.
-- Accept `ids: string[]` as an argument so Navbar can pass only its own nav targets.
-- Verify the matching IDs exist on rendered sections; add missing `id="…"` attributes on `HeroSection` (`#home`), `AboutSection` (`#about`), `VisionSection` (`#vision`), `TeamSection` (`#team`), `ContactSection` (`#contact`) only if missing (read each file first; do not duplicate).
+In `src/components/HowItWorksSection.tsx` → `VerticalTimeline`:
 
-### 2. URL hash sync (scroll-spy → address bar)
-- In `useActiveSection`, when active changes and we're on `/`, call `window.history.replaceState(history.state, "", "/#" + active)`.
-- Debounced via rAF; never `pushState` (would pollute back stack).
-- Skip during programmatic scroll (set a `isProgrammaticScroll` flag in `scrollToSection` for ~1.6s after invocation).
+1. **Vertical background line (mobile)**
+   Replace the `w-16` rail wrapper with a direct absolute line:
+   ```
+   left-[32px] top-0 bottom-0 w-[2px] -translate-x-1/2 bg-primary/10
+   ```
+   No wrapper, no `w-16`, no `left-1/2`.
 
-### 3. Centralize navbar offset in `SmoothScroll.tsx`
-- Export `NAV_OFFSET = -80` constant; `scrollToSection` already uses `-80`. Replace literal usages.
-- No layout change for users; just maintainability.
+2. **Animated fill line (mobile)**
+   Same axis as background:
+   ```
+   left-[32px] top-0 w-[2px] -translate-x-1/2 origin-top
+   ```
+   Keep `scaleY: lineScaleY`, gradient fill unchanged.
 
-### 4. Navbar consistency (`src/components/Navbar.tsx`)
-- "Join The Future" button currently calls `scrollToSection("#contact")` directly. When user is on a sub-page, this silently fails (no `#contact` element). Wrap with same logic as `handleNavClick`: if `pathname !== "/"` → `navigate("/#contact")` else `scrollToSection`.
-- Same fix for the mobile bottom CTA.
+3. **Circle node wrapper (mobile)**
+   Replace the current `left-0 w-16` wrapper. Each step's node container becomes:
+   ```
+   left-[32px] top-8 -translate-x-1/2 w-12 h-12 flex items-center justify-center
+   ```
+   Drop the inner `absolute left-1/2 -translate-x-1/2` — it's now redundant.
+   Desktop classes (`md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-12`) remain.
 
-### 5. Harden POP/footer restoration in `src/components/ScrollManager.tsx`
-- Current poll waits up to 60 frames for document height. For very long pages (Index has lazy images), bump to 120 frames (~2s) and additionally listen for one `load` event on remaining `<img>` elements before final correction.
-- After `lenis.scrollTo(saved, { immediate: true })`, schedule a single follow-up rAF that re-applies `window.scrollTo(0, saved)` to fix Lenis/native drift (the user's "small jump" symptom on returns).
-- Keep behavior `instant` on POP (no animation) — matches user spec "no flicker".
+4. **Aircraft icon (mobile)**
+   Same axis treatment:
+   ```
+   left-[32px] -translate-x-1/2 w-5 h-5
+   ```
+   Remove the `w-16` wrapper and the inner `left-1/2 -translate-x-1/2` shim. Desktop keeps `md:left-1/2 md:-translate-x-1/2`.
 
-### 6. Ensure footer link to `#footer` itself is a no-op
-- `FooterSection.handleClick` for `href="#footer"` (none today, but Connect group could be added later) — guard: if target equals current path+hash, just scroll, don't navigate.
+5. **Card padding stays**
+   Cards already use `pl-20` on mobile to clear the 32px axis + 24px circle radius + breathing room. No change needed.
 
-### 7. `Index.tsx` hash handling
-- Already skips hash scroll when `restoreFooter`. Extend: also skip when navigation type is POP and `ScrollManager` has a saved position for this key (avoid double-scroll fighting). Implement by reading `useNavigationType()` and bailing early.
+## Why this works
 
-### 8. Cross-page back from infrastructure pages
-- `CinematicHero` default `backLink="/#ecosystem"` — already correct. Confirm all 4 infra pages (`SkyPort`, `GroundPort`, `Vertiport`, `HubNetwork`) pass no override (they don't), so footer-origin still wins via `navigateToReturnTarget`.
+Every mobile element resolves to:
+`final_x = 32px - (own_width / 2)`
 
-### 9. Mobile parity
-- `useIsMobile` is already used; Lenis `touchMultiplier: 1.5` stays.
-- Verify `ScrollManager` listens to both `window` scroll and `lenis.on("scroll")` — it does. No change.
+So the geometric center of the 2px line, the 48px circles, and the 20px aircraft all land on x = 32px exactly. No rail width, no percentage math, no parent-width dependency — pixel-perfect by construction.
+
+## Verification
+
+After the edit I'll briefly add a 1px red border on the circles and a white line color, screenshot the mobile viewport (390px) to confirm the line bisects each circle, then remove the debug styles before finishing.
 
 ## Files touched
 
-```
-src/hooks/useActiveSection.ts        rewrite (real IDs + hash sync + arg)
-src/components/SmoothScroll.tsx      export NAV_OFFSET, isProgrammaticScroll flag
-src/components/Navbar.tsx            CTA path-aware + use updated hook
-src/components/ScrollManager.tsx     longer poll, post-restore correction, POP guard
-src/pages/Index.tsx                  skip hash scroll on POP
-src/components/HeroSection.tsx       ensure id="home" (verify only)
-src/components/AboutSection.tsx      ensure id="about" (verify only)
-src/components/VisionSection.tsx     ensure id="vision" (verify only)
-src/components/TeamSection.tsx       ensure id="team" (verify only)
-src/components/ContactSection.tsx    ensure id="contact" (verify only)
-src/components/VertiportSection.tsx  ensure id="vertiport" (verify only)
-src/components/HowItWorksSection.tsx ensure id="how-it-works" (verify only)
-```
-
-(Verify-only files will only be edited if the ID is missing.)
-
-## Test matrix (manual after build)
-
-```
-Navbar Home → About → back            → returns to Home
-Navbar About → click Vision           → URL becomes /#vision, underline moves
-Footer Sky Port → Back to Hub         → footer scroll position restored
-Card Ecosystem → Vertiport page → Back→ #ecosystem section
-Learn More Urban Mobility → Back      → #urban-mobility section
-Mobile: same 4 flows                  → no jump, instant restore
-Refresh on /#vision                   → loads at Vision section
-```
-
-## Out of scope
-
-- No router rewrite, no route changes, no new pages.
-- No animation system changes (Framer Motion variants stay).
-- No removal of `bookmarkNavigation.ts` or `footerNavigation.ts` — they're working.
+- `src/components/HowItWorksSection.tsx` (only the `VerticalTimeline` JSX — desktop classes untouched)

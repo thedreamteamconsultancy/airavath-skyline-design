@@ -71,22 +71,17 @@ const VerticalTimeline = () => {
 
   return (
     <div ref={ref} className="relative">
-      {/* Shared mobile axis: every timeline element centers from this same 50% reference */}
-      <div className="absolute left-0 top-0 bottom-0 w-16 md:hidden pointer-events-none">
-        <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-primary/10" />
-      </div>
+      {/* Mobile background line — fixed 32px left axis */}
+      <div className="md:hidden absolute left-[32px] top-0 bottom-0 w-[2px] -translate-x-1/2 bg-primary/10 pointer-events-none" />
 
       {/* Desktop background line remains unchanged */}
-      <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-px bg-primary/10 pointer-events-none">
-      </div>
+      <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-px bg-primary/10 pointer-events-none" />
 
-      {/* Animated fill line — scroll-driven */}
+      {/* Animated fill line (mobile) — same 32px axis */}
       <motion.div
-        className="absolute left-0 top-0 w-16 md:hidden origin-top pointer-events-none"
-        style={{ height: "100%", scaleY: lineScaleY }}
-      >
-        <div className="absolute left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-primary via-primary to-primary/30" />
-      </motion.div>
+        className="md:hidden absolute left-[32px] top-0 w-[2px] h-full -translate-x-1/2 origin-top bg-gradient-to-b from-primary via-primary to-primary/30 pointer-events-none"
+        style={{ scaleY: lineScaleY }}
+      />
       <motion.div
         className="hidden md:block absolute left-1/2 top-0 w-px -translate-x-px origin-top bg-gradient-to-b from-primary via-primary to-primary/30 pointer-events-none"
         style={{ height: "100%", scaleY: lineScaleY }}
@@ -160,13 +155,13 @@ const VerticalTimeline = () => {
               </div>
               </ScrollReveal>
 
-              {/* Center node — outside reveal transform so it stays locked to the shared axis */}
-              <div className="absolute left-0 md:left-1/2 top-8 md:top-1/2 z-20 w-16 md:w-12 h-12 pointer-events-none md:-translate-x-1/2 md:-translate-y-1/2">
+              {/* Center node — locked to fixed 32px axis on mobile, centered on desktop */}
+              <div className="absolute left-[32px] md:left-1/2 top-8 md:top-1/2 z-20 w-12 h-12 -translate-x-1/2 md:-translate-y-1/2 pointer-events-none">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={started ? { scale: 1 } : {}}
                   transition={{ delay: i * 0.8, duration: 0.5, ease: "backOut" }}
-                  className="absolute left-1/2 top-0 -translate-x-1/2 md:relative md:left-auto md:top-auto md:translate-x-0 w-12 h-12 flex items-center justify-center"
+                  className="w-12 h-12 flex items-center justify-center relative"
                 >
                   {/* Outer pulse */}
                   <motion.div
@@ -178,7 +173,6 @@ const VerticalTimeline = () => {
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                    style={{ width: 64, height: 64, top: -8, left: -8 }}
                   />
                   {/* Node */}
                   <div className="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-[0_0_20px_hsl(189_100%_50%/0.25)]">
@@ -191,12 +185,12 @@ const VerticalTimeline = () => {
         })}
       </div>
 
-      {/* Aircraft following scroll */}
+      {/* Aircraft following scroll — locked to fixed 32px axis on mobile */}
       <motion.div
-        className="absolute left-0 md:left-1/2 md:-translate-x-1/2 z-30 w-16 md:w-auto pointer-events-none"
+        className="absolute left-[32px] md:left-1/2 -translate-x-1/2 md:-translate-x-1/2 z-30 w-5 h-5 pointer-events-none"
         style={{ top: aircraftTop }}
       >
-        <div className="relative left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 w-5 h-5">
+        <div className="relative w-5 h-5">
           <svg
             width="20"
             height="20"
