@@ -1,5 +1,22 @@
 import { useEffect, useRef } from "react";
-import { useLocation, useNavigationType } from "react-router-dom";
+import { useLocation, useNavigationType, type Location } from "react-router-dom";
+
+type NavigationState = {
+  returnScrollY?: number;
+};
+
+type LenisLike = {
+  on?: (event: "scroll", callback: () => void) => void;
+  off?: (event: "scroll", callback: () => void) => void;
+  resize?: () => void;
+  scrollTo: (target: number, options?: { immediate?: boolean; force?: boolean }) => void;
+};
+
+declare global {
+  interface Window {
+    __lenis?: LenisLike;
+  }
+}
 
 /**
  * Saves scroll position per location key and restores it on POP (back/forward).
@@ -7,10 +24,11 @@ import { useLocation, useNavigationType } from "react-router-dom";
  * Waits for document height to be sufficient before restoring (handles lazy content).
  */
 const ScrollManager = () => {
-  const location = useLocation();
+  const location = useLocation() as Location & { state: NavigationState | null };
   const navType = useNavigationType();
   const positions = useRef<Map<string, number>>(new Map());
   const lastKey = useRef<string>(location.key);
+  const returnScrollY = typeof location.state?.returnScrollY === "number" ? location.state.returnScrollY : undefined;
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -25,7 +43,7 @@ const ScrollManager = () => {
     };
     window.addEventListener("scroll", saveScroll, { passive: true });
 
-    const lenis = (window as any).__lenis;
+    const lenis = window.__lenis;
     if (lenis && lenis.on) {
       lenis.on("scroll", saveScroll);
     }
@@ -40,18 +58,17 @@ const ScrollManager = () => {
   useEffect(() => {
     // Save the previous location's scroll before switching keys
     positions.current.set(lastKey.current, window.scrollY);
-    const returnScrollY = location.state?.returnScrollY;
-    if (typeof returnScrollY === "number") {
+    if (returnScrollY !== undefined) {
       positions.current.set(lastKey.current, returnScrollY);
     }
     const previousKey = lastKey.current;
     lastKey.current = location.key;
 
-    const lenis = (window as any).__lenis;
+    const lenis = window.__lenis;
 
     if (navType === "POP") {
       const saved = positions.current.get(location.key) ??
-        (typeof location.state?.returnScrollY === "number" ? location.state.returnScrollY : 0);
+        returnScrollY ?? 0;
 
       // Poll until document is tall enough to scroll to saved position
       let attempts = 0;
@@ -82,7 +99,7 @@ const ScrollManager = () => {
     }
     // We intentionally don't include previousKey in deps
     void previousKey;
-  }, [location.key, navType]);
+  }, [location.key, navType, returnScrollY]);
 
   return null;
 };
