@@ -72,11 +72,20 @@ const Navbar = () => {
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileOpen(false);
-    
+
     if (location.pathname !== "/") {
       navigate("/" + href);
     } else {
       scrollToSection(href);
+    }
+  }, [location.pathname, navigate]);
+
+  const goToContact = useCallback(() => {
+    setMobileOpen(false);
+    if (location.pathname !== "/") {
+      navigate("/#contact");
+    } else {
+      scrollToSection("#contact");
     }
   }, [location.pathname, navigate]);
 
@@ -149,7 +158,7 @@ const Navbar = () => {
             {/* CTA — right side */}
             <div className="hidden lg:block flex-shrink-0">
               <button
-                onClick={() => scrollToSection("#contact")}
+                onClick={goToContact}
                 className="font-heading text-[13px] font-medium uppercase tracking-[0.08em] text-foreground/90 hover:text-foreground border border-foreground/30 hover:border-foreground/60 px-6 py-2.5 rounded-[2px] transition-all duration-300 flex items-center gap-2"
               >
                 Join The Future
@@ -244,7 +253,7 @@ const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.3 }}
                   >
-                    <button className="w-full font-heading text-[14px] font-medium uppercase tracking-[0.08em] text-foreground border border-foreground/30 hover:border-foreground/60 px-6 py-3 rounded-[2px] transition-all duration-300 flex items-center justify-center gap-2" onClick={() => { setMobileOpen(false); scrollToSection("#contact"); }}>
+                    <button className="w-full font-heading text-[14px] font-medium uppercase tracking-[0.08em] text-foreground border border-foreground/30 hover:border-foreground/60 px-6 py-3 rounded-[2px] transition-all duration-300 flex items-center justify-center gap-2" onClick={goToContact}>
                       Join The Future
                       <span className="text-[15px]">→</span>
                     </button>

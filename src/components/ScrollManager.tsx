@@ -85,9 +85,18 @@ const ScrollManager = () => {
         ? footerReturn?.scrollY ?? returnScrollY ?? 0
         : positions.current.get(location.key) ?? returnScrollY ?? 0;
 
-      // Poll until document is tall enough to scroll to saved position
+      // Poll until document is tall enough to scroll to saved position.
+      // Index page has lazy/heavy media — allow up to ~2s.
       let attempts = 0;
-      const maxAttempts = 60; // ~1s at 60fps
+      const maxAttempts = 120; // ~2s at 60fps
+
+      const applyScroll = () => {
+        if (lenis) {
+          lenis.scrollTo(saved, { immediate: !shouldRestoreFooter, force: true });
+        } else {
+          window.scrollTo({ top: saved, behavior: shouldRestoreFooter ? "smooth" : "auto" });
+        }
+      };
 
       const tryRestore = () => {
         const docHeight = document.documentElement.scrollHeight;
@@ -95,13 +104,18 @@ const ScrollManager = () => {
         const maxScroll = docHeight - viewport;
 
         if (maxScroll >= saved - 4 || attempts >= maxAttempts) {
-          if (lenis) {
-            lenis.scrollTo(saved, { immediate: !shouldRestoreFooter, force: true });
-          } else {
-            window.scrollTo({ top: saved, behavior: shouldRestoreFooter ? "smooth" : "auto" });
-          }
-          // Resize/refresh lenis after restore
+          applyScroll();
           if (lenis && lenis.resize) lenis.resize();
+
+          // Post-restore correction: Lenis can drift a few px on first frame
+          // because layout settles after images decode. Re-pin once after rAF.
+          requestAnimationFrame(() => {
+            if (Math.abs(window.scrollY - saved) > 2) {
+              window.scrollTo(0, saved);
+              if (lenis) lenis.scrollTo(saved, { immediate: true, force: true });
+            }
+          });
+
           if (shouldRestoreFooter) clearFooterReturnState();
         } else {
           attempts++;
