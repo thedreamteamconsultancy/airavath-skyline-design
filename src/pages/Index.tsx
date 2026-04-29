@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigationType } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { scrollToSection } from "@/components/SmoothScroll";
@@ -27,7 +27,6 @@ import SectionDivider from "@/components/SectionDivider";
 
 const Index = () => {
   const location = useLocation();
-  const navType = useNavigationType();
   const [showTeam, setShowTeam] = useState(true);
 
   useEffect(() => {
@@ -41,12 +40,12 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    if (location.hash && navType !== "POP") {
+    if (location.hash) {
       setTimeout(() => {
         scrollToSection(location.hash);
       }, 200);
     }
-  }, [location, navType]);
+  }, [location]);
 
   return (
     <div className="min-h-screen bg-surface-0 text-foreground overflow-x-hidden">
