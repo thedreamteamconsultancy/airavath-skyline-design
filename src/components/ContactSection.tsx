@@ -201,8 +201,41 @@ const ContactSection = () => {
     }
   };
 
-  const inputClass =
-    "w-full h-[52px] rounded-[6px] border border-border bg-[#050505] px-4 text-foreground placeholder:text-[#777] font-body text-[16px] focus:outline-none focus:border-primary transition-colors";
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [typeOpen, setTypeOpen] = useState(false);
+  const typeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onClickOutside = (e: MouseEvent) => {
+      if (typeRef.current && !typeRef.current.contains(e.target as Node)) setTypeOpen(false);
+    };
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, []);
+
+  const inquiryOptions = [
+    { value: "investor", label: "Investor Inquiry" },
+    { value: "partnership", label: "Partnership Inquiry" },
+    { value: "media", label: "Media Inquiry" },
+  ];
+  const selectedLabel = inquiryOptions.find((o) => o.value === form.type)?.label;
+
+  const fieldWrap = (name: string) =>
+    `group relative rounded-[8px] border bg-[#050505]/80 backdrop-blur-sm transition-all duration-300 ${
+      focusedField === name
+        ? "border-primary/60 shadow-[0_0_0_1px_hsl(189_100%_50%/0.25),0_0_24px_hsl(189_100%_50%/0.18)]"
+        : "border-white/[0.08] hover:border-white/[0.16]"
+    }`;
+
+  const labelClass = (active: boolean) =>
+    `pointer-events-none absolute left-12 font-sub uppercase tracking-[0.12em] transition-all duration-200 ${
+      active
+        ? "top-[8px] text-[9px] text-primary"
+        : "top-1/2 -translate-y-1/2 text-[11px] text-[#777]"
+    }`;
+
+  const inputBase =
+    "w-full h-[60px] bg-transparent pl-12 pr-4 pt-4 text-foreground font-body text-[15px] focus:outline-none placeholder-transparent";
 
   return (
     <section
