@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from "react";
-import { TrendingUp, Handshake, Mic } from "lucide-react";
+import { TrendingUp, Handshake, Mic, ChevronDown, ArrowUpRight, Check, User, Mail, MessageSquare } from "lucide-react";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -201,8 +201,41 @@ const ContactSection = () => {
     }
   };
 
-  const inputClass =
-    "w-full h-[52px] rounded-[6px] border border-border bg-[#050505] px-4 text-foreground placeholder:text-[#777] font-body text-[16px] focus:outline-none focus:border-primary transition-colors";
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [typeOpen, setTypeOpen] = useState(false);
+  const typeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onClickOutside = (e: MouseEvent) => {
+      if (typeRef.current && !typeRef.current.contains(e.target as Node)) setTypeOpen(false);
+    };
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, []);
+
+  const inquiryOptions = [
+    { value: "investor", label: "Investor Inquiry" },
+    { value: "partnership", label: "Partnership Inquiry" },
+    { value: "media", label: "Media Inquiry" },
+  ];
+  const selectedLabel = inquiryOptions.find((o) => o.value === form.type)?.label;
+
+  const fieldWrap = (name: string) =>
+    `group relative rounded-[8px] border bg-[#050505]/80 backdrop-blur-sm transition-all duration-300 ${
+      focusedField === name
+        ? "border-primary/60 shadow-[0_0_0_1px_hsl(189_100%_50%/0.25),0_0_24px_hsl(189_100%_50%/0.18)]"
+        : "border-white/[0.08] hover:border-white/[0.16]"
+    }`;
+
+  const labelClass = (active: boolean) =>
+    `pointer-events-none absolute left-12 font-sub uppercase tracking-[0.12em] transition-all duration-200 ${
+      active
+        ? "top-[8px] text-[9px] text-primary"
+        : "top-1/2 -translate-y-1/2 text-[11px] text-[#777]"
+    }`;
+
+  const inputBase =
+    "w-full h-[60px] bg-transparent pl-12 pr-4 pt-4 text-foreground font-body text-[15px] focus:outline-none placeholder-transparent";
 
   return (
     <section
@@ -250,31 +283,152 @@ const ContactSection = () => {
         )}
 
         <ScrollReveal delay={0.15} duration={0.8}>
-          <form onSubmit={handleSubmit} className="max-w-[720px] mx-auto space-y-5">
-            <div>
-              <input type="text" placeholder="Full Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputClass} maxLength={100} />
-              {errors.name && <p className="text-destructive text-xs mt-1">{errors.name}</p>}
+          <form onSubmit={handleSubmit} className="max-w-[680px] mx-auto">
+            {/* Form panel */}
+            <div className="relative rounded-[16px] border border-white/[0.06] bg-gradient-to-b from-[#0B0B0B]/90 to-[#050505]/90 backdrop-blur-md p-6 md:p-10 overflow-hidden">
+              {/* Top accent line */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-[60%] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+              {/* Corner glow */}
+              <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, hsl(189 100% 50% / 0.08), transparent 70%)" }} />
+
+              <div className="relative space-y-4">
+                {/* Name */}
+                <div>
+                  <div className={fieldWrap("name")}>
+                    <User size={16} className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors duration-200 ${focusedField === "name" || form.name ? "text-primary" : "text-[#555]"}`} />
+                    <label className={labelClass(focusedField === "name" || !!form.name)}>Full Name</label>
+                    <input
+                      type="text"
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      onFocus={() => setFocusedField("name")}
+                      onBlur={() => setFocusedField(null)}
+                      className={inputBase}
+                      maxLength={100}
+                    />
+                  </div>
+                  {errors.name && <p className="text-destructive text-[11px] font-body mt-1.5 ml-1">{errors.name}</p>}
+                </div>
+
+                {/* Email */}
+                <div>
+                  <div className={fieldWrap("email")}>
+                    <Mail size={16} className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors duration-200 ${focusedField === "email" || form.email ? "text-primary" : "text-[#555]"}`} />
+                    <label className={labelClass(focusedField === "email" || !!form.email)}>Email Address</label>
+                    <input
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      onFocus={() => setFocusedField("email")}
+                      onBlur={() => setFocusedField(null)}
+                      className={inputBase}
+                      maxLength={255}
+                    />
+                  </div>
+                  {errors.email && <p className="text-destructive text-[11px] font-body mt-1.5 ml-1">{errors.email}</p>}
+                </div>
+
+                {/* Custom Inquiry Dropdown */}
+                <div ref={typeRef}>
+                  <div className={`${fieldWrap("type")} ${typeOpen ? "border-primary/60 shadow-[0_0_0_1px_hsl(189_100%_50%/0.25),0_0_24px_hsl(189_100%_50%/0.18)]" : ""}`}>
+                    <MessageSquare size={16} className={`absolute left-4 top-[22px] transition-colors duration-200 ${form.type || typeOpen ? "text-primary" : "text-[#555]"}`} />
+                    <label className={labelClass(!!form.type || typeOpen)}>Inquiry Type</label>
+                    <button
+                      type="button"
+                      onClick={() => setTypeOpen((v) => !v)}
+                      onFocus={() => setFocusedField("type")}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full h-[60px] flex items-center justify-between pl-12 pr-4 pt-4 text-left font-body text-[15px] focus:outline-none"
+                    >
+                      <span className={form.type ? "text-foreground" : "text-transparent"}>
+                        {selectedLabel || "placeholder"}
+                      </span>
+                      <ChevronDown
+                        size={16}
+                        className={`text-[#888] transition-transform duration-300 ${typeOpen ? "rotate-180 text-primary" : ""}`}
+                      />
+                    </button>
+
+                    {/* Dropdown menu */}
+                    <div
+                      className={`absolute left-0 right-0 top-[calc(100%+6px)] z-30 origin-top rounded-[10px] border border-white/[0.08] bg-[#0B0B0B]/95 backdrop-blur-xl overflow-hidden transition-all duration-200 ${
+                        typeOpen ? "opacity-100 scale-y-100 pointer-events-auto" : "opacity-0 scale-y-95 pointer-events-none"
+                      }`}
+                      style={{ boxShadow: "0 16px 48px rgba(0,0,0,0.6), 0 0 0 1px hsl(189 100% 50% / 0.06)" }}
+                    >
+                      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+                      {inquiryOptions.map((opt) => {
+                        const active = form.type === opt.value;
+                        return (
+                          <button
+                            type="button"
+                            key={opt.value}
+                            onClick={() => { setForm({ ...form, type: opt.value }); setTypeOpen(false); }}
+                            className={`group/item w-full flex items-center justify-between px-5 py-3.5 text-left font-body text-[14px] transition-colors duration-150 ${
+                              active ? "bg-primary/[0.08] text-foreground" : "text-[#BFC4C9] hover:bg-white/[0.03] hover:text-foreground"
+                            }`}
+                          >
+                            <span className="flex items-center gap-3">
+                              <span className={`h-1.5 w-1.5 rounded-full transition-all ${active ? "bg-primary shadow-[0_0_8px_hsl(189_100%_50%/0.7)]" : "bg-[#444] group-hover/item:bg-primary/60"}`} />
+                              {opt.label}
+                            </span>
+                            {active && <Check size={14} className="text-primary" />}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  {errors.type && <p className="text-destructive text-[11px] font-body mt-1.5 ml-1">{errors.type}</p>}
+                </div>
+
+                {/* Message */}
+                <div>
+                  <div className={`${fieldWrap("message")} !rounded-[8px]`}>
+                    <MessageSquare size={16} className={`absolute left-4 top-[22px] transition-colors duration-200 ${focusedField === "message" || form.message ? "text-primary" : "text-[#555]"}`} />
+                    <label
+                      className={`pointer-events-none absolute left-12 font-sub uppercase tracking-[0.12em] transition-all duration-200 ${
+                        focusedField === "message" || form.message
+                          ? "top-[8px] text-[9px] text-primary"
+                          : "top-[20px] text-[11px] text-[#777]"
+                      }`}
+                    >
+                      Your Message
+                    </label>
+                    <textarea
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      onFocus={() => setFocusedField("message")}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full min-h-[140px] bg-transparent pl-12 pr-4 pt-7 pb-4 text-foreground font-body text-[15px] focus:outline-none resize-none"
+                      maxLength={2000}
+                    />
+                    <div className="absolute bottom-2 right-3 font-body text-[10px] text-[#555] tabular-nums">
+                      {form.message.length}/2000
+                    </div>
+                  </div>
+                  {errors.message && <p className="text-destructive text-[11px] font-body mt-1.5 ml-1">{errors.message}</p>}
+                </div>
+
+                {/* Submit */}
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="group relative w-full h-[56px] rounded-[8px] bg-primary text-primary-foreground font-sub text-[12px] font-semibold uppercase tracking-[0.18em] overflow-hidden transition-all duration-300 hover:shadow-[0_0_32px_hsl(189_100%_50%/0.45)] disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-primary via-[hsl(189_100%_60%)] to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="relative flex items-center justify-center gap-2">
+                    {submitting ? "Submitting..." : "Submit Inquiry"}
+                    {!submitting && (
+                      <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    )}
+                  </span>
+                </button>
+
+                <p className="text-center font-body text-[11px] text-[#666] pt-1">
+                  We typically respond within 48 hours.
+                </p>
+              </div>
             </div>
-            <div>
-              <input type="email" placeholder="Email Address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} maxLength={255} />
-              {errors.email && <p className="text-destructive text-xs mt-1">{errors.email}</p>}
-            </div>
-            <div>
-              <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })} className={`${inputClass} appearance-none`}>
-                <option value="" disabled>Select Inquiry Type</option>
-                <option value="investor">Investor Inquiry</option>
-                <option value="partnership">Partnership Inquiry</option>
-                <option value="media">Media Inquiry</option>
-              </select>
-              {errors.type && <p className="text-destructive text-xs mt-1">{errors.type}</p>}
-            </div>
-            <div>
-              <textarea placeholder="Your Message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${inputClass} h-[140px] py-4 resize-none`} maxLength={2000} />
-              {errors.message && <p className="text-destructive text-xs mt-1">{errors.message}</p>}
-            </div>
-            <button type="submit" disabled={submitting} className="w-full h-[56px] rounded-[8px] bg-primary text-primary-foreground font-sub text-[14px] font-medium hover:scale-[1.02] hover:shadow-[0_0_24px_hsl(189_100%_50%/0.4)] transition-all duration-300 disabled:opacity-50">
-              {submitting ? "Submitting..." : "Submit Inquiry"}
-            </button>
           </form>
         </ScrollReveal>
       </div>
