@@ -201,6 +201,7 @@ const EcosystemHubSection = () => {
 
   return (
     <section
+      id="ecosystem"
       className="relative overflow-hidden"
       style={{
         paddingTop: isMobile ? "56px" : "80px",
@@ -232,7 +233,12 @@ const EcosystemHubSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {hubs.map((hub, i) => (
               <ScrollReveal key={hub.title} delay={0.14 * i} direction="up">
-                <Link to={hub.link} className="block h-full">
+                <Link
+                  to={hub.link}
+                  state={{ returnTo: ECOSYSTEM_RETURN_TO }}
+                  onClick={(e) => prepareBookmarkNavigation(ECOSYSTEM_RETURN_TO, e)}
+                  className="block h-full"
+                >
                   <motion.div
                     className="group bg-card border border-border rounded-[12px] overflow-hidden h-full hover:border-primary/30 hover:shadow-[0_0_30px_hsl(189_100%_50%/0.18)] transition-all duration-300 ease-out cursor-pointer"
                     whileHover={{ y: -8, scale: 1.02 }}
