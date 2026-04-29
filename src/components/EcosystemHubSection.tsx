@@ -13,6 +13,12 @@ import cardHubnetwork from "@/assets/card-hubnetwork.jpg";
 
 const ECOSYSTEM_RETURN_TO = "/#ecosystem";
 
+const getBookmarkState = () => ({
+  returnTo: ECOSYSTEM_RETURN_TO,
+  returnScrollY: typeof window !== "undefined" ? window.scrollY : undefined,
+  restoreBookmark: true,
+});
+
 const hubs = [
   {
     icon: Building2,
@@ -134,7 +140,7 @@ const MobileHubCarousel = () => {
               onClick={() => {
                 if (i === activeIndex) {
                   prepareBookmarkNavigation(ECOSYSTEM_RETURN_TO);
-                  navigate(hub.link, { state: { returnTo: ECOSYSTEM_RETURN_TO } });
+                  navigate(hub.link, { state: getBookmarkState() });
                   return;
                 }
                 setActiveIndex(i);
@@ -158,7 +164,7 @@ const MobileHubCarousel = () => {
                 </p>
                 <Link
                   to={hub.link}
-                  state={{ returnTo: ECOSYSTEM_RETURN_TO }}
+                  state={getBookmarkState()}
                   onClick={(e) => {
                     e.stopPropagation();
                     prepareBookmarkNavigation(ECOSYSTEM_RETURN_TO, e);
@@ -235,7 +241,7 @@ const EcosystemHubSection = () => {
               <ScrollReveal key={hub.title} delay={0.14 * i} direction="up">
                 <Link
                   to={hub.link}
-                  state={{ returnTo: ECOSYSTEM_RETURN_TO }}
+                  state={getBookmarkState()}
                   onClick={(e) => prepareBookmarkNavigation(ECOSYSTEM_RETURN_TO, e)}
                   className="block h-full"
                 >
