@@ -1,8 +1,16 @@
 import { useEffect, useRef } from "react";
 import { useLocation, useNavigationType, type Location } from "react-router-dom";
+import {
+  clearFooterReturnState,
+  isFreshFooterReturnState,
+  readFooterReturnState,
+  type FooterReturnState,
+} from "@/lib/footerNavigation";
 
 type NavigationState = {
   returnScrollY?: number;
+  restoreFooter?: boolean;
+  footerReturn?: FooterReturnState;
 };
 
 type LenisLike = {
@@ -66,9 +74,16 @@ const ScrollManager = () => {
 
     const lenis = window.__lenis;
 
-    if (navType === "POP") {
-      const saved = positions.current.get(location.key) ??
-        returnScrollY ?? 0;
+    const storedFooterReturn = readFooterReturnState();
+    const footerReturn = location.state?.footerReturn ?? storedFooterReturn;
+    const shouldRestoreFooter =
+      location.pathname === "/" &&
+      Boolean(location.state?.restoreFooter || (footerReturn && isFreshFooterReturnState(footerReturn)));
+
+    if (navType === "POP" || shouldRestoreFooter) {
+      const saved = shouldRestoreFooter
+        ? footerReturn?.scrollY ?? returnScrollY ?? 0
+        : positions.current.get(location.key) ?? returnScrollY ?? 0;
 
       // Poll until document is tall enough to scroll to saved position
       let attempts = 0;
@@ -83,10 +98,11 @@ const ScrollManager = () => {
           if (lenis) {
             lenis.scrollTo(saved, { immediate: true, force: true });
           } else {
-            window.scrollTo(0, saved);
+            window.scrollTo({ top: saved, behavior: shouldRestoreFooter ? "smooth" : "auto" });
           }
           // Resize/refresh lenis after restore
           if (lenis && lenis.resize) lenis.resize();
+          if (shouldRestoreFooter) clearFooterReturnState();
         } else {
           attempts++;
           requestAnimationFrame(tryRestore);
