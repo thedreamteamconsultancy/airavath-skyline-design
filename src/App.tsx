@@ -40,6 +40,7 @@ const App = () => (
         <Sonner />
         <SmoothScroll>
           <BrowserRouter>
+            <ScrollManager />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/medical-mobility" element={<MedicalMobility />} />
