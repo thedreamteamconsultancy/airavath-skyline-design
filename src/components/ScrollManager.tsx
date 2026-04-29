@@ -91,6 +91,10 @@ const ScrollManager = () => {
           ? returnScrollY ?? 0
         : positions.current.get(location.key) ?? returnScrollY ?? 0;
 
+      if (navType === "POP" && location.pathname === "/" && location.hash && returnScrollY === undefined && !positions.current.has(location.key)) {
+        return;
+      }
+
       // Poll until document is tall enough to scroll to saved position.
       // Index page has lazy/heavy media — allow up to ~2s.
       let attempts = 0;
