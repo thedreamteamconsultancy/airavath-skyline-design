@@ -143,8 +143,8 @@ const VerticalTimeline = () => {
                   </div>
                 </div>
 
-                {/* Center node */}
-                <div className="absolute left-[32px] md:left-1/2 top-8 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center">
+                {/* Center node — on mobile use a left-aligned rail (64px wide), on desktop center it */}
+                <div className="absolute left-0 md:left-1/2 top-0 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-20 w-16 md:w-12 h-16 md:h-12 flex items-center justify-center pointer-events-none">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={started ? { scale: 1 } : {}}
