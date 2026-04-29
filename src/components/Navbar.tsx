@@ -72,11 +72,20 @@ const Navbar = () => {
   const handleNavClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileOpen(false);
-    
+
     if (location.pathname !== "/") {
       navigate("/" + href);
     } else {
       scrollToSection(href);
+    }
+  }, [location.pathname, navigate]);
+
+  const goToContact = useCallback(() => {
+    setMobileOpen(false);
+    if (location.pathname !== "/") {
+      navigate("/#contact");
+    } else {
+      scrollToSection("#contact");
     }
   }, [location.pathname, navigate]);
 
