@@ -72,11 +72,11 @@ const VerticalTimeline = () => {
   return (
     <div ref={ref} className="relative">
       {/* Background vertical line */}
-      <div className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-px bg-primary/10 md:-translate-x-px" />
+      <div className="absolute left-[32px] md:left-1/2 top-0 bottom-0 w-px bg-primary/10 -translate-x-px md:-translate-x-px" />
 
       {/* Animated fill line — scroll-driven */}
       <motion.div
-        className="absolute left-[32px] md:left-1/2 top-0 w-px bg-gradient-to-b from-primary via-primary to-primary/30 origin-top md:-translate-x-px"
+        className="absolute left-[32px] md:left-1/2 top-0 w-px bg-gradient-to-b from-primary via-primary to-primary/30 origin-top -translate-x-px md:-translate-x-px"
         style={{ height: "100%", scaleY: lineScaleY }}
       />
 
