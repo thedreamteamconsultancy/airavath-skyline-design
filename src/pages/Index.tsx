@@ -41,8 +41,11 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    const shouldRestoreFooter = Boolean((location.state as { restoreFooter?: boolean } | null)?.restoreFooter);
-    if (shouldRestoreFooter) return;
+    const shouldRestorePrecisePosition = Boolean(
+      (location.state as { restoreFooter?: boolean; restoreBookmark?: boolean } | null)?.restoreFooter ||
+        (location.state as { restoreFooter?: boolean; restoreBookmark?: boolean } | null)?.restoreBookmark,
+    );
+    if (shouldRestorePrecisePosition) return;
     // Don't fight ScrollManager during browser back/forward — it owns scroll restore.
     if (navType === "POP") return;
 
