@@ -1,5 +1,6 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Linkedin, Twitter, Youtube, ArrowUpRight, ChevronDown, Mail, Phone } from "lucide-react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
@@ -40,8 +41,8 @@ const getNavColumns = (showTeam: boolean) => [
   {
     title: "Infrastructure",
     links: [
-      { label: "SkyPort", href: "/skyport" },
-      { label: "GroundPort", href: "/groundport" },
+      { label: "Sky Port", href: "/sky-port" },
+      { label: "Ground Port", href: "/ground-port" },
       { label: "Vertiport", href: "/vertiport" },
       { label: "Mobility Network", href: "/hub-network" },
     ],
@@ -144,12 +145,20 @@ const FooterSection = () => {
     { icon: Youtube, label: "YouTube", href: settings.youtube_url || "#" },
   ];
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
     if (href.startsWith("#")) {
-      e.preventDefault();
-      scrollToSection(href);
+      if (location.pathname !== "/") {
+        navigate("/" + href);
+      } else {
+        scrollToSection(href);
+      }
+      return;
     }
-    // Let normal links (/newsroom etc.) navigate naturally
+    navigate(href);
   };
 
   const scrollToTop = () => scrollToSection("#home");
