@@ -1,5 +1,6 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Linkedin, Twitter, Youtube, ArrowUpRight, ChevronDown, Mail, Phone } from "lucide-react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
