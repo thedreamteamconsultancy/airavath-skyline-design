@@ -10,8 +10,7 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 
 const allNavLinks = [
   { label: "Home", href: "#home" },
-  { label: "Technology", href: "#technology" },
-  { label: "Vision", href: "#vision" },
+  { label: "About", href: "#about" },
   { label: "Investors", href: "#investors" },
   { label: "Team", href: "#team" },
   { label: "Contact", href: "#contact" },
