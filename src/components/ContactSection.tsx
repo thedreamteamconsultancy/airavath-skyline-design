@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from "react";
-import { TrendingUp, Handshake, Mic } from "lucide-react";
+import { TrendingUp, Handshake, Mic, ChevronDown, ArrowUpRight, Check, User, Mail, MessageSquare } from "lucide-react";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
