@@ -161,6 +161,140 @@ const MobileContactCarousel = () => {
   );
 };
 
+/* ─── Custom Themed Inquiry Type Dropdown ─── */
+const INQUIRY_OPTIONS = [
+  { value: "investor", label: "Investor Inquiry", icon: TrendingUp },
+  { value: "partnership", label: "Partnership Inquiry", icon: Handshake },
+  { value: "media", label: "Media Inquiry", icon: Mic },
+];
+
+const InquiryTypeDropdown = ({
+  value,
+  onChange,
+  error,
+}: {
+  value: string;
+  onChange: (val: string) => void;
+  error?: boolean;
+}) => {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const selected = INQUIRY_OPTIONS.find((o) => o.value === value);
+
+  useEffect(() => {
+    const onDoc = (e: MouseEvent) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, []);
+
+  return (
+    <div ref={wrapRef} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        className={`group w-full h-[52px] rounded-[6px] border bg-[#050505] px-4 flex items-center justify-between transition-all duration-300 focus:outline-none ${
+          error
+            ? "border-destructive"
+            : open
+            ? "border-primary shadow-[0_0_0_1px_hsl(var(--primary)/0.4),0_0_24px_hsl(var(--primary)/0.18)]"
+            : "border-border hover:border-primary/40"
+        }`}
+      >
+        <span className="flex items-center gap-3 min-w-0">
+          {selected?.icon && (
+            <span className="w-7 h-7 rounded-md bg-primary/10 flex items-center justify-center shrink-0">
+              <selected.icon className="w-3.5 h-3.5 text-primary" />
+            </span>
+          )}
+          <span
+            className={`truncate font-sub uppercase tracking-[0.08em] text-[13px] ${
+              selected ? "text-foreground" : "text-[#777]"
+            }`}
+          >
+            {selected ? selected.label : "Select Inquiry Type"}
+          </span>
+        </span>
+        <ChevronDown
+          size={16}
+          className={`text-primary/70 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      <div
+        className={`absolute z-30 left-0 right-0 mt-2 origin-top transition-all duration-200 ${
+          open
+            ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 scale-[0.98] -translate-y-1 pointer-events-none"
+        }`}
+      >
+        <div
+          className="rounded-[8px] border border-primary/25 bg-[#0B0B0B]/95 backdrop-blur-xl overflow-hidden"
+          style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.6), 0 0 24px hsl(var(--primary) / 0.12)" }}
+          role="listbox"
+        >
+          <div
+            className="h-px w-full"
+            style={{ background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.6), transparent)" }}
+          />
+          <ul className="py-1.5">
+            {INQUIRY_OPTIONS.map((opt) => {
+              const isActive = value === opt.value;
+              return (
+                <li key={opt.value}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onChange(opt.value);
+                      setOpen(false);
+                    }}
+                    role="option"
+                    aria-selected={isActive}
+                    className={`group w-full flex items-center gap-3 px-3 py-3 text-left transition-colors duration-200 relative ${
+                      isActive ? "bg-primary/[0.08]" : "hover:bg-white/[0.04]"
+                    }`}
+                  >
+                    <span
+                      className={`absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-6 bg-primary transition-opacity duration-200 ${
+                        isActive ? "opacity-100" : "opacity-0 group-hover:opacity-40"
+                      }`}
+                    />
+                    <span
+                      className={`w-8 h-8 rounded-md flex items-center justify-center shrink-0 transition-colors duration-200 ${
+                        isActive
+                          ? "bg-primary/15 text-primary"
+                          : "bg-white/[0.04] text-[#BFC4C9] group-hover:bg-primary/10 group-hover:text-primary"
+                      }`}
+                    >
+                      <opt.icon className="w-4 h-4" />
+                    </span>
+                    <span
+                      className={`flex-1 font-sub uppercase tracking-[0.08em] text-[13px] transition-colors duration-200 ${
+                        isActive ? "text-foreground" : "text-[#BFC4C9] group-hover:text-foreground"
+                      }`}
+                    >
+                      {opt.label}
+                    </span>
+                    {isActive && <Check className="w-4 h-4 text-primary" />}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ContactSection = () => {
   const ref = useRef<HTMLElement>(null);
   const { toast } = useToast();
