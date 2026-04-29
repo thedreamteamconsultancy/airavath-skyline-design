@@ -291,9 +291,6 @@ const FooterSection = () => {
               <p className="font-body text-[11px] text-[#BFC4C9]/50">
                 © 2026 AIRAVATH
               </p>
-              <button onClick={scrollToTop} className="font-sub text-[11px] text-[#BFC4C9]/60 hover:text-primary transition-colors">
-                Back to top ↑
-              </button>
             </div>
           </div>
         ) : (
@@ -385,28 +382,12 @@ const FooterSection = () => {
         {/* Desktop bottom bar */}
         {!isMobile && (
           <motion.div
-            className="border-t border-white/[0.08] py-6 flex items-center justify-between"
+            className="border-t border-white/[0.08] py-6 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.7 }}
           >
             <p className="font-body text-[12px] text-[#BFC4C9]/60">© 2026 AIRAVATH. All rights reserved.</p>
-            <motion.button
-              onClick={scrollToTop}
-              className="group flex items-center gap-2 font-sub text-[12px] text-[#BFC4C9] hover:text-primary transition-colors duration-300"
-              whileHover={{ y: -2 }}
-            >
-              <span>Back to top</span>
-              <div className="w-7 h-7 rounded-md border border-white/[0.08] flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/10 transition-all duration-300">
-                <svg viewBox="0 0 64 64" fill="none" className="w-4 h-4 text-foreground/60 group-hover:text-primary transition-colors duration-300">
-                  <g stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M32 8 C30.5 8, 29 12, 29 18 L29 44 C29 50, 30 54, 32 56 C34 54, 35 50, 35 44 L35 18 C35 12, 33.5 8, 32 8Z" fill="currentColor" fillOpacity="0.15" />
-                    <path d="M29 24 L12 30 C10 30.8, 10 32, 12 32.5 L29 34" fill="currentColor" fillOpacity="0.08" />
-                    <path d="M35 24 L52 30 C54 30.8, 54 32, 52 32.5 L35 34" fill="currentColor" fillOpacity="0.08" />
-                  </g>
-                </svg>
-              </div>
-            </motion.button>
           </motion.div>
         )}
       </div>
