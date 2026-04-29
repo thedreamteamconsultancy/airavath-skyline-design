@@ -71,18 +71,26 @@ const VerticalTimeline = () => {
 
   return (
     <div ref={ref} className="relative">
-      {/* Background vertical line — mobile uses a 64px rail with line centered; desktop centers via 50% */}
-      <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-16 md:w-px md:-translate-x-px flex justify-center md:block pointer-events-none">
-        <div className="w-px h-full bg-primary/10" />
+      {/* Shared mobile axis: every timeline element centers from this same 50% reference */}
+      <div className="absolute left-0 top-0 bottom-0 w-16 md:hidden pointer-events-none">
+        <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-primary/10" />
+      </div>
+
+      {/* Desktop background line remains unchanged */}
+      <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-px bg-primary/10 pointer-events-none">
       </div>
 
       {/* Animated fill line — scroll-driven */}
       <motion.div
-        className="absolute left-0 md:left-1/2 top-0 w-16 md:w-px md:-translate-x-px flex justify-center md:block origin-top pointer-events-none"
+        className="absolute left-0 top-0 w-16 md:hidden origin-top pointer-events-none"
         style={{ height: "100%", scaleY: lineScaleY }}
       >
-        <div className="w-px h-full bg-gradient-to-b from-primary via-primary to-primary/30" />
+        <div className="absolute left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-primary via-primary to-primary/30" />
       </motion.div>
+      <motion.div
+        className="hidden md:block absolute left-1/2 top-0 w-px -translate-x-px origin-top bg-gradient-to-b from-primary via-primary to-primary/30 pointer-events-none"
+        style={{ height: "100%", scaleY: lineScaleY }}
+      />
 
       {/* Steps */}
       <div className="flex flex-col gap-16 md:gap-[140px]">
@@ -90,12 +98,12 @@ const VerticalTimeline = () => {
           const isLeft = i % 2 === 0;
 
           return (
-            <ScrollReveal
-              key={step.title}
-              delay={0.15 * i}
-              direction={isLeft ? "left" : "right"}
-              className="relative"
-            >
+            <div key={step.title} className="relative">
+              <ScrollReveal
+                delay={0.15 * i}
+                direction={isLeft ? "left" : "right"}
+                className="relative"
+              >
               <div
                 className={`flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-0 ${
                   isLeft ? "md:flex-row" : "md:flex-row-reverse"
@@ -103,7 +111,7 @@ const VerticalTimeline = () => {
               >
                 {/* Card side */}
                 <div className={`w-full md:w-[calc(50%-48px)] ${isLeft ? "md:pr-0" : "md:pl-0"}`}>
-                  <div className="group relative ml-20 md:ml-0">
+                  <div className="group relative pl-20 md:pl-0">
                     {/* Glass card */}
                     <div className="relative rounded-2xl border border-primary/10 bg-[rgba(0,0,0,0.65)] backdrop-blur-xl p-5 md:p-10 overflow-hidden transition-all duration-500 hover:border-primary/25 hover:shadow-[0_0_40px_hsl(189_100%_50%/0.08)] aspect-square md:aspect-auto flex flex-col justify-between">
                       {/* Corner accent */}
@@ -147,51 +155,48 @@ const VerticalTimeline = () => {
                   </div>
                 </div>
 
-                {/* Center node — on mobile use a left-aligned rail (64px wide), on desktop center it */}
-                <div className="absolute left-0 md:left-1/2 top-8 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-20 w-16 md:w-12 h-12 flex items-center justify-center pointer-events-none">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={started ? { scale: 1 } : {}}
-                    transition={{ delay: i * 0.8, duration: 0.5, ease: "backOut" }}
-                    className="relative w-12 h-12 flex items-center justify-center"
-                  >
-                    {/* Outer pulse */}
-                    <motion.div
-                      className="absolute inset-0 rounded-full border border-primary/40"
-                      animate={
-                        started
-                          ? { scale: [1, 2, 1], opacity: [0.4, 0, 0.4] }
-                          : {}
-                      }
-                      transition={{
-                        delay: i * 0.8 + 1.5,
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      style={{ width: 64, height: 64, top: -8, left: -8 }}
-                    />
-                    {/* Node */}
-                    <div className="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-[0_0_20px_hsl(189_100%_50%/0.25)]">
-                      <step.icon className="w-5 h-5 text-primary" />
-                    </div>
-                  </motion.div>
-                </div>
-
                 {/* Empty space for other side */}
                 <div className="hidden md:block w-[calc(50%-48px)]" />
               </div>
-            </ScrollReveal>
+              </ScrollReveal>
+
+              {/* Center node — outside reveal transform so it stays locked to the shared axis */}
+              <div className="absolute left-0 md:left-1/2 top-8 md:top-1/2 z-20 w-16 md:w-12 h-12 pointer-events-none md:-translate-x-1/2 md:-translate-y-1/2">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={started ? { scale: 1 } : {}}
+                  transition={{ delay: i * 0.8, duration: 0.5, ease: "backOut" }}
+                  className="absolute left-1/2 top-0 -translate-x-1/2 md:relative md:left-auto md:top-auto md:translate-x-0 w-12 h-12 flex items-center justify-center"
+                >
+                  {/* Outer pulse */}
+                  <motion.div
+                    className="absolute inset-0 rounded-full border border-primary/40"
+                    animate={started ? { scale: [1, 2, 1], opacity: [0.4, 0, 0.4] } : {}}
+                    transition={{
+                      delay: i * 0.8 + 1.5,
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    style={{ width: 64, height: 64, top: -8, left: -8 }}
+                  />
+                  {/* Node */}
+                  <div className="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-[0_0_20px_hsl(189_100%_50%/0.25)]">
+                    <step.icon className="w-5 h-5 text-primary" />
+                  </div>
+                </motion.div>
+              </div>
+            </div>
           );
         })}
       </div>
 
       {/* Aircraft following scroll */}
       <motion.div
-        className="absolute left-0 md:left-1/2 md:-translate-x-1/2 z-30 w-16 md:w-auto flex justify-center md:block pointer-events-none"
+        className="absolute left-0 md:left-1/2 md:-translate-x-1/2 z-30 w-16 md:w-auto pointer-events-none"
         style={{ top: aircraftTop }}
       >
-        <div className="relative">
+        <div className="relative left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 w-5 h-5">
           <svg
             width="20"
             height="20"
