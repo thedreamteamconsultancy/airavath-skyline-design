@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Package, Clock, Plane, ArrowLeft, Truck, BarChart3, Globe, Zap } from "lucide-react";
+import { navigateToReturnTarget } from "@/lib/bookmarkNavigation";
 import solutionCargo from "@/assets/solution-cargo.jpg";
 import problemCargo from "@/assets/problem-cargo.jpg";
 import cardNextgen from "@/assets/card-nextgen.jpg";
@@ -35,6 +35,8 @@ const capabilities = [
 
 const CargoLogistics = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const handleBack = () => navigateToReturnTarget(navigate, location.state, "/#cargo-logistics");
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -49,7 +51,7 @@ const CargoLogistics = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-transparent" />
         </div>
         <div className="relative z-10 container-airavath pt-32 pb-16">
-          <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 font-body text-body-sm text-primary mb-8 hover:text-foreground transition-colors">
+          <button onClick={handleBack} className="inline-flex items-center gap-2 font-body text-body-sm text-primary mb-8 hover:text-foreground transition-colors">
             <ArrowLeft size={16} /> Back
           </button>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
