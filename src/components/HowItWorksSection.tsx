@@ -98,12 +98,12 @@ const VerticalTimeline = () => {
           const isLeft = i % 2 === 0;
 
           return (
-            <ScrollReveal
-              key={step.title}
-              delay={0.15 * i}
-              direction={isLeft ? "left" : "right"}
-              className="relative"
-            >
+            <div key={step.title} className="relative">
+              <ScrollReveal
+                delay={0.15 * i}
+                direction={isLeft ? "left" : "right"}
+                className="relative"
+              >
               <div
                 className={`flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-0 ${
                   isLeft ? "md:flex-row" : "md:flex-row-reverse"
@@ -111,7 +111,7 @@ const VerticalTimeline = () => {
               >
                 {/* Card side */}
                 <div className={`w-full md:w-[calc(50%-48px)] ${isLeft ? "md:pr-0" : "md:pl-0"}`}>
-                  <div className="group relative ml-20 md:ml-0">
+                  <div className="group relative pl-20 md:pl-0">
                     {/* Glass card */}
                     <div className="relative rounded-2xl border border-primary/10 bg-[rgba(0,0,0,0.65)] backdrop-blur-xl p-5 md:p-10 overflow-hidden transition-all duration-500 hover:border-primary/25 hover:shadow-[0_0_40px_hsl(189_100%_50%/0.08)] aspect-square md:aspect-auto flex flex-col justify-between">
                       {/* Corner accent */}
@@ -189,7 +189,8 @@ const VerticalTimeline = () => {
                 {/* Empty space for other side */}
                 <div className="hidden md:block w-[calc(50%-48px)]" />
               </div>
-            </ScrollReveal>
+              </ScrollReveal>
+            </div>
           );
         })}
       </div>
