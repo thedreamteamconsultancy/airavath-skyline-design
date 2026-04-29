@@ -71,22 +71,17 @@ const VerticalTimeline = () => {
 
   return (
     <div ref={ref} className="relative">
-      {/* Shared mobile axis: every timeline element centers from this same 50% reference */}
-      <div className="absolute left-0 top-0 bottom-0 w-16 md:hidden pointer-events-none">
-        <div className="absolute left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-primary/10" />
-      </div>
+      {/* Mobile background line — fixed 32px left axis */}
+      <div className="md:hidden absolute left-[32px] top-0 bottom-0 w-[2px] -translate-x-1/2 bg-primary/10 pointer-events-none" />
 
       {/* Desktop background line remains unchanged */}
-      <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-px bg-primary/10 pointer-events-none">
-      </div>
+      <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-px bg-primary/10 pointer-events-none" />
 
-      {/* Animated fill line — scroll-driven */}
+      {/* Animated fill line (mobile) — same 32px axis */}
       <motion.div
-        className="absolute left-0 top-0 w-16 md:hidden origin-top pointer-events-none"
-        style={{ height: "100%", scaleY: lineScaleY }}
-      >
-        <div className="absolute left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-primary via-primary to-primary/30" />
-      </motion.div>
+        className="md:hidden absolute left-[32px] top-0 w-[2px] h-full -translate-x-1/2 origin-top bg-gradient-to-b from-primary via-primary to-primary/30 pointer-events-none"
+        style={{ scaleY: lineScaleY }}
+      />
       <motion.div
         className="hidden md:block absolute left-1/2 top-0 w-px -translate-x-px origin-top bg-gradient-to-b from-primary via-primary to-primary/30 pointer-events-none"
         style={{ height: "100%", scaleY: lineScaleY }}
