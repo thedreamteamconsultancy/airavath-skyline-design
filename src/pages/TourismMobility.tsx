@@ -1,10 +1,10 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Camera, MapPin, Plane, ArrowLeft, Eye, Star, Mountain, Compass } from "lucide-react";
+import { navigateToReturnTarget } from "@/lib/bookmarkNavigation";
 import solutionTourism from "@/assets/solution-tourism.jpg";
 import problemTourism from "@/assets/problem-tourism.jpg";
 import visionSkyline from "@/assets/vision-skyline.jpg";
@@ -42,6 +42,8 @@ const tourRoutes = [
 
 const TourismMobility = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const handleBack = () => navigateToReturnTarget(navigate, location.state, "/#tourism-mobility");
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -56,7 +58,7 @@ const TourismMobility = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-transparent" />
         </div>
         <div className="relative z-10 container-airavath pt-32 pb-16">
-          <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 font-body text-body-sm text-primary mb-8 hover:text-foreground transition-colors">
+          <button onClick={handleBack} className="inline-flex items-center gap-2 font-body text-body-sm text-primary mb-8 hover:text-foreground transition-colors">
             <ArrowLeft size={16} /> Back
           </button>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
