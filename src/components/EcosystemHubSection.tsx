@@ -128,6 +128,10 @@ const MobileHubCarousel = () => {
                 ...style,
               }}
               onClick={() => {
+                if (i === activeIndex) {
+                  window.location.href = hub.link;
+                  return;
+                }
                 setActiveIndex(i);
                 setIsPaused(true);
                 setTimeout(() => setIsPaused(false), 3000);
@@ -149,6 +153,7 @@ const MobileHubCarousel = () => {
                 </p>
                 <Link
                   to={hub.link}
+                  onClick={(e) => e.stopPropagation()}
                   className="mt-auto inline-flex items-center gap-1.5 font-body text-[12px] text-primary"
                 >
                   Learn More <ArrowRight size={12} />
@@ -218,33 +223,32 @@ const EcosystemHubSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {hubs.map((hub, i) => (
               <ScrollReveal key={hub.title} delay={0.14 * i} direction="up">
-                <motion.div
-                  className="group bg-card border border-border rounded-[12px] overflow-hidden h-full hover:border-primary/30 hover:shadow-[0_0_30px_hsl(189_100%_50%/0.18)] transition-all duration-300 ease-out"
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                >
-                  <div className="relative h-[180px] overflow-hidden">
-                    <ParallaxImage src={hub.image} alt={hub.title} intensity={15} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
-                    <div className="absolute top-4 left-4 w-10 h-10 rounded-lg bg-primary/20 backdrop-blur-sm flex items-center justify-center">
-                      <hub.icon className="w-5 h-5 text-primary" />
+                <Link to={hub.link} className="block h-full">
+                  <motion.div
+                    className="group bg-card border border-border rounded-[12px] overflow-hidden h-full hover:border-primary/30 hover:shadow-[0_0_30px_hsl(189_100%_50%/0.18)] transition-all duration-300 ease-out cursor-pointer"
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <div className="relative h-[180px] overflow-hidden">
+                      <ParallaxImage src={hub.image} alt={hub.title} intensity={15} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
+                      <div className="absolute top-4 left-4 w-10 h-10 rounded-lg bg-primary/20 backdrop-blur-sm flex items-center justify-center">
+                        <hub.icon className="w-5 h-5 text-primary" />
+                      </div>
                     </div>
-                  </div>
-                  <div className="p-8">
-                    <h3 className="font-sub text-[24px] font-medium text-foreground mb-3">
-                      {hub.title}
-                    </h3>
-                    <p className="font-body text-[15px] text-titanium leading-[1.7] mb-6">
-                      {hub.description}
-                    </p>
-                    <Link
-                      to={hub.link}
-                      className="inline-flex items-center gap-2 font-body text-[14px] text-primary hover:text-foreground transition-colors group/link"
-                    >
-                      Learn More <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </motion.div>
+                    <div className="p-8">
+                      <h3 className="font-sub text-[24px] font-medium text-foreground mb-3">
+                        {hub.title}
+                      </h3>
+                      <p className="font-body text-[15px] text-titanium leading-[1.7] mb-6">
+                        {hub.description}
+                      </p>
+                      <span className="inline-flex items-center gap-2 font-body text-[14px] text-primary group-hover:text-foreground transition-colors">
+                        Learn More <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
+                  </motion.div>
+                </Link>
               </ScrollReveal>
             ))}
           </div>
