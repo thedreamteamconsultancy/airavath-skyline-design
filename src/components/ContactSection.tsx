@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from "react";
-import { TrendingUp, Handshake, Mic } from "lucide-react";
+import { TrendingUp, Handshake, Mic, ChevronDown, Check } from "lucide-react";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
@@ -260,12 +260,11 @@ const ContactSection = () => {
               {errors.email && <p className="text-destructive text-xs mt-1">{errors.email}</p>}
             </div>
             <div>
-              <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })} className={`${inputClass} appearance-none`}>
-                <option value="" disabled>Select Inquiry Type</option>
-                <option value="investor">Investor Inquiry</option>
-                <option value="partnership">Partnership Inquiry</option>
-                <option value="media">Media Inquiry</option>
-              </select>
+              <InquiryTypeDropdown
+                value={form.type}
+                onChange={(val) => setForm({ ...form, type: val })}
+                error={!!errors.type}
+              />
               {errors.type && <p className="text-destructive text-xs mt-1">{errors.type}</p>}
             </div>
             <div>
