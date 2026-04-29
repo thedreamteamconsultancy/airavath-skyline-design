@@ -185,12 +185,12 @@ const VerticalTimeline = () => {
         })}
       </div>
 
-      {/* Aircraft following scroll */}
+      {/* Aircraft following scroll — locked to fixed 32px axis on mobile */}
       <motion.div
-        className="absolute left-0 md:left-1/2 md:-translate-x-1/2 z-30 w-16 md:w-auto pointer-events-none"
+        className="absolute left-[32px] md:left-1/2 -translate-x-1/2 md:-translate-x-1/2 z-30 w-5 h-5 pointer-events-none"
         style={{ top: aircraftTop }}
       >
-        <div className="relative left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 w-5 h-5">
+        <div className="relative w-5 h-5">
           <svg
             width="20"
             height="20"
