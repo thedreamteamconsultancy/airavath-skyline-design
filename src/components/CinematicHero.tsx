@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
 
 interface CinematicHeroProps {
@@ -22,10 +22,20 @@ const CinematicHero = ({
   backLabel = "Back to Hub Infrastructure",
 }: CinematicHeroProps) => {
   const sectionRef = useRef<HTMLElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
+
+  const handleBack = () => {
+    if (location.state?.fromFooter) {
+      navigate(-1);
+    } else {
+      navigate(backLink);
+    }
+  };
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const floatY1 = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
@@ -136,12 +146,13 @@ const CinematicHero = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Link
-            to={backLink}
+          <button
+            type="button"
+            onClick={handleBack}
             className="inline-flex items-center gap-2 font-body text-body-sm text-primary mb-8 hover:text-foreground transition-colors"
           >
             <ArrowLeft size={16} /> {backLabel}
-          </Link>
+          </button>
         </motion.div>
 
         <ScrollReveal>
