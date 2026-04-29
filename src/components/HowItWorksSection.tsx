@@ -188,7 +188,7 @@ const VerticalTimeline = () => {
 
       {/* Aircraft following scroll */}
       <motion.div
-        className="absolute left-[32px] md:left-1/2 -translate-x-1/2 z-30"
+        className="absolute left-0 md:left-1/2 md:-translate-x-1/2 z-30 w-16 md:w-auto flex justify-center md:block pointer-events-none"
         style={{ top: aircraftTop }}
       >
         <div className="relative">
