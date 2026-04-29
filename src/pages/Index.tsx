@@ -40,6 +40,9 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
+    const shouldRestoreFooter = Boolean((location.state as { restoreFooter?: boolean } | null)?.restoreFooter);
+    if (shouldRestoreFooter) return;
+
     if (location.hash) {
       setTimeout(() => {
         scrollToSection(location.hash);

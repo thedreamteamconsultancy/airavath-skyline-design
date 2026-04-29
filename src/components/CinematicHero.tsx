@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ScrollReveal from "@/components/ScrollReveal";
+import { readFooterReturnState } from "@/lib/footerNavigation";
 
 interface CinematicHeroProps {
   tagline: string;
@@ -30,10 +31,17 @@ const CinematicHero = ({
   });
 
   const handleBack = () => {
-    const historyIndex = window.history.state?.idx;
+    const footerReturn = location.state?.footerReturn || readFooterReturnState();
 
-    if (location.state?.fromFooter || (typeof historyIndex === "number" && historyIndex > 0)) {
-      navigate(-1);
+    if (location.state?.fromFooter || footerReturn?.source === "footer") {
+      navigate(footerReturn?.returnPath || "/#footer", {
+        state: {
+          restoreFooter: true,
+          footerReturn,
+          returnScrollY: footerReturn?.scrollY,
+        },
+        replace: true,
+      });
     } else {
       navigate(backLink);
     }

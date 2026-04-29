@@ -6,6 +6,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { scrollToSection } from "@/components/SmoothScroll";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { saveFooterReturnState } from "@/lib/footerNavigation";
 import airavathLogo from "@/assets/airavath-logo.png";
 
 const getNavColumns = (showTeam: boolean) => [
@@ -148,11 +149,25 @@ const FooterSection = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const getFooterSectionForHref = (href: string) =>
+    navColumns.find((column) => column.links.some((link) => link.href === href))?.title.toLowerCase() || "footer";
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    const footerState = {
+      source: "footer" as const,
+      section: getFooterSectionForHref(href),
+      href,
+      returnPath: "/#footer",
+      scrollY: window.scrollY,
+      createdAt: Date.now(),
+    };
+
+    saveFooterReturnState(footerState);
+
     if (href.startsWith("#")) {
       if (location.pathname !== "/") {
-        navigate("/" + href);
+        navigate("/" + href, { state: { fromFooter: true, footerReturn: footerState } });
       } else {
         scrollToSection(href);
       }
@@ -161,8 +176,9 @@ const FooterSection = () => {
     navigate(href, {
       state: {
         fromFooter: true,
-        returnTo: `${location.pathname}${location.hash}`,
-        returnScrollY: window.scrollY,
+        footerReturn: footerState,
+        returnTo: footerState.returnPath,
+        returnScrollY: footerState.scrollY,
       },
     });
   };
@@ -170,7 +186,7 @@ const FooterSection = () => {
   const scrollToTop = () => scrollToSection("#home");
 
   return (
-    <footer ref={ref} className="relative overflow-hidden">
+    <footer id="footer" ref={ref} className="relative overflow-hidden">
       {/* Background layers */}
       <div
         className="absolute inset-0"
