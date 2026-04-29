@@ -27,9 +27,6 @@ const Newsroom = () => {
     document.title = "AIRAVATH Newsroom | Latest Updates";
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute("content", "Latest updates, announcements, and developments from AIRAVATH.");
-    const l = (window as any).__lenis;
-    if (l) l.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0);
-
     const q = query(collection(db, "news_articles"), orderBy("publish_date", "desc"));
     const unsub = onSnapshot(q, (snap) => {
       setArticles(snap.docs.map((d) => ({ id: d.id, ...d.data() } as Article)));
