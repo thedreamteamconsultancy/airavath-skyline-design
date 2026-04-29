@@ -6,10 +6,12 @@ import {
   readFooterReturnState,
   type FooterReturnState,
 } from "@/lib/footerNavigation";
+import { clearBookmarkReturnState } from "@/lib/bookmarkNavigation";
 
 type NavigationState = {
   returnScrollY?: number;
   restoreFooter?: boolean;
+  restoreBookmark?: boolean;
   footerReturn?: FooterReturnState;
 };
 
@@ -79,11 +81,19 @@ const ScrollManager = () => {
     const shouldRestoreFooter =
       location.pathname === "/" &&
       Boolean(location.state?.restoreFooter || (footerReturn && isFreshFooterReturnState(footerReturn)));
+    const shouldRestoreBookmark =
+      location.pathname === "/" && Boolean(location.state?.restoreBookmark && returnScrollY !== undefined);
 
-    if (navType === "POP" || shouldRestoreFooter) {
+    if (navType === "POP" || shouldRestoreFooter || shouldRestoreBookmark) {
       const saved = shouldRestoreFooter
         ? footerReturn?.scrollY ?? returnScrollY ?? 0
+        : shouldRestoreBookmark
+          ? returnScrollY ?? 0
         : positions.current.get(location.key) ?? returnScrollY ?? 0;
+
+      if (navType === "POP" && location.pathname === "/" && location.hash && returnScrollY === undefined && !positions.current.has(location.key)) {
+        return;
+      }
 
       // Poll until document is tall enough to scroll to saved position.
       // Index page has lazy/heavy media — allow up to ~2s.
@@ -92,9 +102,9 @@ const ScrollManager = () => {
 
       const applyScroll = () => {
         if (lenis) {
-          lenis.scrollTo(saved, { immediate: !shouldRestoreFooter, force: true });
+          lenis.scrollTo(saved, { immediate: !(shouldRestoreFooter || shouldRestoreBookmark), force: true });
         } else {
-          window.scrollTo({ top: saved, behavior: shouldRestoreFooter ? "smooth" : "auto" });
+          window.scrollTo({ top: saved, behavior: shouldRestoreFooter || shouldRestoreBookmark ? "smooth" : "auto" });
         }
       };
 
@@ -117,6 +127,7 @@ const ScrollManager = () => {
           });
 
           if (shouldRestoreFooter) clearFooterReturnState();
+          if (shouldRestoreBookmark) clearBookmarkReturnState();
         } else {
           attempts++;
           requestAnimationFrame(tryRestore);
