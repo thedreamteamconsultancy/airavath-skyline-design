@@ -128,6 +128,10 @@ const MobileHubCarousel = () => {
                 ...style,
               }}
               onClick={() => {
+                if (i === activeIndex) {
+                  window.location.href = hub.link;
+                  return;
+                }
                 setActiveIndex(i);
                 setIsPaused(true);
                 setTimeout(() => setIsPaused(false), 3000);
@@ -149,6 +153,7 @@ const MobileHubCarousel = () => {
                 </p>
                 <Link
                   to={hub.link}
+                  onClick={(e) => e.stopPropagation()}
                   className="mt-auto inline-flex items-center gap-1.5 font-body text-[12px] text-primary"
                 >
                   Learn More <ArrowRight size={12} />
