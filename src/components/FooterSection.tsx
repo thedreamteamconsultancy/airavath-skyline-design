@@ -6,7 +6,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { scrollToSection } from "@/components/SmoothScroll";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { getPathFromLocation, saveFooterReturnState } from "@/lib/footerNavigation";
+import { saveFooterReturnState } from "@/lib/footerNavigation";
 import airavathLogo from "@/assets/airavath-logo.png";
 
 const getNavColumns = (showTeam: boolean) => [
@@ -158,7 +158,7 @@ const FooterSection = () => {
       source: "footer" as const,
       section: getFooterSectionForHref(href),
       href,
-      returnPath: getPathFromLocation(location),
+      returnPath: "/#footer",
       scrollY: window.scrollY,
       createdAt: Date.now(),
     };
@@ -186,7 +186,7 @@ const FooterSection = () => {
   const scrollToTop = () => scrollToSection("#home");
 
   return (
-    <footer ref={ref} className="relative overflow-hidden">
+    <footer id="footer" ref={ref} className="relative overflow-hidden">
       {/* Background layers */}
       <div
         className="absolute inset-0"
