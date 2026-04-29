@@ -40,8 +40,8 @@ const getNavColumns = (showTeam: boolean) => [
   {
     title: "Infrastructure",
     links: [
-      { label: "SkyPort", href: "/skyport" },
-      { label: "GroundPort", href: "/groundport" },
+      { label: "Sky Port", href: "/sky-port" },
+      { label: "Ground Port", href: "/ground-port" },
       { label: "Vertiport", href: "/vertiport" },
       { label: "Mobility Network", href: "/hub-network" },
     ],
