@@ -145,12 +145,20 @@ const FooterSection = () => {
     { icon: Youtube, label: "YouTube", href: settings.youtube_url || "#" },
   ];
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
     if (href.startsWith("#")) {
-      e.preventDefault();
-      scrollToSection(href);
+      if (location.pathname !== "/") {
+        navigate("/" + href);
+      } else {
+        scrollToSection(href);
+      }
+      return;
     }
-    // Let normal links (/newsroom etc.) navigate naturally
+    navigate(href);
   };
 
   const scrollToTop = () => scrollToSection("#home");
