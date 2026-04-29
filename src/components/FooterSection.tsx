@@ -158,7 +158,13 @@ const FooterSection = () => {
       }
       return;
     }
-    navigate(href);
+    navigate(href, {
+      state: {
+        fromFooter: true,
+        returnTo: `${location.pathname}${location.hash}`,
+        returnScrollY: window.scrollY,
+      },
+    });
   };
 
   const scrollToTop = () => scrollToSection("#home");
