@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Link } from "react-router-dom";
+import { prepareBookmarkNavigation } from "@/lib/bookmarkNavigation";
 import problemTraffic from "@/assets/problem-traffic.jpg";
 import problemSky from "@/assets/problem-sky.jpg";
 
@@ -77,6 +78,7 @@ const ProblemSection = () => {
 
   return (
     <section
+      id="urban-mobility"
       ref={sectionRef}
       className="relative bg-surface-0 overflow-hidden atmosphere-warm"
       style={{ paddingTop: isMobile ? "48px" : "80px", paddingBottom: isMobile ? "48px" : "80px" }}
@@ -154,6 +156,8 @@ const ProblemSection = () => {
         <div className="flex justify-center mt-8 md:mt-12">
           <Link
             to="/urban-mobility"
+            state={{ returnTo: "/#urban-mobility" }}
+            onClick={(e) => prepareBookmarkNavigation("/#urban-mobility", e)}
             className="font-sub text-[13px] text-primary border border-primary/30 rounded-lg px-6 py-3 hover:bg-primary/10 transition-all duration-300"
           >
             Learn More About Urban Mobility →
