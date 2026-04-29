@@ -3,12 +3,25 @@ import Lenis from "lenis";
 
 let lenisInstance: Lenis | null = null;
 
+export const NAV_OFFSET = -80;
+
 export const getLenis = () => lenisInstance;
 
-export const scrollToSection = (target: string, offset = -80) => {
+// Programmatic-scroll guard so scroll-spy doesn't fight with user-initiated
+// jumps (e.g. clicking a navbar link) and rewrite the URL mid-animation.
+let programmaticScrollUntil = 0;
+export const isProgrammaticScroll = () => Date.now() < programmaticScrollUntil;
+const markProgrammaticScroll = (durationMs: number) => {
+  programmaticScrollUntil = Date.now() + durationMs;
+};
+
+export const scrollToSection = (target: string, offset = NAV_OFFSET) => {
   const el = document.querySelector(target);
   if (!el || !lenisInstance) return;
-  
+
+  // Block scroll-spy URL writes for the full animation + small buffer
+  markProgrammaticScroll(1800);
+
   // Small delay for cinematic feel
   setTimeout(() => {
     lenisInstance!.scrollTo(el as HTMLElement, {
