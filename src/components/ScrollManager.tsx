@@ -40,13 +40,18 @@ const ScrollManager = () => {
   useEffect(() => {
     // Save the previous location's scroll before switching keys
     positions.current.set(lastKey.current, window.scrollY);
+    const returnScrollY = location.state?.returnScrollY;
+    if (typeof returnScrollY === "number") {
+      positions.current.set(lastKey.current, returnScrollY);
+    }
     const previousKey = lastKey.current;
     lastKey.current = location.key;
 
     const lenis = (window as any).__lenis;
 
     if (navType === "POP") {
-      const saved = positions.current.get(location.key) ?? 0;
+      const saved = positions.current.get(location.key) ??
+        (typeof location.state?.returnScrollY === "number" ? location.state.returnScrollY : 0);
 
       // Poll until document is tall enough to scroll to saved position
       let attempts = 0;
