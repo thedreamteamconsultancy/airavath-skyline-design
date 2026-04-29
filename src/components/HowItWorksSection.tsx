@@ -144,12 +144,12 @@ const VerticalTimeline = () => {
                 </div>
 
                 {/* Center node */}
-                <div className="absolute left-[32px] md:left-1/2 top-8 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20">
+                <div className="absolute left-[32px] md:left-1/2 top-8 md:top-1/2 -translate-x-1/2 md:-translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={started ? { scale: 1 } : {}}
                     transition={{ delay: i * 0.8, duration: 0.5, ease: "backOut" }}
-                    className="relative"
+                    className="relative w-12 h-12 flex items-center justify-center"
                   >
                     {/* Outer pulse */}
                     <motion.div
