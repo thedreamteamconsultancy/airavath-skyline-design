@@ -155,13 +155,13 @@ const VerticalTimeline = () => {
               </div>
               </ScrollReveal>
 
-              {/* Center node — outside reveal transform so it stays locked to the shared axis */}
-              <div className="absolute left-0 md:left-1/2 top-8 md:top-1/2 z-20 w-16 md:w-12 h-12 pointer-events-none md:-translate-x-1/2 md:-translate-y-1/2">
+              {/* Center node — locked to fixed 32px axis on mobile, centered on desktop */}
+              <div className="absolute left-[32px] md:left-1/2 top-8 md:top-1/2 z-20 w-12 h-12 -translate-x-1/2 md:-translate-y-1/2 pointer-events-none">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={started ? { scale: 1 } : {}}
                   transition={{ delay: i * 0.8, duration: 0.5, ease: "backOut" }}
-                  className="absolute left-1/2 top-0 -translate-x-1/2 md:relative md:left-auto md:top-auto md:translate-x-0 w-12 h-12 flex items-center justify-center"
+                  className="w-12 h-12 flex items-center justify-center relative"
                 >
                   {/* Outer pulse */}
                   <motion.div
@@ -173,7 +173,6 @@ const VerticalTimeline = () => {
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                    style={{ width: 64, height: 64, top: -8, left: -8 }}
                   />
                   {/* Node */}
                   <div className="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-[0_0_20px_hsl(189_100%_50%/0.25)]">
