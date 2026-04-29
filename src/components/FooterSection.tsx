@@ -122,14 +122,21 @@ const FooterSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [settings, setSettings] = useState<SiteSettings>({});
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const [showTeam, setShowTeam] = useState(true);
   const isMobile = useIsMobile();
 
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "website_settings", "main"), (snap) => {
-      if (snap.exists()) setSettings(snap.data() as SiteSettings);
+      if (snap.exists()) {
+        const data = snap.data() as SiteSettings & { show_team_section?: boolean };
+        setSettings(data);
+        setShowTeam(data.show_team_section !== false);
+      }
     });
     return unsub;
   }, []);
+
+  const navColumns = getNavColumns(showTeam);
 
   const socials = [
     { icon: Linkedin, label: "LinkedIn", href: settings.linkedin_url || "#" },
